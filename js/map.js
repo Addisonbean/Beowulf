@@ -9,6 +9,7 @@ function Map(ctx) {
 	this.ctx = ctx;
 
 	this.playerPosition = { x: 0, y: 0 };
+	this.player = createHero();
 }
 
 Map.prototype.init = function() {
@@ -27,7 +28,7 @@ Map.prototype.init = function() {
 		}
 	}
 	this.playerPosition = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 }
-	this.tiles[this.playerPosition.y][this.playerPosition.x] = createHero();
+	this.tiles[this.playerPosition.y][this.playerPosition.x] = this.player;
 };
 
 Map.prototype.draw = function() {
@@ -75,13 +76,13 @@ Map.prototype.prettyPrint = function() {
 };
 
 Map.prototype.drawTileAtPosition = function(pos) {
-	var tile = this.backgroundTiles[pos.y][pos.x];
-	console.log(tile);
-	if (tile) {
-		this.ctx.drawImage(tile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
+	var bgTile = this.backgroundTiles[pos.y][pos.x];
+	var tile = this.tiles[pos.y][pos.x];
+	var size = tile ? [tile.width, tile.height] : [this.tileSize, this.tileSize];
+	ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
+	if (bgTile) {
+		this.ctx.drawImage(bgTile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
 	}
-	tile = this.tiles[pos.y][pos.x];
-	console.log(tile);
 	if (tile) {
 		this.ctx.drawImage(tile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
 	}
@@ -106,7 +107,12 @@ Map.prototype.movePlayer = function(keyCode) {
 		default:
 			return;
 	}
-	this.tiles[this.playerPosition.y][this.playerPosition.x] = this.tiles[oldPos.y][oldPos.x];
+	var item = this.tiles[this.playerPosition.y][this.playerPosition.x];
+	if (item) {
+		this.player.inventory.addItem(item);
+	}
+
+	this.tiles[this.playerPosition.y][this.playerPosition.x] = this.player;
 	this.tiles[oldPos.y][oldPos.x] = undefined;
 	this.drawTileAtPosition(oldPos);
 	this.drawTileAtPosition(this.playerPosition);
