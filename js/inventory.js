@@ -1,5 +1,5 @@
 function Inventory(ctx) {
-	this.items = [];
+	this.items = {};
 	this.ctx = ctx
 
 	this.width = 150;
@@ -12,7 +12,10 @@ function Inventory(ctx) {
 }
 
 Inventory.prototype.addItem = function(item) {
-	this.items.push(item);
+	if (this.items[item.name] === undefined) {
+		this.items[item.name] = { object: item, count: 0 };
+	}
+	this.items[item.name].count += 1;
 	this.draw();
 };
 
@@ -41,10 +44,19 @@ Inventory.prototype.draw = function() {
 		ctx.stroke();
 	}
 
-	for (var j = 0; j < this.items.length; j++) {
+	var j = 0;
+	for (var key in this.items) {
 		var x = j % this.columns;
 		var y = Math.floor(j / this.columns);
-		ctx.drawImage(this.items[j].sprite, this.minX + x * this.width / this.columns, y * this.height / this.rows);
+		var item = this.items[key];
+		ctx.drawImage(item.object.sprite,
+			(x * this.width  / this.columns + (x + 1) * this.width  / this.columns - 32) / 2 + this.minX,
+			(y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
+		if (item.count > 1) {
+			ctx.font = "10pt helvetica";
+			ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, (y + 1) * this.height / this.rows - 8);
+		}
+		j++;
 	}
 };
 

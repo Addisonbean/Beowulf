@@ -1,9 +1,11 @@
-function Item(sprite, width, height, obtainable = false) {
+function Item(name, sprite, width, height, obtainable = false) {
 	this.sprite = sprite;
 	this.width = width;
 	this.height = height;
 
 	this.obtainable = obtainable;
+
+	this.name = name;
 }
 
 var itemImages = {
@@ -32,7 +34,7 @@ function loadImages(imgs, urls, callback) {
 }
 
 function createPebble() {
-	return new Item(itemImages.pebble, 1, 1);
+	return new Item("pebble", itemImages.pebble, 1, 1);
 }
 
 function createHero() {
@@ -40,10 +42,10 @@ function createHero() {
 }
 
 function createCoin() {
-	return new Item(itemImages.coin, 1, 1, true);;
+	return new Item("coin", itemImages.coin, 1, 1, true);;
 }
 
-Hero.prototype = new Item(itemImages.hero, 1, 1);
+Hero.prototype = new Item("hero", itemImages.hero, 1, 1);
 Hero.prototype.constructor = Hero;
 function Hero() {
 	this.health = 10;

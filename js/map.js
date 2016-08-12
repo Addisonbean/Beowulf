@@ -91,30 +91,33 @@ Map.prototype.drawTileAtPosition = function(pos) {
 // TODO: bounds check
 Map.prototype.movePlayer = function(keyCode) {
 	var oldPos = this.playerPosition;
+	var newPos;
 	switch (keyCode) {
 		case 37:
-			this.playerPosition = { x: oldPos.x - 1, y: oldPos.y };
+			newPos = { x: oldPos.x - 1, y: oldPos.y };
 			break;
 		case 38:
-			this.playerPosition = { x: oldPos.x, y: oldPos.y - 1 };
+			newPos = { x: oldPos.x, y: oldPos.y - 1 };
 			break;
 		case 39:
-			this.playerPosition = { x: oldPos.x + 1, y: oldPos.y };
+			newPos = { x: oldPos.x + 1, y: oldPos.y };
 			break
 		case 40:
-			this.playerPosition = { x: oldPos.x, y: oldPos.y + 1 };
+			newPos = { x: oldPos.x, y: oldPos.y + 1 };
 			break;
 		default:
 			return;
 	}
-	var item = this.tiles[this.playerPosition.y][this.playerPosition.x];
+	if (newPos.x < 0 || newPos.x + 1 > this.width || newPos.y < 0 || newPos.y + 1 > this.height) return;
+	this.playerPosition = newPos;
+	var item = this.tiles[newPos.y][newPos.x];
 	if (item) {
 		this.player.inventory.addItem(item);
 	}
 
-	this.tiles[this.playerPosition.y][this.playerPosition.x] = this.player;
+	this.tiles[newPos.y][newPos.x] = this.player;
 	this.tiles[oldPos.y][oldPos.x] = undefined;
 	this.drawTileAtPosition(oldPos);
-	this.drawTileAtPosition(this.playerPosition);
+	this.drawTileAtPosition(newPos);
 };
 
