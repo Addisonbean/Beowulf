@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+
+		#game-canvas {
+			border: 1px solid black;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<canvas width="544" height="544" id="game-canvas">
+		Sorry! Your browser does not support HTML5 canvas.
+	</canvas>
+
+<script>
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+</script>
+<script src="js/item.js"></script>
+<script src="js/map.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
+
