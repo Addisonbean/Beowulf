@@ -6,9 +6,6 @@ function Map(gameData) {
 	this.backgroundTiles = [];
 	this.tiles = [];
 
-	this.playerPosition = { x: 0, y: 0 };
-	this.player = createHero();
-
 	this.initialized = false;
 	this.gameData = gameData;
 }
@@ -28,8 +25,8 @@ Map.prototype.init = function() {
 			this.backgroundTiles[y][x] = createPebble();
 		}
 	}
-	this.playerPosition = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 }
-	this.tiles[this.playerPosition.y][this.playerPosition.x] = this.player;
+	this.gameData.playerPosition = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 }
+	this.tiles[this.gameData.playerPosition.y][this.gameData.playerPosition.x] = this.gameData.player;
 };
 
 Map.prototype.draw = function() {
@@ -42,6 +39,7 @@ Map.prototype.draw = function() {
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
+			if (tile === this.gameData.player) console.log("ayayayyy");
 			if (!tile) { continue }
 			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
 		}
@@ -80,7 +78,7 @@ Map.prototype.drawTileAtPosition = function(pos) {
 	var bgTile = this.backgroundTiles[pos.y][pos.x];
 	var tile = this.tiles[pos.y][pos.x];
 	var size = tile ? [tile.width, tile.height] : [this.tileSize, this.tileSize];
-	gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
+	this.gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
 	if (bgTile) {
 		this.gameData.ctx.drawImage(bgTile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
 	}
@@ -90,41 +88,41 @@ Map.prototype.drawTileAtPosition = function(pos) {
 };
 
 // TODO: bounds check
-Map.prototype.movePlayer = function(keyCode) {
-	var oldPos = this.playerPosition;
-	var newPos;
-	switch (keyCode) {
-		case 37:
-			newPos = { x: oldPos.x - 1, y: oldPos.y };
-			break;
-		case 38:
-			newPos = { x: oldPos.x, y: oldPos.y - 1 };
-			break;
-		case 39:
-			newPos = { x: oldPos.x + 1, y: oldPos.y };
-			break
-		case 40:
-			newPos = { x: oldPos.x, y: oldPos.y + 1 };
-			break;
-		default:
-			return;
-	}
-	if (newPos.x < 0 || newPos.x + 1 > this.width || newPos.y < 0 || newPos.y + 1 > this.height) return;
-	var item = this.tiles[newPos.y][newPos.x];
-	if (item) {
-		if (item.obtainable) {
-			this.player.inventory.addItem(item);
-		} else {
-			item.collideWith(this.player);
-			return;
-		}
-	}
+// Map.prototype.movePlayer = function(keyCode) {
+// 	var oldPos = this.gameData.playerPosition;
+// 	var newPos;
+// 	switch (keyCode) {
+// 		case 37:
+// 			newPos = { x: oldPos.x - 1, y: oldPos.y };
+// 			break;
+// 		case 38:
+// 			newPos = { x: oldPos.x, y: oldPos.y - 1 };
+// 			break;
+// 		case 39:
+// 			newPos = { x: oldPos.x + 1, y: oldPos.y };
+// 			break
+// 		case 40:
+// 			newPos = { x: oldPos.x, y: oldPos.y + 1 };
+// 			break;
+// 		default:
+// 			return;
+// 	}
+// 	if (newPos.x < 0 || newPos.x + 1 > this.width || newPos.y < 0 || newPos.y + 1 > this.height) return;
+// 	var item = this.tiles[newPos.y][newPos.x];
+// 	if (item) {
+// 		if (item.obtainable) {
+// 			this.gamedata.player.inventory.addItem(item);
+// 		} else {
+// 			item.collideWith(this.gameData.player);
+// 			return;
+// 		}
+// 	}
 
-	this.playerPosition = newPos;
+// 	this.gameData.playerPosition = newPos;
 
-	this.tiles[newPos.y][newPos.x] = this.player;
-	this.tiles[oldPos.y][oldPos.x] = undefined;
-	this.drawTileAtPosition(oldPos);
-	this.drawTileAtPosition(newPos);
-};
+// 	this.tiles[newPos.y][newPos.x] = this.gameData.player;
+// 	this.tiles[oldPos.y][oldPos.x] = undefined;
+// 	this.drawTileAtPosition(oldPos);
+// 	this.drawTileAtPosition(newPos);
+// };
 

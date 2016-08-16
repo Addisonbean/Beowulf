@@ -44,6 +44,7 @@ function createPebble() {
 }
 
 function createHero() {
+	console.log("aayyy");
 	return new Hero();
 }
 

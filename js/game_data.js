@@ -7,7 +7,10 @@ Object.size = function(obj) {
 };
 
 function GameData() {
-	// player: 
+	// this.player = createHero();
+	this.player = undefined;
+	this.map = undefined;
+	this.playerPosition = { x: 0, y: 0 };
 	this.tileSize = 32
 	this.mapWidth = 17
 	this.mapHeight = 17
@@ -16,7 +19,7 @@ function GameData() {
 gameData = new GameData();
 
 GameData.prototype.movePlayer = function(keyCode) {
-	var oldPos = this.map.playerPosition;
+	var oldPos = this.playerPosition;
 	var newPos;
 	switch (keyCode) {
 		case 37:
@@ -38,16 +41,16 @@ GameData.prototype.movePlayer = function(keyCode) {
 	var item = this.map.tiles[newPos.y][newPos.x];
 	if (item) {
 		if (item.obtainable) {
-			this.map.player.inventory.addItem(item);
+			this.player.inventory.addItem(item);
 		} else {
-			item.collideWith(this.map.player);
+			item.collideWith(this.player);
 			return;
 		}
 	}
 
-	this.map.playerPosition = newPos;
+	this.playerPosition = newPos;
 
-	this.map.tiles[newPos.y][newPos.x] = this.map.player;
+	this.map.tiles[newPos.y][newPos.x] = this.player;
 	this.map.tiles[oldPos.y][oldPos.x] = undefined;
 	this.map.drawTileAtPosition(oldPos);
 	this.map.drawTileAtPosition(newPos);

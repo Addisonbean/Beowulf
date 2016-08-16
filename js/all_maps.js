@@ -1,3 +1,5 @@
+gameData.player = createHero();
+
 var allMaps = {
 	// TODO:
 	// start: new Map(gameData),
