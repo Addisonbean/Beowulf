@@ -1,4 +1,4 @@
 everything labeled "TODO"
-make a gamedata object that has the tile size, ctx, canvas, and crap
+use gameData everywhere/refactor it
 add scene switching
 

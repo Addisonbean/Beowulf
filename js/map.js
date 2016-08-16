@@ -1,4 +1,4 @@
-function Map(ctx) {
+function Map(gameData) {
 	this.tileSize = 32;
 	this.height = 17;
 	this.width = 17;
@@ -6,10 +6,11 @@ function Map(ctx) {
 	this.backgroundTiles = [];
 	this.tiles = [];
 
-	this.ctx = ctx;
-
 	this.playerPosition = { x: 0, y: 0 };
 	this.player = createHero();
+
+	this.initialized = false;
+	this.gameData = gameData;
 }
 
 Map.prototype.init = function() {
@@ -35,14 +36,14 @@ Map.prototype.draw = function() {
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.backgroundTiles[y][x];
-			this.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
+			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
 		}
 	}
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
 			if (!tile) { continue }
-			this.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
+			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
 		}
 	}
 };
@@ -79,12 +80,12 @@ Map.prototype.drawTileAtPosition = function(pos) {
 	var bgTile = this.backgroundTiles[pos.y][pos.x];
 	var tile = this.tiles[pos.y][pos.x];
 	var size = tile ? [tile.width, tile.height] : [this.tileSize, this.tileSize];
-	ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
+	gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
 	if (bgTile) {
-		this.ctx.drawImage(bgTile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
+		this.gameData.ctx.drawImage(bgTile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
 	}
 	if (tile) {
-		this.ctx.drawImage(tile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
+		this.gameData.ctx.drawImage(tile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
 	}
 };
 
@@ -109,11 +110,17 @@ Map.prototype.movePlayer = function(keyCode) {
 			return;
 	}
 	if (newPos.x < 0 || newPos.x + 1 > this.width || newPos.y < 0 || newPos.y + 1 > this.height) return;
-	this.playerPosition = newPos;
 	var item = this.tiles[newPos.y][newPos.x];
 	if (item) {
-		this.player.inventory.addItem(item);
+		if (item.obtainable) {
+			this.player.inventory.addItem(item);
+		} else {
+			item.collideWith(this.player);
+			return;
+		}
 	}
+
+	this.playerPosition = newPos;
 
 	this.tiles[newPos.y][newPos.x] = this.player;
 	this.tiles[oldPos.y][oldPos.x] = undefined;

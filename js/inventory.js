@@ -1,6 +1,6 @@
 function Inventory(ctx) {
 	this.items = {};
-	this.ctx = ctx
+	this.gameData = gameData;
 
 	this.width = 150;
 	this.height = 544;
@@ -20,28 +20,28 @@ Inventory.prototype.addItem = function(item) {
 };
 
 Inventory.prototype.draw = function() {
-	ctx.clearRect(this.minX, 0, this.width, this.height);
+	this.gameData.ctx.clearRect(this.minX, 0, this.width, this.height);
 
-	ctx.lineWidth = 1;
-	ctx.strokeStyle = "black";
+	this.gameData.ctx.lineWidth = 1;
+	this.gameData.ctx.strokeStyle = "black";
 
-	ctx.beginPath();
-	ctx.moveTo(this.minX, 0);
-	ctx.lineTo(this.minX, 544);
-	ctx.stroke();
+	this.gameData.ctx.beginPath();
+	this.gameData.ctx.moveTo(this.minX, 0);
+	this.gameData.ctx.lineTo(this.minX, 544);
+	this.gameData.ctx.stroke();
 
 	for (var ii = 0; ii < this.rows - 1; ii++) {
-		ctx.beginPath();
-		ctx.moveTo(this.minX + ii * this.width / this.columns, 0);
-		ctx.lineTo(this.minX + ii * this.width / this.columns, 544);
-		ctx.stroke();
+		this.gameData.ctx.beginPath();
+		this.gameData.ctx.moveTo(this.minX + ii * this.width / this.columns, 0);
+		this.gameData.ctx.lineTo(this.minX + ii * this.width / this.columns, 544);
+		this.gameData.ctx.stroke();
 	}
 
 	for (var i = 0; i < this.rows - 1; i++) {
-		ctx.beginPath();
-		ctx.moveTo(this.minX, (i + 1) * this.height / this.rows);
-		ctx.lineTo(this.minX + this.width, (i + 1) * this.height / this.rows);
-		ctx.stroke();
+		this.gameData.ctx.beginPath();
+		this.gameData.ctx.moveTo(this.minX, (i + 1) * this.height / this.rows);
+		this.gameData.ctx.lineTo(this.minX + this.width, (i + 1) * this.height / this.rows);
+		this.gameData.ctx.stroke();
 	}
 
 	var j = 0;
@@ -49,12 +49,12 @@ Inventory.prototype.draw = function() {
 		var x = j % this.columns;
 		var y = Math.floor(j / this.columns);
 		var item = this.items[key];
-		ctx.drawImage(item.object.sprite,
+		this.gameData.ctx.drawImage(item.object.sprite,
 			(x * this.width  / this.columns + (x + 1) * this.width  / this.columns - 32) / 2 + this.minX,
 			(y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
 		if (item.count > 1) {
-			ctx.font = "10pt helvetica";
-			ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, (y + 1) * this.height / this.rows - 8);
+			this.gameData.ctx.font = "10pt helvetica";
+			this.gameData.ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, (y + 1) * this.height / this.rows - 8);
 		}
 		j++;
 	}
