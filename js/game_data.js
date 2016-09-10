@@ -43,8 +43,9 @@ GameData.prototype.movePlayer = function(keyCode) {
 		if (item.obtainable) {
 			this.player.inventory.addItem(item);
 		} else {
-			item.collideWith(this.player);
-			return;
+			if (!item.collideWith(this.player)) {
+				return;
+			}
 		}
 	}
 

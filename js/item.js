@@ -10,7 +10,9 @@ function Item(name, sprite, width, height, gameData, obtainable = false) {
 	this.gameData = gameData;
 }
 
-Item.prototype.collideWith = function(player) {};
+Item.prototype.collideWith = function(player) {
+	return false
+};
 
 var itemImages = {
 	pebble: new Image(),
@@ -44,7 +46,6 @@ function createPebble() {
 }
 
 function createHero() {
-	console.log("aayyy");
 	return new Hero();
 }
 
@@ -71,6 +72,7 @@ function Door(newMap) {
 
 Door.prototype.collideWith = function(player) {
 	gotoMap(this.newMap);
+	return false;
 }
 
 function gotoMap(map) {
