@@ -16,6 +16,7 @@ function getStartMap() {
 		allMaps.start.init();
 		allMaps.start.addItemAtPoint(createCoin(), { x: 10, y: 4 });
 		allMaps.start.addItemAtPoint(createDoor(getCaveMap), { x: 12, y: 5 });
+		allMaps.start.addItemAtPoint(createStoneBlock(), { x: 4, y: 4 });
 	}
 	return m;
 }

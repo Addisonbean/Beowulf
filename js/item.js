@@ -1,4 +1,4 @@
-function Item(name, sprite, width, height, gameData, obtainable = false) {
+function Item(name, sprite, width, height, gameData, obtainable = false, movable = false) {
 	this.sprite = sprite;
 	this.width = width;
 	this.height = height;
@@ -8,6 +8,10 @@ function Item(name, sprite, width, height, gameData, obtainable = false) {
 	this.name = name;
 
 	this.gameData = gameData;
+
+	this.position = { x: 0, y: 0 };
+
+	this.movable = movable; 
 }
 
 Item.prototype.collideWith = function(player) {
@@ -18,14 +22,16 @@ var itemImages = {
 	pebble: new Image(),
 	hero: new Image(),
 	coin: new Image(),
-	door: new Image()
+	door: new Image(),
+	stoneBlock: new Image()
 };
 
 var urls = {
 	pebble: "img/pedestal_full.png",
 	hero: "img/hero.png",
 	coin: "img/coin.png",
-	door: "img/dngn_enter_labyrinth.png"
+	door: "img/dngn_enter_labyrinth.png",
+	stoneBlock: "img/stone.png"
 };
 
 function loadImages(imgs, urls, callback) {
@@ -50,11 +56,24 @@ function createHero() {
 }
 
 function createCoin() {
-	return new Item("coin", itemImages.coin, 1, 1, gameData, true);;
+	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
 }
 
 function createDoor(map) {
 	return new Door(map);
+}
+
+StoneBlock.prototype = new Item("stoneBlock", itemImages.stoneBlock, 1, 1, gameData, false, true);
+StoneBlock.prototype.constructor = StoneBlock;
+function StoneBlock() {}
+
+StoneBlock.prototype.collideWith = function(obj, direction) {
+	var val = this.gameData.moveItem(this, direction);
+	return val;
+};
+
+function createStoneBlock() {
+	return new StoneBlock();
 }
 
 Hero.prototype = new Item("hero", itemImages.hero, 1, 1, gameData);
@@ -70,7 +89,7 @@ function Door(newMap) {
 	this.newMap = newMap;
 }
 
-Door.prototype.collideWith = function(player) {
+Door.prototype.collideWith = function(player, direction) {
 	gotoMap(this.newMap);
 	return false;
 }

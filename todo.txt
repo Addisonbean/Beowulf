@@ -1,4 +1,9 @@
 everything labeled "TODO"
 use gameData everywhere/refactor it
-add scene switching
+add scene switching when walking off the map
+get good sprites (from Aaron?)
+cleanup js/item.js
+add enemies
+keyword arguments for Item?
+fix map initialization (make a visit/goto method, don't init right away)
 

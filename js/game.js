@@ -11,7 +11,7 @@ loadImages(itemImages, urls, function() {
 	console.log(gameData.canvas);
 
 	document.addEventListener("keydown", function(e) {
-		gameData.movePlayer(e.keyCode);
+		gameData.moveItem(gameData.player, e.keyCode);
 	});
 
 	gameData.map.draw();
