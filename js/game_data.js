@@ -68,6 +68,10 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	return true;
 };
 
+GameData.prototype.updateMap = function() {
+	this.map.update();
+};
+
 gameData.canvas = document.getElementById("game-canvas");
 gameData.ctx = gameData.canvas.getContext("2d");
 

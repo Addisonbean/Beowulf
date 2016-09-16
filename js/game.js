@@ -12,7 +12,8 @@ loadImages(itemImages, urls, function() {
 		gameData.moveItem(gameData.player, e.keyCode);
 	});
 
-	window.setInterval(gameData.map.update.bind(gameData.map), 200);
+	// window.setInterval(gameData.map.update.bind(gameData.map), 200);
+	window.setInterval(gameData.updateMap.bind(gameData), 200);
 
 	gameData.map.draw();
 	gameData.player.inventory.draw();
