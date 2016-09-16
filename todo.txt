@@ -3,7 +3,10 @@ use gameData everywhere/refactor it
 add scene switching when walking off the map
 get good sprites (from Aaron?)
 cleanup js/item.js
-add enemies
+add combat and weapons
+make the inventory usefull
+add more items
 keyword arguments for Item?
 fix map initialization (make a visit/goto method, don't init right away)
+use elements from the Beowulf story
 

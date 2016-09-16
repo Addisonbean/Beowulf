@@ -8,11 +8,11 @@ gameData.map = getStartMap();
 
 loadImages(itemImages, urls, function() {
 
-	console.log(gameData.canvas);
-
 	document.addEventListener("keydown", function(e) {
 		gameData.moveItem(gameData.player, e.keyCode);
 	});
+
+	window.setInterval(gameData.map.update.bind(gameData.map), 200);
 
 	gameData.map.draw();
 	gameData.player.inventory.draw();

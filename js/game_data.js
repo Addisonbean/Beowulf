@@ -1,3 +1,10 @@
+// window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
+// 	var oThis = this, aArgs = Array.prototype.slice.call(arguments, 2);
+// 	return __nativeSI__(vCallback instanceof Function ? function () {
+// 		vCallback.apply(oThis, aArgs);
+// 	} : vCallback, nDelay);
+// };
+
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -57,6 +64,7 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	this.map.tiles[oldPos.y][oldPos.x] = undefined;
 	this.map.drawTileAtPosition(oldPos);
 	this.map.drawTileAtPosition(newPos);
+
 	return true;
 };
 

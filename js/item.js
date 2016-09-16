@@ -23,7 +23,8 @@ var itemImages = {
 	hero: new Image(),
 	coin: new Image(),
 	door: new Image(),
-	stoneBlock: new Image()
+	stoneBlock: new Image(),
+	enemy: new Image()
 };
 
 var urls = {
@@ -31,7 +32,8 @@ var urls = {
 	hero: "img/hero.png",
 	coin: "img/coin.png",
 	door: "img/dngn_enter_labyrinth.png",
-	stoneBlock: "img/stone.png"
+	stoneBlock: "img/stone.png",
+	enemy: "img/blobRight.png"
 };
 
 function loadImages(imgs, urls, callback) {
@@ -99,6 +101,16 @@ function gotoMap(map) {
 	gameData.map = map();
 	gameData.map.player = p;
 	gameData.map.draw();
+}
+
+Enemy.prototype = new Item("enemy", itemImages.enemy, 1, 1, gameData);
+Enemy.prototype.constructor = Enemy;
+function Enemy() {
+	this.health = 5;
+}
+
+function createEnemy() {
+	return new Enemy();
 }
 
 // http://opengameart.org/content/dungeon-crawl-32x32-tiles

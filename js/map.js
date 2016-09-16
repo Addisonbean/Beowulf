@@ -8,6 +8,8 @@ function Map(gameData) {
 
 	this.initialized = false;
 	this.gameData = gameData;
+
+	this.enemies = [];
 }
 
 Map.prototype.init = function() {
@@ -27,6 +29,7 @@ Map.prototype.init = function() {
 	}
 	this.gameData.player.position = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 };
 	this.tiles[this.gameData.player.position.y][this.gameData.player.position.x] = this.gameData.player;
+	this.initialized = true;
 };
 
 Map.prototype.draw = function() {
@@ -39,7 +42,6 @@ Map.prototype.draw = function() {
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
-			if (tile === this.gameData.player) console.log("ayayayyy");
 			if (!tile) { continue }
 			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
 		}
@@ -49,6 +51,9 @@ Map.prototype.draw = function() {
 Map.prototype.addItemAtPoint = function(item, point) {
 	this.tiles[point.y][point.x] = item;
 	item.position = point;
+	if (item.constructor === Enemy) {
+		this.enemies.push(item);
+	}
 	for (var y = point.y + 1; y < point.y + item.height; y++) {
 		for (var x = point.x + 1; x < point.x + item.width; x++) {
 			this.tiles[y][x] = { x: point.x, y: point.y };
@@ -88,42 +93,12 @@ Map.prototype.drawTileAtPosition = function(pos) {
 	}
 };
 
-// TODO: bounds check
-// Map.prototype.movePlayer = function(keyCode) {
-// 	var oldPos = this.gameData.playerPosition;
-// 	var newPos;
-// 	switch (keyCode) {
-// 		case 37:
-// 			newPos = { x: oldPos.x - 1, y: oldPos.y };
-// 			break;
-// 		case 38:
-// 			newPos = { x: oldPos.x, y: oldPos.y - 1 };
-// 			break;
-// 		case 39:
-// 			newPos = { x: oldPos.x + 1, y: oldPos.y };
-// 			break
-// 		case 40:
-// 			newPos = { x: oldPos.x, y: oldPos.y + 1 };
-// 			break;
-// 		default:
-// 			return;
-// 	}
-// 	if (newPos.x < 0 || newPos.x + 1 > this.width || newPos.y < 0 || newPos.y + 1 > this.height) return;
-// 	var item = this.tiles[newPos.y][newPos.x];
-// 	if (item) {
-// 		if (item.obtainable) {
-// 			this.gamedata.player.inventory.addItem(item);
-// 		} else {
-// 			item.collideWith(this.gameData.player);
-// 			return;
-// 		}
-// 	}
-
-// 	this.gameData.playerPosition = newPos;
-
-// 	this.tiles[newPos.y][newPos.x] = this.gameData.player;
-// 	this.tiles[oldPos.y][oldPos.x] = undefined;
-// 	this.drawTileAtPosition(oldPos);
-// 	this.drawTileAtPosition(newPos);
-// };
+Map.prototype.update = function() {
+	for (var i = 0; i < this.enemies.length; i++) {
+		if (Math.random() < 0.1) {
+			var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
+			this.gameData.moveItem(this.enemies[i], dir);
+		}
+	}
+};
 
