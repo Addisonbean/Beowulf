@@ -109,12 +109,21 @@ Map.prototype.findItemRelativeTo = function(item, needle) {
 	}
 };
 
+Map.prototype.removeItem = function(item) {
+	this.tiles[item.position.y][item.position.x] = undefined;
+	if (item.constructor === Enemy) {
+		var idx = this.enemies.indexOf(item);
+		if (idx > -1) { this.enemies.splice(idx, 1) }
+	}
+	this.drawTileAtPosition(item.position);
+};
+
 Map.prototype.update = function() {
 	for (var i = 0; i < this.enemies.length; i++) {
 		if (Math.random() < 0.1) {
 			var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
 			this.gameData.moveItem(this.enemies[i], dir);
-		} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.15) {
+		} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.17) {
 			this.enemies[i].attack(this.gameData.player);
 		}
 	}
