@@ -35,17 +35,18 @@ Map.prototype.init = function() {
 };
 
 Map.prototype.draw = function() {
+	var yOffset = this.gameData.stats.height;
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.backgroundTiles[y][x];
-			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
+			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
 		}
 	}
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
 			if (!tile) { continue }
-			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, y * this.tileSize);
+			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
 		}
 	}
 };
@@ -86,8 +87,9 @@ Map.prototype.drawTileAtPosition = function(pos) {
 	var bgTile = this.backgroundTiles[pos.y][pos.x];
 	var tile = this.tiles[pos.y][pos.x];
 	var size = tile ? [tile.width, tile.height] : [1, 1];
+	var yOffset = this.gameData.stats.height;
 
-	this.gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0] * this.tileSize, size[1] * this.tileSize);
+	this.gameData.ctx.clearRect(pos.x * this.tileSize, yOffset + pos.y * this.tileSize, size[0] * this.tileSize, size[1] * this.tileSize);
 
 	if (bgTile) { bgTile.draw() }
 	if (tile) { tile.draw() }

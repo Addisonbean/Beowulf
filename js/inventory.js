@@ -20,27 +20,28 @@ Inventory.prototype.addItem = function(item) {
 };
 
 Inventory.prototype.draw = function() {
-	this.gameData.ctx.clearRect(this.minX, 0, this.width, this.height);
+	var yOffset = this.gameData.stats.height;
+	this.gameData.ctx.clearRect(this.minX, yOffset, this.width, this.height);
 
 	this.gameData.ctx.lineWidth = 1;
 	this.gameData.ctx.strokeStyle = "black";
 
 	this.gameData.ctx.beginPath();
-	this.gameData.ctx.moveTo(this.minX, 0);
-	this.gameData.ctx.lineTo(this.minX, 544);
+	this.gameData.ctx.moveTo(this.minX, yOffset);
+	this.gameData.ctx.lineTo(this.minX, yOffset + 544);
 	this.gameData.ctx.stroke();
 
-	for (var ii = 0; ii < this.rows - 1; ii++) {
+	for (var ii = 0; ii < this.columns; ii++) {
 		this.gameData.ctx.beginPath();
-		this.gameData.ctx.moveTo(this.minX + ii * this.width / this.columns, 0);
-		this.gameData.ctx.lineTo(this.minX + ii * this.width / this.columns, 544);
+		this.gameData.ctx.moveTo(this.minX + ii * this.width / this.columns, yOffset);
+		this.gameData.ctx.lineTo(this.minX + ii * this.width / this.columns, yOffset + 544);
 		this.gameData.ctx.stroke();
 	}
 
-	for (var i = 0; i < this.rows - 1; i++) {
+	for (var i = 0; i < this.rows; i++) {
 		this.gameData.ctx.beginPath();
-		this.gameData.ctx.moveTo(this.minX, (i + 1) * this.height / this.rows);
-		this.gameData.ctx.lineTo(this.minX + this.width, (i + 1) * this.height / this.rows);
+		this.gameData.ctx.moveTo(this.minX, yOffset + i * this.height / this.rows);
+		this.gameData.ctx.lineTo(this.minX + this.width, yOffset + i * this.height / this.rows);
 		this.gameData.ctx.stroke();
 	}
 
@@ -51,10 +52,10 @@ Inventory.prototype.draw = function() {
 		var item = this.items[key];
 		this.gameData.ctx.drawImage(item.object.sprite,
 			(x * this.width  / this.columns + (x + 1) * this.width  / this.columns - 32) / 2 + this.minX,
-			(y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
+			yOffset + (y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
 		if (item.count > 1) {
 			this.gameData.ctx.font = "10pt helvetica";
-			this.gameData.ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, (y + 1) * this.height / this.rows - 8);
+			this.gameData.ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, yOffset + (y + 1) * this.height / this.rows - 8);
 		}
 		j++;
 	}

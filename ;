@@ -19,14 +19,13 @@ function GameData() {
 	// this.player = createHero();
 	this.player = undefined;
 	this.map = undefined;
-	this.tileSize = 32;
-	this.mapWidth = 17;
-	this.mapHeight = 17;
-	this.stats = undefined;
+	this.tileSize = 32
+	this.mapWidth = 17
+	this.mapHeight = 17
+	this.stats = new Stats();
 };
 
 gameData = new GameData();
-gameData.stats = new Stats(gameData);
 
 GameData.prototype.moveItem = function(item, keyCode) {
 	var oldPos = item.position;

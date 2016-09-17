@@ -21,7 +21,8 @@ Item.prototype.collideWith = function(player) {
 Item.prototype.draw = function() {
 	var tileSize = this.gameData.tileSize;
 	var pos = this.position;
-	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize, pos.y * tileSize);
+	var yOffset = this.gameData.stats.height;
+	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize, yOffset + pos.y * tileSize);
 };
 
 var itemImages = {
@@ -98,7 +99,8 @@ Hero.prototype.draw = function() {
 	if (this.hurt) {
 		var pos = this.position;
 		var tileSize = this.gameData.tileSize;
-		this.gameData.ctx.clearRect(pos.x * tileSize, pos.y * tileSize, this.width * tileSize, this.height * tileSize);
+		var yOffset = this.gameData.stats.height;
+		this.gameData.ctx.clearRect(pos.x * tileSize, yOffset + pos.y * tileSize, this.width * tileSize, this.height * tileSize);
 	} else {
 		Item.prototype.draw.call(this);
 	}
@@ -175,7 +177,8 @@ Enemy.prototype.draw = function() {
 	if (this.hurt) {
 		var pos = this.position;
 		var tileSize = this.gameData.tileSize;
-		this.gameData.ctx.clearRect(pos.x * tileSize, pos.y * tileSize, this.width * tileSize, this.height * tileSize);
+		var yOffset = this.gameData.stats.height;
+		this.gameData.ctx.clearRect(pos.x * tileSize, yOffset + pos.y * tileSize, this.width * tileSize, this.height * tileSize);
 	} else {
 		Item.prototype.draw.call(this);
 	}
