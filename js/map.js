@@ -24,7 +24,9 @@ Map.prototype.init = function() {
 	for (var y = 0; y < this.height; y++) {
 		this.backgroundTiles.push([]);
 		for (var x = 0; x < this.width; x++) {
-			this.backgroundTiles[y][x] = createPebble();
+			var p = createPebble();
+			p.position = { x: x, y: y };
+			this.backgroundTiles[y][x] = p;
 		}
 	}
 	this.gameData.player.position = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 };
@@ -83,13 +85,27 @@ Map.prototype.prettyPrint = function() {
 Map.prototype.drawTileAtPosition = function(pos) {
 	var bgTile = this.backgroundTiles[pos.y][pos.x];
 	var tile = this.tiles[pos.y][pos.x];
-	var size = tile ? [tile.width, tile.height] : [this.tileSize, this.tileSize];
-	this.gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0], size[1]);
-	if (bgTile) {
-		this.gameData.ctx.drawImage(bgTile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
-	}
-	if (tile) {
-		this.gameData.ctx.drawImage(tile.sprite, pos.x * this.tileSize, pos.y * this.tileSize);
+	var size = tile ? [tile.width, tile.height] : [1, 1];
+
+	this.gameData.ctx.clearRect(pos.x * this.tileSize, pos.y * this.tileSize, size[0] * this.tileSize, size[1] * this.tileSize);
+
+	if (bgTile) { bgTile.draw() }
+	if (tile) { tile.draw() }
+};
+
+Map.prototype.findItemRelativeTo = function(item, needle) {
+	let pos1 = item.position;
+	let pos2 = needle.position;
+	if (pos1.x + 1 === pos2.x && pos1.y === pos2.y) {
+		return D_RIGHT;
+	} else if (pos1.x - 1 === pos2.x && pos1.y === pos2.y) {
+		return D_LEFT;
+	} else if (pos1.x === pos2.x && pos1.y - 1 === pos2.y) {
+		return D_UP;
+	} else if (pos1.x === pos2.x && pos1.y + 1 === pos2.y) {
+		return D_DOWN;
+	} else {
+		return false
 	}
 };
 
@@ -98,6 +114,8 @@ Map.prototype.update = function() {
 		if (Math.random() < 0.1) {
 			var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
 			this.gameData.moveItem(this.enemies[i], dir);
+		} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.15) {
+			this.enemies[i].attack(this.gameData.player);
 		}
 	}
 };

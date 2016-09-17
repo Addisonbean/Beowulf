@@ -9,5 +9,5 @@ add more items
 keyword arguments for Item?
 fix map initialization (make a visit/goto method, don't init right away) is it even broken? I don't think so...
 use elements from the Beowulf story
-** enemies carry over to new maps (and they shouldn't) **
+add stats like health (hp and xp?), move money into the stats
 
