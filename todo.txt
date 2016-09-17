@@ -12,5 +12,5 @@ use elements from the Beowulf story
 add stats like health (hp and xp?), move money into the stats
 use a collision test kinda thing instead of a collideWith method
 create a subclass for Hero and Enemy
-add a limit for how fast you can attack (?)
+add rank up/level crap (xp?)
 

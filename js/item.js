@@ -90,6 +90,8 @@ function Hero() {
 	this.hurt = false;
 	this.health = 10;
 	this.inventory = new Inventory(this.gameData);
+	this.timeOfLastAttack = 0;
+	this.attackSpeed = 500;
 }
 
 Hero.prototype.draw = function() {
@@ -114,7 +116,11 @@ Hero.prototype.takeDamage = function(amount) {
 };
 
 Hero.prototype.attack = function(other) {
-	other.takeDamage(1);
+	var t = Date.now();
+	if (t - this.timeOfLastAttack > this.attackSpeed) {
+		this.timeOfLastAttack = t;
+		other.takeDamage(1);
+	}
 };
 
 Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
