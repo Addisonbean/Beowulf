@@ -60,6 +60,15 @@ GameData.prototype.moveItem = function(item, keyCode) {
 		} else { return false };
 	}
 
+	var bgItemFound = this.map.backgroundTiles[newPos.y][newPos.x];
+	if (bgItemFound) {
+		if (item === this.player && bgItemFound.obtainable) {
+			this.player.inventory.addItem(bgItemFound);
+		} else if(!bgItemFound.collideWith(item, keyCode)) {
+			return false
+		}
+	}
+
 	item.position = newPos;
 
 	this.map.tiles[newPos.y][newPos.x] = item;

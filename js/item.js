@@ -1,4 +1,4 @@
-function Item(name, sprite, width, height, gameData, obtainable = false, movable = false) {
+function Item(name, sprite, width, height, gameData, obtainable = false, movable = false, permeable = false) {
 	this.sprite = sprite;
 	this.width = width;
 	this.height = height;
@@ -12,10 +12,12 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.position = { x: 0, y: 0 };
 
 	this.movable = movable; 
+
+	this.permeable = permeable;
 }
 
 Item.prototype.collideWith = function(player) {
-	return false
+	return this.permeable;
 };
 
 Item.prototype.draw = function() {
@@ -57,7 +59,7 @@ function loadImages(imgs, urls, callback) {
 }
 
 function createPebble() {
-	return new Item("pebble", itemImages.pebble, 1, 1, gameData);
+	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, true);
 }
 
 function createHero() {
@@ -78,6 +80,8 @@ function StoneBlock() {}
 
 StoneBlock.prototype.collideWith = function(obj, direction) {
 	var val = this.gameData.moveItem(this, direction);
+	// why is this only called once???
+	console.log(val);
 	return val;
 };
 
@@ -111,6 +115,7 @@ Hero.prototype.takeDamage = function(amount) {
 	this.hurt = true;
 	this.gameData.map.drawTileAtPosition(this.position);
 	var that = this;
+	this.gameData.stats.draw();
 	setTimeout(function() {
 		that.hurt = false;
 		that.gameData.map.drawTileAtPosition(that.position);
@@ -129,18 +134,22 @@ Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
 Door.prototype.constructor = Door;
 function Door(newMap) {
 	this.newMap = newMap;
+	this.exit = undefined;
 }
 
 Door.prototype.collideWith = function(player, direction) {
-	gotoMap(this.newMap);
+	if (player === this.gameData.player) {
+		this.gotoMap(this.newMap, this.exit.position);
+	}
 	return false;
 }
 
-function gotoMap(map) {
-	var p = gameData.map.player
-	gameData.map = map();
-	gameData.map.player = p;
-	gameData.map.draw();
+Door.prototype.gotoMap = function(map, point) {
+	var p = this.gameData.player
+	this.gameData.map.removeItem(this.gameData.player);
+	this.gameData.map = map();
+	this.gameData.map.addItemAtPoint(this.gameData.player, point);
+	this.gameData.map.draw();
 }
 
 Enemy.prototype = new Item("enemy", itemImages.enemy, 1, 1, gameData);

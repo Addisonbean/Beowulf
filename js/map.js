@@ -29,8 +29,6 @@ Map.prototype.init = function() {
 			this.backgroundTiles[y][x] = p;
 		}
 	}
-	this.gameData.player.position = { x: (this.width - 1) / 2, y: (this.height - 1) / 2 };
-	this.tiles[this.gameData.player.position.y][this.gameData.player.position.x] = this.gameData.player;
 	this.initialized = true;
 };
 
@@ -51,15 +49,16 @@ Map.prototype.draw = function() {
 	}
 };
 
-Map.prototype.addItemAtPoint = function(item, point) {
-	this.tiles[point.y][point.x] = item;
+Map.prototype.addItemAtPoint = function(item, point, bg=false) {
+	tiles = bg ? this.backgroundTiles : this.tiles;
+	tiles[point.y][point.x] = item;
 	item.position = point;
 	if (item.constructor === Enemy) {
 		this.enemies.push(item);
 	}
 	for (var y = point.y + 1; y < point.y + item.height; y++) {
 		for (var x = point.x + 1; x < point.x + item.width; x++) {
-			this.tiles[y][x] = { x: point.x, y: point.y };
+			tiles[y][x] = { x: point.x, y: point.y };
 		}
 	}
 };

@@ -15,6 +15,11 @@ loadImages(itemImages, urls, function() {
 	// window.setInterval(gameData.map.update.bind(gameData.map), 200);
 	window.setInterval(gameData.updateMap.bind(gameData), 200);
 
+	// gameData.player.position = { x: (gameData.map.width - 1) / 2, y: (gameData.map.height - 1) / 2 };
+	// this.tiles[this.gameData.player.position.y][this.gameData.player.position.x] = this.gameData.player; // move this
+
+	gameData.map.addItemAtPoint(this.gameData.player, { x: (gameData.map.width - 1) / 2, y: (gameData.map.height - 1) / 2 });
+
 	gameData.map.draw();
 	gameData.player.inventory.draw();
 	gameData.stats.draw();

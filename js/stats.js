@@ -1,14 +1,22 @@
 function Stats(gameData) {
 	this.gameData = gameData;
 	this.width = 964;
-	this.height = 50;
+	this.height = 40;
 }
 
 Stats.prototype.draw = function() {
-	this.gameData.ctx.beginPath();
-	this.gameData.ctx.rect(0, 0, this.width, this.height);
-	this.gameData.ctx.strokeStyle = "black";
-	this.gameData.ctx.lineWidth = 1;
-	this.gameData.ctx.stroke();
+	var ctx = this.gameData.ctx;
+
+	ctx.clearRect(0, 0, this.width, this.height);
+
+	ctx.beginPath();
+	ctx.rect(0, 0, this.width, this.height);
+	ctx.strokeStyle = "black";
+	ctx.lineWidth = 1;
+	ctx.stroke();
+
+	var health = this.gameData.player.health.toString();
+	ctx.font = "11pt helvetica";
+	ctx.fillText("Health: " + health, 10, 24);
 };
 
