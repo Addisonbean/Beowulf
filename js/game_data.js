@@ -83,6 +83,21 @@ GameData.prototype.updateMap = function() {
 	this.map.update();
 };
 
+function isRetinaDisplay() {
+	if (window.matchMedia) {
+		var mq = window.matchMedia("only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen  and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 1.3dppx)");
+		return (mq && mq.matches || (window.devicePixelRatio > 1)); 
+	}
+}
+
 gameData.canvas = document.getElementById("game-canvas");
 gameData.ctx = gameData.canvas.getContext("2d");
+
+if (isRetinaDisplay) {
+	gameData.canvas.width *= 2;
+	gameData.canvas.height *= 2;
+	gameData.canvas.style.width = "694px";
+	gameData.canvas.style.height = "584px";
+	gameData.ctx.scale(2, 2);
+}
 

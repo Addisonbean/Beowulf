@@ -1,10 +1,10 @@
 everything labeled "TODO"
 use gameData everywhere/refactor it
 add scene switching when walking off the map
-get good sprites (from Aaron?)
+get good sprites (x1 and x2 resolution, from Aaron?)
 cleanup js/item.js
-add combat and weapons
-make the inventory usefull
+add weapons
+make the inventory useful
 add more items
 keyword arguments for Item?
 fix map initialization (make a visit/goto method, don't init right away) is it even broken? I don't think so...
@@ -13,4 +13,6 @@ add stats like health (hp and xp?), move money into the stats
 use a collision test kinda thing instead of a collideWith method
 create a subclass for Hero and Enemy
 add rank up/level crap (xp?)
+don't hardcode canvas size in js
+
 
