@@ -130,6 +130,13 @@ Hero.prototype.attack = function(other) {
 	}
 };
 
+Hero.prototype.gotoMap = function(map, point) {
+	this.gameData.map.removeItem(this);
+	this.gameData.map = map();
+	this.gameData.map.addItemAtPoint(this, point);
+	this.gameData.map.draw();
+}
+
 Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
 Door.prototype.constructor = Door;
 function Door(newMap) {
@@ -139,7 +146,7 @@ function Door(newMap) {
 
 Door.prototype.collideWith = function(player, direction) {
 	if (player === this.gameData.player) {
-		this.gotoMap(this.newMap, this.exit.position);
+		this.gameData.player.gotoMap(this.newMap, this.exit.position);
 	}
 	return false;
 }

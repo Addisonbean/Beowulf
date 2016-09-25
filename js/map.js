@@ -10,6 +10,8 @@ function Map(gameData) {
 	this.gameData = gameData;
 
 	this.enemies = [];
+
+	this.surrounding_maps = {};
 }
 
 Map.prototype.init = function() {

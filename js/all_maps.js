@@ -15,6 +15,9 @@ doors.startToCave.position = { x: 12, y: 5 };
 doors.caveToStart.exit = doors.startToCave;
 doors.caveToStart.position = { x: 9, y: 8 };
 
+allMaps.start.surrounding_maps["w"] = getCaveMap;
+allMaps.cave.surrounding_maps["e"] = getStartMap;
+
 // TODO: make a general "initMap" function w/ a callback for adding crap
 
 function getStartMap() {

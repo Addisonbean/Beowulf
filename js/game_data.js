@@ -47,7 +47,26 @@ GameData.prototype.moveItem = function(item, keyCode) {
 		default:
 			return false;
 	}
-	if (newPos.x < 0 || newPos.x + 1 > this.mapWidth || newPos.y < 0 || newPos.y + 1 > this.mapHeight) return false;
+	if (newPos.x < 0 || newPos.x + 1 > this.mapWidth || newPos.y < 0 || newPos.y + 1 > this.mapHeight) {
+		if (item != this.player) return false;
+		if (newPos.x < 0 && this.map.surrounding_maps["w"]) {
+			var m = this.map.surrounding_maps["w"];
+			this.player.gotoMap(m, { x: m().width - 1, y: newPos.y })
+		}
+		if (newPos.x >= this.map.width && this.map.surrounding_maps["e"]) {
+			var m = this.map.surrounding_maps["e"];
+			this.player.gotoMap(m, { x: 0, y: newPos.y })
+		}
+		if (newPos.y < 0 && this.map.surrounding_maps["n"]) {
+			var m = this.map.surrounding_maps["n"];
+			this.player.gotoMap(m, { x: newPos.x, y: m().height - 1 })
+		}
+		if (newPos.y >= this.map.height && this.map.surrounding_maps["s"]) {
+			var m = this.map.surrounding_maps["s"];
+			this.player.gotoMap(m, { x: newPos.x, y: 0 })
+		}
+		return false;
+	}
 
 	var itemFound = this.map.tiles[newPos.y][newPos.x];
 	if (itemFound) {

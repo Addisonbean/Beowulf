@@ -1,6 +1,5 @@
 everything labeled "TODO"
 use gameData everywhere/refactor it
-add scene switching when walking off the map
 get good sprites (x1 and x2 resolution, from Aaron?)
 cleanup js/item.js
 add weapons
@@ -15,4 +14,6 @@ create a subclass for Hero and Enemy
 add rank up/level crap (xp?)
 don't hardcode canvas size in js
 
+Notes:
+http://www.html5rocks.com/en/tutorials/canvas/hidpi/
 
