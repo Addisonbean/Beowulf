@@ -15,8 +15,12 @@ Stats.prototype.draw = function() {
 	ctx.lineWidth = 1;
 	ctx.stroke();
 
-	var health = this.gameData.player.health.toString();
+	var health = this.gameData.player.health
 	ctx.font = "11pt helvetica";
-	ctx.fillText("Health: " + health, 10, 24);
+	if (this.gameData.player.health > 0) {
+		ctx.fillText("Health: " + health.toString(), 10, 24);
+	} else {
+		ctx.fillText("You died :(", 10, 24);
+	}
 };
 

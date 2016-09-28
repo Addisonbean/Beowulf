@@ -25,18 +25,19 @@ gameData.stats = new Stats(gameData);
 GameData.prototype.moveItem = function(item, keyCode) {
 	var oldPos = item.position;
 	var newPos;
+
 	switch (keyCode) {
 		case D_LEFT:
-			newPos = { x: oldPos.x - 1, y: oldPos.y };
+			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x - 1, y: oldPos.y });
 			break;
 		case D_UP:
-			newPos = { x: oldPos.x, y: oldPos.y - 1 };
+			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x, y: oldPos.y - 1 });
 			break;
 		case D_RIGHT:
-			newPos = { x: oldPos.x + 1, y: oldPos.y };
+			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x + 1, y: oldPos.y });
 			break
 		case D_DOWN:
-			newPos = { x: oldPos.x, y: oldPos.y + 1 };
+			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x, y: oldPos.y + 1 });
 			break;
 		default:
 			return false;

@@ -102,6 +102,7 @@ function Hero() {
 	this.inventory = new Inventory(this.gameData);
 	this.timeOfLastAttack = 0;
 	this.attackSpeed = 500;
+	this.dead = false;
 }
 
 Hero.prototype.draw = function() {
@@ -118,6 +119,10 @@ Hero.prototype.draw = function() {
 
 Hero.prototype.takeDamage = function(amount) {
 	this.health -= amount;
+	if (this.health <= 0) {
+		this.dead = true;
+		this.gameData.map.removeItem(this);
+	}
 	this.hurt = true;
 	this.gameData.map.drawTileAtPosition(this.position);
 	var that = this;
@@ -127,6 +132,8 @@ Hero.prototype.takeDamage = function(amount) {
 		that.hurt = false;
 		that.gameData.map.drawTileAtPosition(that.position);
 	}, 200);
+
+	
 };
 
 Hero.prototype.attack = function(other) {
