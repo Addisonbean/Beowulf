@@ -11,9 +11,11 @@ function Map(gameData) {
 
 	this.enemies = [];
 
+	// Possible keys: "n", "e", "s", "w"
 	this.surrounding_maps = {};
 }
 
+// Initializes all background tiles, and sets other tiles to undefined
 Map.prototype.init = function() {
 	this.tiles = [];
 	for (var y = 0; y < this.height; y++) {
@@ -58,6 +60,9 @@ Map.prototype.addItemAtPoint = function(item, point, bg=false) {
 	if (item.constructor === Enemy) {
 		this.enemies.push(item);
 	}
+	// If the item is larger than 1 square by 1 square, 
+	// then the upper left square will store the item (this happens on line 58)
+	// The rest of the squares it takes up will contain the point where the item is stored
 	for (var y = point.y + 1; y < point.y + item.height; y++) {
 		for (var x = point.x + 1; x < point.x + item.width; x++) {
 			tiles[y][x] = { x: point.x, y: point.y };
@@ -69,7 +74,7 @@ Map.prototype.getItemAtPoint = function(point) {
 	let item = this.tiles[point.y][point.x];
 	if (Item.prototype.isPrototypeOf(item)) {
 		return item;
-	} else {
+	} else if (item) {
 		return this.getItemAtPoint(item);
 	}
 };
@@ -121,11 +126,20 @@ Map.prototype.removeItem = function(item) {
 	this.drawTileAtPosition(item.position);
 };
 
+// This is kind of called every frame
+// There aren't true "frames" in this game, but this
+// is called every 200ms so that's pretty close
+// The player's movement won't always fall on on of these "frames" though,
+// so that's why I don't call them frames
 Map.prototype.update = function() {
 	for (var i = 0; i < this.enemies.length; i++) {
+		// There's a 10% chance for each enemy to try to move in a random direction
 		if (Math.random() < 0.1) {
 			var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
+			// If the enemy walks into the player, it will attack it
 			this.gameData.moveItem(this.enemies[i], dir);
+		// There's also a 90% * 17% = 15.3% chance that an enemy will attack the player if it's next to the player
+		// (plus the chance of it randomly walking into the player, thus, attacking it)
 		} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.17) {
 			this.enemies[i].attack(this.gameData.player);
 		}

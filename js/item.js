@@ -16,6 +16,8 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.permeable = permeable;
 }
 
+// Return true if the object should pass through it,
+// return false if it shouldn't
 Item.prototype.collideWith = function(player) {
 	return this.permeable;
 };
@@ -45,6 +47,9 @@ var urls = {
 	enemy: "img/blobRight.png"
 };
 
+// This loads all the images then calls `callback` so
+// we don't have to worry about making sure an image
+// has loaded before using it
 function loadImages(imgs, urls, callback) {
 	var totalLoaded = 0;
 	for (var key in imgs) {
@@ -101,6 +106,7 @@ function Hero() {
 
 Hero.prototype.draw = function() {
 	if (this.hurt) {
+		// If the player was recently injured, just draw a blank square
 		var pos = this.position;
 		var tileSize = this.gameData.tileSize;
 		var yOffset = this.gameData.stats.height;
@@ -116,6 +122,7 @@ Hero.prototype.takeDamage = function(amount) {
 	this.gameData.map.drawTileAtPosition(this.position);
 	var that = this;
 	this.gameData.stats.draw();
+	// Wait 200ms, then redraw player not being hurt
 	setTimeout(function() {
 		that.hurt = false;
 		that.gameData.map.drawTileAtPosition(that.position);
@@ -124,6 +131,7 @@ Hero.prototype.takeDamage = function(amount) {
 
 Hero.prototype.attack = function(other) {
 	var t = Date.now();
+	// Only allow the player to attack ever `this.attackSpeed` miliseconds
 	if (t - this.timeOfLastAttack > this.attackSpeed) {
 		this.timeOfLastAttack = t;
 		other.takeDamage(1);

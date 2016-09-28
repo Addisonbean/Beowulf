@@ -1,10 +1,4 @@
-// window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentToPass2, etc. */) {
-// 	var oThis = this, aArgs = Array.prototype.slice.call(arguments, 2);
-// 	return __nativeSI__(vCallback instanceof Function ? function () {
-// 		vCallback.apply(oThis, aArgs);
-// 	} : vCallback, nDelay);
-// };
-
+// Calculates the amount of non-default properties in an object
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -13,10 +7,10 @@ Object.size = function(obj) {
     return size;
 };
 
+// Define some constants to use as directions instead of remembering the numbers
 var D_LEFT = 37, D_RIGHT = 39, D_UP = 38, D_DOWN = 40;
 
 function GameData() {
-	// this.player = createHero();
 	this.player = undefined;
 	this.map = undefined;
 	this.tileSize = 32;
@@ -47,7 +41,9 @@ GameData.prototype.moveItem = function(item, keyCode) {
 		default:
 			return false;
 	}
+	// Check if it moved off of the map
 	if (newPos.x < 0 || newPos.x + 1 > this.mapWidth || newPos.y < 0 || newPos.y + 1 > this.mapHeight) {
+		// Skip this next part if `item` is not `this.player`
 		if (item != this.player) return false;
 		if (newPos.x < 0 && this.map.surrounding_maps["w"]) {
 			var m = this.map.surrounding_maps["w"];
@@ -68,17 +64,23 @@ GameData.prototype.moveItem = function(item, keyCode) {
 		return false;
 	}
 
+	// Is there already an item where `item` tried to move?
 	var itemFound = this.map.tiles[newPos.y][newPos.x];
 	if (itemFound) {
+		// Did it collide with the player?
 		if (item === this.player) { 
 			if (itemFound.obtainable) {
 				this.player.inventory.addItem(itemFound);
+			// Tell the item found that something collided with it
+			// If `collideWith` returns false, then don't move `item`
+			// Otherwise, continue on and move `item`
 			} else if (!itemFound.collideWith(item, keyCode)) {
 				return false;
 			}
 		} else { return false };
 	}
 
+	// Pretty much the same as above
 	var bgItemFound = this.map.backgroundTiles[newPos.y][newPos.x];
 	if (bgItemFound) {
 		if (item === this.player && bgItemFound.obtainable) {
@@ -87,11 +89,18 @@ GameData.prototype.moveItem = function(item, keyCode) {
 			return false
 		}
 	}
+	// TODO: use map.addItemAtPoint
 
+	// Update `item`'s position
 	item.position = newPos;
 
+	// Add it to the map
 	this.map.tiles[newPos.y][newPos.x] = item;
+
+	// Reset the old tile
 	this.map.tiles[oldPos.y][oldPos.x] = undefined;
+
+	// Draw the old and new tiles
 	this.map.drawTileAtPosition(oldPos);
 	this.map.drawTileAtPosition(newPos);
 
@@ -112,6 +121,13 @@ function isRetinaDisplay() {
 gameData.canvas = document.getElementById("game-canvas");
 gameData.ctx = gameData.canvas.getContext("2d");
 
+// The game looks fuzzy on retina display devices
+// because they have double the resolution so this
+// makes the canvas twice as large so the drawings
+// have twice the resolution, then it scales it down
+// so it is the right size
+
+// Credit: https://coderwall.com/p/vmkk6a/how-to-make-the-canvas-not-look-like-crap-on-retina
 if (isRetinaDisplay) {
 	gameData.canvas.width *= 2;
 	gameData.canvas.height *= 2;

@@ -13,6 +13,7 @@ use a collision test kinda thing instead of a collideWith method
 create a subclass for Hero and Enemy
 add rank up/level crap (xp?)
 don't hardcode canvas size in js
+Item.movable isn't even being used
 
 Notes:
 http://www.html5rocks.com/en/tutorials/canvas/hidpi/
