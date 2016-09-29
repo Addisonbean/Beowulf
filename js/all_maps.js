@@ -27,10 +27,10 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createCoin(), { x: 10, y: 4 });
 		allMaps.start.addItemAtPoint(doors.startToCave, doors.startToCave.position, true);
 		allMaps.start.addItemAtPoint(createStoneBlock(), { x: 4, y: 4 });
-		allMaps.start.addItemAtPoint(createEnemy(), { x: 5, y: 10 });
-		allMaps.start.addItemAtPoint(createEnemy(), { x: 3, y: 10 });
-		allMaps.start.addItemAtPoint(createEnemy(), { x: 7, y: 12 });
-		allMaps.start.addItemAtPoint(createEnemy(), { x: 8, y: 6 });
+		allMaps.start.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		allMaps.start.addItemAtPoint(createKnight(), { x: 3, y: 10 });
+		allMaps.start.addItemAtPoint(createKnight(), { x: 7, y: 12 });
+		allMaps.start.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 	}
 	return m;
 }
