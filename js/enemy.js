@@ -1,8 +1,9 @@
 Enemy.prototype = new Item("enemy", itemImages.enemy, 1, 1, gameData);
 Enemy.prototype.constructor = Enemy;
-function Enemy(name, sprite, health, strength) {
+function Enemy(name, sprite, health, strength, xpGiven) {
 	this.name = name;
 	this.health = health;
+	this.xpGiven = xpGiven;
 	this.sprite = sprite;
 	this.strength = strength;
 	this.hurt = false;
@@ -20,7 +21,7 @@ Enemy.prototype.takeDamage = function(amount) {
 	this.health -= amount;
 	if (this.health <= 0) {
 		this.gameData.map.removeItem(this);
-		this.gameData.player.giveXP(10);
+		this.gameData.player.giveXP(this.xpGiven);
 		return;
 	}
 	this.hurt = true;
@@ -48,6 +49,6 @@ function createEnemy() {
 }
 
 function createKnight() {
-	return new Enemy("Knight", itemImages.knight, 10, 2);
+	return new Enemy("Knight", itemImages.knight, 10, 2, 10);
 }
 
