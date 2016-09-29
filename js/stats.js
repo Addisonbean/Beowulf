@@ -26,10 +26,10 @@ Stats.prototype.draw = function() {
 	}
 	// XP bar
 	var xp = this.gameData.player.xp;
-	var max_xp = this.gameData.player.max_xp;
+	var maxXP = this.gameData.player.maxXP;
 
 	ctx.font = "8pt helvetica";
-	ctx.fillText("XP: " + xp.toString() + "/" + max_xp.toString(), 220, 22);
+	ctx.fillText("XP: " + xp.toString() + "/" + maxXP.toString(), 220, 22);
 
 	ctx.beginPath();
 	ctx.rect(140, 12, 200, 12);

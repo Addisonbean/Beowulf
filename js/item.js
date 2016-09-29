@@ -104,7 +104,7 @@ function Hero() {
 	this.attackSpeed = 500;
 	this.dead = false;
 	this.xp = 0;
-	this.max_xp = 100;
+	this.maxXP = 100;
 }
 
 Hero.prototype.draw = function() {
@@ -138,12 +138,12 @@ Hero.prototype.takeDamage = function(amount) {
 	
 };
 
-Hero.prototype.give_xp = function(amount) {
-	if (this.xp + amount < this.max_xp) {
+Hero.prototype.giveXP = function(amount) {
+	if (this.xp + amount < this.maxXP) {
 		this.xp += amount;
 	} else {
-		this.xp = this.xp + amount - max_xp;
-		this.max_xp = this.max_xp^2;
+		this.xp = this.xp + amount - this.maxXP;
+		this.maxXP = this.maxXP^2;
 	}
 }
 
@@ -204,7 +204,7 @@ Enemy.prototype.takeDamage = function(amount) {
 	this.health -= amount;
 	if (this.health <= 0) {
 		this.gameData.map.removeItem(this);
-		this.gameData.player.give_xp(10);
+		this.gameData.player.giveXP(10);
 		console.log("xp given");
 		return;
 	}

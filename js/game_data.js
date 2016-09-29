@@ -23,21 +23,23 @@ gameData = new GameData();
 gameData.stats = new Stats(gameData);
 
 GameData.prototype.moveItem = function(item, keyCode) {
+	// should other object still move after the player has died? ya?
+	if (this.player == item && this.player.dead) { return }
 	var oldPos = item.position;
 	var newPos;
 
 	switch (keyCode) {
 		case D_LEFT:
-			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x - 1, y: oldPos.y });
+			newPos = { x: oldPos.x - 1, y: oldPos.y };
 			break;
 		case D_UP:
-			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x, y: oldPos.y - 1 });
+			newPos = { x: oldPos.x, y: oldPos.y - 1 };
 			break;
 		case D_RIGHT:
-			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x + 1, y: oldPos.y });
+			newPos = { x: oldPos.x + 1, y: oldPos.y };
 			break
 		case D_DOWN:
-			newPos = ((this.player.dead) ? {x: oldPos.x, y: oldPos.y } : { x: oldPos.x, y: oldPos.y + 1 });
+			newPos = { x: oldPos.x, y: oldPos.y + 1 };
 			break;
 		default:
 			return false;
