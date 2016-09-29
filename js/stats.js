@@ -46,7 +46,6 @@ Stats.prototype.draw = function() {
 	var playerRank = this.gameData.player.rank;
 	ctx.font = "14pt helvetica";
 	ctx.fillText("LVL :" + playerRank.toString(), 550, 25);
-	console.log(playerRank);
 
 };
 
