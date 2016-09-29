@@ -38,7 +38,7 @@ Stats.prototype.draw = function() {
 	ctx.stroke();
 
 	ctx.beginPath();
-	ctx.rect(140, 13, 200 * xp / max_xp, 10);
+	ctx.rect(140, 13, 200 * xp / maxXP, 10);
 	ctx.fillStyle = "blue";
 	ctx.fill();
 

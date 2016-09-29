@@ -129,8 +129,10 @@ Hero.prototype.takeDamage = function(amount) {
 	this.gameData.map.drawTileAtPosition(this.position);
 	var that = this;
 	this.gameData.stats.draw();
+
 	// Wait 200ms, then redraw player not being hurt
 	setTimeout(function() {
+		console.log("heh?");
 		that.hurt = false;
 		that.gameData.map.drawTileAtPosition(that.position);
 	}, 200);
@@ -145,6 +147,7 @@ Hero.prototype.giveXP = function(amount) {
 		this.xp = this.xp + amount - this.maxXP;
 		this.maxXP = this.maxXP^2;
 	}
+	this.gameData.stats.draw()
 }
 
 Hero.prototype.attack = function(other) {
