@@ -43,5 +43,10 @@ Stats.prototype.draw = function() {
 	ctx.font = "8pt helvetica";
 	ctx.fillText("XP: " + xp.toString() + "/" + maxXP.toString(), 220, 22);
 
+	var playerRank = this.gameData.player.rank;
+	ctx.font = "14pt helvetica";
+	ctx.fillText("LVL :" + playerRank.toString(), 550, 25);
+	console.log(playerRank);
+
 };
 
