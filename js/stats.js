@@ -28,9 +28,6 @@ Stats.prototype.draw = function() {
 	var xp = this.gameData.player.xp;
 	var maxXP = this.gameData.player.maxXP;
 
-	ctx.font = "8pt helvetica";
-	ctx.fillText("XP: " + xp.toString() + "/" + maxXP.toString(), 220, 22);
-
 	ctx.beginPath();
 	ctx.rect(140, 12, 200, 12);
 	ctx.strokeStyle = "black";
@@ -41,6 +38,10 @@ Stats.prototype.draw = function() {
 	ctx.rect(140, 13, 200 * xp / maxXP, 10);
 	ctx.fillStyle = "blue";
 	ctx.fill();
+
+	ctx.fillStyle = "black";
+	ctx.font = "8pt helvetica";
+	ctx.fillText("XP: " + xp.toString() + "/" + maxXP.toString(), 220, 22);
 
 };
 
