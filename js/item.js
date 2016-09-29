@@ -105,6 +105,7 @@ function Hero() {
 	this.dead = false;
 	this.xp = 0;
 	this.maxXP = 100;
+	this.rank = 1;
 }
 
 Hero.prototype.draw = function() {
@@ -145,7 +146,8 @@ Hero.prototype.giveXP = function(amount) {
 		this.xp += amount;
 	} else {
 		this.xp = this.xp + amount - this.maxXP;
-		this.maxXP = this.maxXP^2;
+		this.maxXP = 10*(this.rank-1)^2 + 100;
+		this.rank += 1;
 	}
 	this.gameData.stats.draw()
 }
