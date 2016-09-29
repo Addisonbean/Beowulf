@@ -15,12 +15,32 @@ Stats.prototype.draw = function() {
 	ctx.lineWidth = 1;
 	ctx.stroke();
 
-	var health = this.gameData.player.health
+	// Health
+	var health = this.gameData.player.health;
 	ctx.font = "11pt helvetica";
+	ctx.fillStyle = "black";
 	if (health > 0) {
 		ctx.fillText("Health: " + health.toString(), 10, 24);
 	} else {
 		ctx.fillText("You died :(", 10, 24);
 	}
+	// XP bar
+	var xp = this.gameData.player.xp;
+	var max_xp = this.gameData.player.max_xp;
+
+	ctx.font = "8pt helvetica";
+	ctx.fillText("XP: " + xp.toString() + "/" + max_xp.toString(), 220, 22);
+
+	ctx.beginPath();
+	ctx.rect(140, 12, 200, 12);
+	ctx.strokeStyle = "black";
+	ctx.lineWidth = 2;
+	ctx.stroke();
+
+	ctx.beginPath();
+	ctx.rect(140, 13, 200 * xp / max_xp, 10);
+	ctx.fillStyle = "blue";
+	ctx.fill();
+
 };
 
