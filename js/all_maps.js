@@ -6,7 +6,7 @@ var allMaps = {
 };
 
 var doors = {
-	startToCave: createDoor(getCaveMap),
+	startToCave: createDoor(getCaveMap, "startKey"),
 	caveToStart: createDoor(getStartMap)
 };
 
@@ -31,6 +31,7 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createKnight(), { x: 3, y: 10 });
 		allMaps.start.addItemAtPoint(createKnight(), { x: 7, y: 12 });
 		allMaps.start.addItemAtPoint(createKnight(), { x: 8, y: 6 });
+		allMaps.start.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 	}
 	return m;
 }

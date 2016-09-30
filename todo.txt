@@ -1,5 +1,6 @@
 everything labeled "TODO"
 use gameData everywhere/refactor it
+"use strict";
 get good sprites (x1 and x2 resolution, from Aaron?)
 cleanup js/item.js
 add weapons
@@ -14,6 +15,7 @@ create a subclass for Hero and Enemy
 add rank up/level crap (xp?)
 don't hardcode canvas size in js
 Item.movable isn't even being used
+add a "console" type thing that displays messages like "the door is locked"
 
 Notes:
 http://www.html5rocks.com/en/tutorials/canvas/hidpi/

@@ -35,7 +35,8 @@ var itemImages = {
 	coin: new Image(),
 	door: new Image(),
 	stoneBlock: new Image(),
-	knight: new Image()
+	knight: new Image(),
+	key: new Image()
 };
 
 var urls = {
@@ -44,7 +45,8 @@ var urls = {
 	coin: "img/coin.png",
 	door: "img/dngn_enter_labyrinth.png",
 	stoneBlock: "img/stone.png",
-	knight: "img/blobRight.png"
+	knight: "img/blobRight.png",
+	key: "img/brass.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -75,8 +77,18 @@ function createCoin() {
 	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
 }
 
-function createDoor(map) {
-	return new Door(map);
+function createDoor(map, key=undefined) {
+	return new Door(map, key);
+}
+
+Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);
+Key.prototype.constructor = Key;
+function Key(name) {
+	this.name = name
+}
+
+function createKey(name) {
+	return new Key(name);
 }
 
 StoneBlock.prototype = new Item("stoneBlock", itemImages.stoneBlock, 1, 1, gameData, false, true);
@@ -133,7 +145,6 @@ Hero.prototype.takeDamage = function(amount) {
 
 	// Wait 200ms, then redraw player not being hurt
 	setTimeout(function() {
-		console.log("heh?");
 		that.hurt = false;
 		that.gameData.map.drawTileAtPosition(that.position);
 	}, 200);
@@ -168,16 +179,24 @@ Hero.prototype.gotoMap = function(map, point) {
 	this.gameData.map.draw();
 }
 
+Hero.prototype.hasItemNamed = function(name) {
+	return !!this.inventory.items[name];
+};
+
 Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
 Door.prototype.constructor = Door;
-function Door(newMap) {
+function Door(newMap, key=undefined) {
 	this.newMap = newMap;
 	this.exit = undefined;
+	this.locked = key ? true : false;
+	this.key = key;
 }
 
 Door.prototype.collideWith = function(player, direction) {
 	if (player === this.gameData.player) {
-		this.gameData.player.gotoMap(this.newMap, this.exit.position);
+		if (this.locked && !player.hasItemNamed(this.key)) { return }
+		this.locked = false
+		player.gotoMap(this.newMap, this.exit.position);
 	}
 	return false;
 }
@@ -189,7 +208,6 @@ Door.prototype.gotoMap = function(map, point) {
 	this.gameData.map.addItemAtPoint(this.gameData.player, point);
 	this.gameData.map.draw();
 }
-
 
 // http://opengameart.org/content/dungeon-crawl-32x32-tiles
 
