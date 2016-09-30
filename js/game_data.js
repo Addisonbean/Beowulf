@@ -73,7 +73,11 @@ GameData.prototype.moveItem = function(item, keyCode) {
 		// Did it collide with the player?
 		if (item === this.player) { 
 			if (itemFound.obtainable) {
-				this.player.inventory.addItem(itemFound);
+				if (itemFound.name === "coin") {
+					this.stats.giveCoin(1);
+				} else {
+					this.player.inventory.addItem(itemFound);
+				}
 			// Tell the item found that something collided with it
 			// If `collideWith` returns false, then don't move `item`
 			// Otherwise, continue on and move `item`
