@@ -38,7 +38,8 @@ var itemImages = {
 	door: new Image(),
 	stoneBlock: new Image(),
 	knight: new Image(),
-	key: new Image()
+	key: new Image(),
+	poison: new Image()
 };
 
 var urls = {
@@ -48,7 +49,8 @@ var urls = {
 	door: "img/dngn_enter_labyrinth.png",
 	stoneBlock: "img/stone.png",
 	knight: "img/blobRight.png",
-	key: "img/brass.png"
+	key: "img/brass.png",
+	poison: "img/brilliant_blue.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -80,7 +82,7 @@ function createCoin() {
 }
 
 function createPoison() {
-	return new Item("poison", itemImages.hero, 1, 1, gameData, true, false, false, function() {console.log("Damage should be taken here");} );
+	return new Item("poison", itemImages.poison, 1, 1, gameData, true, false, false, function() {console.log("Damage should be taken here");} );
 }
 
 function createDoor(map, key=undefined) {
