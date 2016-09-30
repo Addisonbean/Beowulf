@@ -19,6 +19,10 @@ Inventory.prototype.addItem = function(item) {
 	this.draw();
 };
 
+Inventory.prototype.useItem = function(keycode) {
+	console.log(keycode);
+}
+
 Inventory.prototype.draw = function() {
 	var yOffset = this.gameData.stats.height;
 	this.gameData.ctx.clearRect(this.minX, yOffset, this.width, this.height);
@@ -59,5 +63,18 @@ Inventory.prototype.draw = function() {
 		}
 		j++;
 	}
+
+	this.gameData.ctx.font = "10pt helvetica";
+	for (var i = 1; i <= 10; i++) {
+		if (i <= 5) {this.gameData.ctx.fillText(i.toString(), this.minX + 5, i*this.height/7 - 25);}
+		if (i > 5) {this.gameData.ctx.fillText(i.toString(), this.minX + this.width/2 + 5, (i-5)*this.height/7 - 25 );}
+	}
+
+
+	this.gameData.ctx.fillText("A", this.minX + 5, 6*this.height/7 - 25);
+	this.gameData.ctx.fillText("S", this.minX + this.width/2 + 5, 6*this.height/7 - 25);
+	this.gameData.ctx.fillText("D", this.minX + 5, 7*this.height/7 - 25);
+	this.gameData.ctx.fillText("F", this.minX + this.width/2 + 5, 7*this.height/7 - 25);
+
 };
 

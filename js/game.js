@@ -4,7 +4,9 @@ gameData.map = getStartMap();
 loadImages(itemImages, urls, function() {
 
 	document.addEventListener("keydown", function(e) {
-		gameData.moveItem(gameData.player, e.keyCode);
+		if ([D_LEFT, D_RIGHT, D_UP, D_DOWN].includes(e.keyCode)) {gameData.moveItem(gameData.player, e.keyCode);}
+		if (e.keyCode >= 48 && e.keyCode <= 57 || [65, 83, 68, 70].includes(e.keyCode)) {gameData.player.inventory.useItem(e.keyCode);}
+
 	});
 
 	// Update the map every 1/5 of a second (every 200 miliseconds)

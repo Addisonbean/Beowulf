@@ -118,6 +118,7 @@ function Hero() {
 	this.xp = 0;
 	this.maxXP = 100;
 	this.rank = 1;
+	this.maxHealth = 10;
 }
 
 Hero.prototype.draw = function() {
