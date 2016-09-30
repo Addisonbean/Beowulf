@@ -162,14 +162,20 @@ Hero.prototype.takeDamage = function(amount) {
 };
 
 Hero.prototype.giveXP = function(amount) {
-	if (this.xp + amount < this.maxXP) {
-		this.xp += amount;
-	} else {
-		this.xp = this.xp + amount - this.maxXP;
-		this.maxXP = 10*(this.rank-1)^2 + 100;
+	this.xp += amount;
+	this.checkRankUp();
+	this.gameData.stats.draw()
+}
+
+Hero.prototype.checkRankUp = function() {
+	// Do this while we are able to rank up
+	while (this.xp >= this.maxXP) {
+		this.xp -= this.maxXP;
+		this.maxXP = Math.pow(10*(this.rank-1),2) + 100;
+		this.maxHealth += 5;
+		this.health =  this.maxHealth;
 		this.rank += 1;
 	}
-	this.gameData.stats.draw()
 }
 
 Hero.prototype.attack = function(other) {
