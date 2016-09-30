@@ -82,7 +82,7 @@ function createCoin() {
 }
 
 function createPoison() {
-	return new Item("poison", itemImages.poison, 1, 1, gameData, true, false, false, function() {console.log("Damage should be taken here");} );
+	return new Item("poison", itemImages.poison, 1, 1, gameData, true, false, false, function() {gameData.player.takeDamage(5);} );
 }
 
 function createDoor(map, key=undefined) {
