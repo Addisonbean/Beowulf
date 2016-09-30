@@ -195,7 +195,7 @@ function Door(newMap, key=undefined) {
 
 Door.prototype.collideWith = function(player, direction) {
 	if (player === this.gameData.player) {
-		if (this.locked && !player.hasItemNamed(this.key)) { return }
+		if (this.locked && !player.hasItemNamed(this.key)) { return false }
 		this.locked = false
 		player.gotoMap(this.newMap, this.exit.position);
 	}
