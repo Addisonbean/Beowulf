@@ -3,6 +3,11 @@ function Stats(gameData) {
 	this.width = 964;
 	this.height = 40;
 }
+Stats.prototype.giveCoin = function(amount) {
+	this.gameData.player.coins += amount;
+	this.gameData.player.giveXP(5);
+	this.draw();
+}
 
 Stats.prototype.draw = function() {
 	var ctx = this.gameData.ctx;
@@ -63,6 +68,12 @@ Stats.prototype.draw = function() {
 	var playerRank = this.gameData.player.rank;
 	ctx.font = "14pt helvetica";
 	ctx.fillText("LVL :" + playerRank.toString(), 550, 25);
+
+	// Coins
+	var coins = this.gameData.player.coins;
+
+	ctx.font = "8pt helvetica";
+	ctx.fillText("Coins: " + coins, 622, 25);
 
 };
 

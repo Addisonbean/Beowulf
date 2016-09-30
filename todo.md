@@ -10,7 +10,6 @@
 - keyword arguments for Item?
 - fix map initialization (make a visit/goto method, don't init right away) is it even broken? I don't think so...
 - use elements from the Beowulf story
-- move money into the stats
 - use a collision test kinda thing instead of a collideWith method
 - create a subclass for Hero and Enemy
 - don't hardcode canvas size in js

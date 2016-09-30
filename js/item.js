@@ -121,6 +121,7 @@ Hero.prototype.constructor = Hero;
 function Hero() {
 	this.hurt = false;
 	this.health = 10;
+	this.coins = 0;
 	this.inventory = new Inventory(this.gameData);
 	this.timeOfLastAttack = 0;
 	this.attackSpeed = 500;
