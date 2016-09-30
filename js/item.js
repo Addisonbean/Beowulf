@@ -1,4 +1,4 @@
-function Item(name, sprite, width, height, gameData, obtainable = false, movable = false, permeable = false) {
+function Item(name, sprite, width, height, gameData, obtainable = false, movable = false, permeable = false, func = function() {}) {
 	this.sprite = sprite;
 	this.width = width;
 	this.height = height;
@@ -14,6 +14,8 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.movable = movable; 
 
 	this.permeable = permeable;
+
+	this.func = func;
 }
 
 // Return true if the object should pass through it,
@@ -75,6 +77,10 @@ function createHero() {
 
 function createCoin() {
 	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
+}
+
+function createPoison() {
+	return new Item("poison", itemImages.hero, 1, 1, gameData, true, false, false, function() {console.log("Damage should be taken here");} );
 }
 
 function createDoor(map, key=undefined) {

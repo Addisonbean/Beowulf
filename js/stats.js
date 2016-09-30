@@ -34,14 +34,14 @@ Stats.prototype.draw = function() {
 
 		ctx.fillStyle = "black";
 		ctx.font = "8pt helvetica";
-		ctx.fillText("Health: " + health.toString() + "/" + maxHealth.toString(), 100, 23)	
+		ctx.fillText("Health: " + health.toString() + "/" + maxHealth.toString(), 100, 22)	
 		
 	} else {
 		ctx.fillText("You died!", 10, 24);
 
 	}
 		
-		// XP bar
+	// XP bar
 	var xp = this.gameData.player.xp;
 	var maxXP = this.gameData.player.maxXP;
 
