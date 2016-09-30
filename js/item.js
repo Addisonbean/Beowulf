@@ -39,7 +39,8 @@ var itemImages = {
 	stoneBlock: new Image(),
 	knight: new Image(),
 	key: new Image(),
-	poison: new Image()
+	poison: new Image(),
+	staff: new Image()
 };
 
 var urls = {
@@ -50,7 +51,8 @@ var urls = {
 	stoneBlock: "img/stone.png",
 	knight: "img/blobRight.png",
 	key: "img/brass.png",
-	poison: "img/brilliant_blue.png"
+	poison: "img/brilliant_blue.png",
+	staff: "img/staff02.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -216,6 +218,19 @@ Door.prototype.gotoMap = function(map, point) {
 	this.gameData.map = map();
 	this.gameData.map.addItemAtPoint(this.gameData.player, point);
 	this.gameData.map.draw();
+}
+
+
+Weapon.prototype = new Item("weapon", itemImages.door, 1, 1, gameData, true); 
+Weapon.prototype.constructor = Weapon;
+function Weapon(name, damageDealt, sprite) {
+	this.name = name;
+	this.damage = damageDealt;
+	this.sprite = sprite;
+}
+
+function createWeapon(name, damageDealt, sprite) {
+	return new Weapon(name, damageDealt, sprite);
 }
 
 // http://opengameart.org/content/dungeon-crawl-32x32-tiles
