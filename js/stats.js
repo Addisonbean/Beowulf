@@ -53,7 +53,7 @@ Stats.prototype.draw = function() {
 
 	ctx.beginPath();
 	ctx.rect(250, 13, 200 * xp / maxXP, 10);
-	ctx.fillStyle = "blue";
+	ctx.fillStyle = "lightblue";
 	ctx.fill();
 
 	ctx.fillStyle = "black";
