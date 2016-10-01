@@ -23,6 +23,7 @@
 - Guards
 - Potions
 - Keys
+- icons for kick, punch, and 2 other undecided things
 
 Notes:
 http://www.html5rocks.com/en/tutorials/canvas/hidpi/
