@@ -19,5 +19,6 @@ loadImages(itemImages, urls, function() {
 	gameData.map.draw();
 	gameData.player.inventory.draw();
 	gameData.stats.draw();
+	gameData.console.draw();
 });
 

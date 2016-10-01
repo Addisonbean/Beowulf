@@ -17,10 +17,12 @@ function GameData() {
 	this.mapWidth = 17;
 	this.mapHeight = 17;
 	this.stats = undefined;
+	this.console = undefined;
 };
 
 gameData = new GameData();
 gameData.stats = new Stats(gameData);
+gameData.console = new Console(gameData);
 
 GameData.prototype.moveItem = function(item, keyCode) {
 	// should other object still move after the player has died? ya?
