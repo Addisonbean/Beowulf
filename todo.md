@@ -2,9 +2,8 @@
 - everything labeled "TODO"
 - use gameData everywhere/refactor it
 - "use strict";
-- get good sprites (x1 and x2 resolution, from Aaron?)
 - cleanup js/item.js
-- add weapons
+- make weapons useful
 - make the inventory useful
 - add more items
 - keyword arguments for Item?
@@ -14,7 +13,7 @@
 - create a subclass for Hero and Enemy
 - don't hardcode canvas size in js
 - Item.movable isn't even being used
-- add a "console" type thing that displays messages like "the door is locked"
+- start using the Console class
 - remove gameData from the item params and add it to the default constructor
 
 ### Sprites needed from Aarorn
