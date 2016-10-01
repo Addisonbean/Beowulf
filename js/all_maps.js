@@ -44,7 +44,9 @@ function getCaveMap() {
 		allMaps.cave.init();
 		allMaps.cave.addItemAtPoint(createCoin(), { x: 11, y: 4 });
 		allMaps.cave.addItemAtPoint(createCoin(), { x: 12, y: 5 });
+		allMaps.cave.addItemAtPoint(createPoison(), { x: 14, y: 5 });
 		allMaps.cave.addItemAtPoint(doors.caveToStart, doors.caveToStart.position, true);
+		allMaps.cave.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
 	}
 	return m;
 }

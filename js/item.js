@@ -1,4 +1,4 @@
-function Item(name, sprite, width, height, gameData, obtainable = false, movable = false, permeable = false) {
+function Item(name, sprite, width, height, gameData, obtainable = false, movable = false, permeable = false, func = function() {}) {
 	this.sprite = sprite;
 	this.width = width;
 	this.height = height;
@@ -14,6 +14,8 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.movable = movable; 
 
 	this.permeable = permeable;
+
+	this.func = func;
 }
 
 // Return true if the object should pass through it,
@@ -36,7 +38,9 @@ var itemImages = {
 	door: new Image(),
 	stoneBlock: new Image(),
 	knight: new Image(),
-	key: new Image()
+	key: new Image(),
+	poison: new Image(),
+	staff: new Image()
 };
 
 var urls = {
@@ -46,7 +50,9 @@ var urls = {
 	door: "img/dngn_enter_labyrinth.png",
 	stoneBlock: "img/stone.png",
 	knight: "img/blobRight.png",
-	key: "img/brass.png"
+	key: "img/brass.png",
+	poison: "img/brilliant_blue.png",
+	staff: "img/staff02.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -75,6 +81,10 @@ function createHero() {
 
 function createCoin() {
 	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
+}
+
+function createPoison() {
+	return new Item("poison", itemImages.poison, 1, 1, gameData, true, false, false, function() {gameData.player.takeDamage(5);} );
 }
 
 function createDoor(map, key=undefined) {
@@ -111,6 +121,7 @@ Hero.prototype.constructor = Hero;
 function Hero() {
 	this.hurt = false;
 	this.health = 10;
+	this.coins = 0;
 	this.inventory = new Inventory(this.gameData);
 	this.timeOfLastAttack = 0;
 	this.attackSpeed = 500;
@@ -154,14 +165,20 @@ Hero.prototype.takeDamage = function(amount) {
 };
 
 Hero.prototype.giveXP = function(amount) {
-	if (this.xp + amount < this.maxXP) {
-		this.xp += amount;
-	} else {
-		this.xp = this.xp + amount - this.maxXP;
-		this.maxXP = 10*(this.rank-1)^2 + 100;
+	this.xp += amount;
+	this.checkRankUp();
+	this.gameData.stats.draw()
+}
+
+Hero.prototype.checkRankUp = function() {
+	// Do this while we are able to rank up
+	while (this.xp >= this.maxXP) {
+		this.xp -= this.maxXP;
+		this.maxXP = Math.pow(10*(this.rank-1),2) + 100;
+		this.maxHealth += 5;
+		this.health =  this.maxHealth;
 		this.rank += 1;
 	}
-	this.gameData.stats.draw()
 }
 
 Hero.prototype.attack = function(other) {
@@ -208,6 +225,19 @@ Door.prototype.gotoMap = function(map, point) {
 	this.gameData.map = map();
 	this.gameData.map.addItemAtPoint(this.gameData.player, point);
 	this.gameData.map.draw();
+}
+
+
+Weapon.prototype = new Item("weapon", itemImages.door, 1, 1, gameData, true); 
+Weapon.prototype.constructor = Weapon;
+function Weapon(name, damageDealt, sprite) {
+	this.name = name;
+	this.damage = damageDealt;
+	this.sprite = sprite;
+}
+
+function createWeapon(name, damageDealt, sprite) {
+	return new Weapon(name, damageDealt, sprite);
 }
 
 // http://opengameart.org/content/dungeon-crawl-32x32-tiles

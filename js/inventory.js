@@ -13,14 +13,38 @@ function Inventory(ctx) {
 
 Inventory.prototype.addItem = function(item) {
 	if (this.items[item.name] === undefined) {
-		this.items[item.name] = { object: item, count: 0 };
+		this.items[item.name] = { object: item, count: 0, index: Object.keys(this.items).length };
 	}
 	this.items[item.name].count += 1;
 	this.draw();
-};
+};;
 
 Inventory.prototype.useItem = function(keycode) {
-	console.log(keycode);
+	if (keycode >= 48 && keycode <= 57) {
+		for (var itm in this.items) {
+			if (this.items[itm].index === keycode - 48) {
+				this.items[itm].object.func();
+			}
+
+		}
+	} else {
+		switch (keycode) {
+			case 65:
+				console.log("A");
+				break;
+			case 83:
+				console.log("S");
+				break;
+			case 68:
+				console.log("D");
+				break;
+			case 70:
+				console.log("F");
+				break;
+		}
+	}
+
+	
 }
 
 Inventory.prototype.draw = function() {
@@ -59,22 +83,24 @@ Inventory.prototype.draw = function() {
 			yOffset + (y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
 		if (item.count > 1) {
 			this.gameData.ctx.font = "10pt helvetica";
-			this.gameData.ctx.fillText(item.count.toString(), 6 + this.minX + x * this.width / this.columns, yOffset + (y + 1) * this.height / this.rows - 8);
+			this.gameData.ctx.fillStyle = "black";
+			this.gameData.ctx.fillText("x" + item.count.toString(), 6 + this.minX + x * this.width / this.columns, yOffset + (y + 1) * this.height / this.rows - 8);
 		}
 		j++;
 	}
 
-	this.gameData.ctx.font = "10pt helvetica";
+	this.gameData.ctx.font = "12pt helvetica";
+	this.gameData.ctx.fillStyle = "black";
 	for (var i = 1; i <= 10; i++) {
-		if (i <= 5) {this.gameData.ctx.fillText(i.toString(), this.minX + 5, i*this.height/7 - 25);}
-		if (i > 5) {this.gameData.ctx.fillText(i.toString(), this.minX + this.width/2 + 5, (i-5)*this.height/7 - 25 );}
+		if (i <= 5) {this.gameData.ctx.fillText((2*i-2).toString(), this.minX + 5, i*this.height/7 - 20);}
+		if (i > 5) {this.gameData.ctx.fillText((2*(i-5)-1).toString(), this.minX + this.width/2 + 5, (i-5)*this.height/7 - 20 );}
 	}
 
 
-	this.gameData.ctx.fillText("A", this.minX + 5, 6*this.height/7 - 25);
-	this.gameData.ctx.fillText("S", this.minX + this.width/2 + 5, 6*this.height/7 - 25);
-	this.gameData.ctx.fillText("D", this.minX + 5, 7*this.height/7 - 25);
-	this.gameData.ctx.fillText("F", this.minX + this.width/2 + 5, 7*this.height/7 - 25);
+	this.gameData.ctx.fillText("A", this.minX + 5, 6*this.height/7 - 20);
+	this.gameData.ctx.fillText("S", this.minX + this.width/2 + 5, 6*this.height/7 - 20);
+	this.gameData.ctx.fillText("D", this.minX + 5, 7*this.height/7 - 20);
+	this.gameData.ctx.fillText("F", this.minX + this.width/2 + 5, 7*this.height/7 - 20);
 
 };
 
