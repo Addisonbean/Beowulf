@@ -201,6 +201,10 @@ Hero.prototype.hasItemNamed = function(name) {
 	return !!this.inventory.items[name];
 };
 
+Hero.prototype.removeArm = function() {
+	this.gameData.console.display("TODO: remove grendel's arm");
+};
+
 Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
 Door.prototype.constructor = Door;
 function Door(newMap, key=undefined) {

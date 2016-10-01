@@ -7,6 +7,7 @@ function Enemy(name, sprite, health, strength, xpGiven) {
 	this.sprite = sprite;
 	this.strength = strength;
 	this.hurt = false;
+	this.itemType = Enemy;
 }
 
 Enemy.prototype.attack = function(other) {
@@ -50,5 +51,32 @@ function createEnemy() {
 
 function createKnight() {
 	return new Enemy("Knight", itemImages.knight, 10, 2, 10);
+}
+
+// TODO: change the image
+Beowulf.prototype = new Enemy("Beowulf", itemImages.knight, 1, 1, 0);
+Beowulf.prototype.constructor = Beowulf;
+function Beowulf() {
+}
+
+
+Beowulf.prototype.takeDamage = function(amount) {
+	this.hurt = true;
+	this.gameData.map.drawTileAtPosition(this.position);
+	var that = this;
+	setTimeout(function() {
+		that.hurt = false;
+		that.gameData.map.drawTileAtPosition(that.position);
+	}, 200);
+};
+
+Beowulf.prototype.attack = function(other) {
+	if (other === this.gameData.player) {
+		other.removeArm();
+	}
+};
+
+function createBeowulf() {
+	return new Beowulf();
 }
 

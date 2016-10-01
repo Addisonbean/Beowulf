@@ -15,6 +15,7 @@
 - don't hardcode canvas size in js
 - Item.movable isn't even being used
 - add a "console" type thing that displays messages like "the door is locked"
+- remove gameData from the item params and add it to the default constructor
 
 ### Sprites needed from Aarorn
 - Beowulf

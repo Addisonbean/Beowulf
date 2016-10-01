@@ -22,7 +22,7 @@ Console.prototype.draw = function() {
 	}
 };
 
-Console.prototype.displayMessage = function(msg) {
+Console.prototype.display = function(msg) {
 	this.messages.unshift(msg);
 	this.draw();
 };

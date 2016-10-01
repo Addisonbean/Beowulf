@@ -32,6 +32,7 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createKnight(), { x: 7, y: 12 });
 		allMaps.start.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 		allMaps.start.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
+		allMaps.start.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
 	}
 	return m;
 }

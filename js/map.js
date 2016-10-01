@@ -57,7 +57,7 @@ Map.prototype.addItemAtPoint = function(item, point, bg=false) {
 	tiles = bg ? this.backgroundTiles : this.tiles;
 	tiles[point.y][point.x] = item;
 	item.position = point;
-	if (item.constructor === Enemy) {
+	if (item.itemType === Enemy) {
 		this.enemies.push(item);
 	}
 	// If the item is larger than 1 square by 1 square, 
