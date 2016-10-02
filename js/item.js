@@ -33,7 +33,10 @@ Item.prototype.draw = function() {
 
 var itemImages = {
 	pebble: new Image(),
-	hero: new Image(),
+	heroD: new Image(),
+	heroU: new Image(),
+	heroR: new Image(),
+	heroL: new Image(),
 	coin: new Image(),
 	door: new Image(),
 	stoneBlock: new Image(),
@@ -45,11 +48,14 @@ var itemImages = {
 
 var urls = {
 	pebble: "img/pedestal_full.png",
-	hero: "img/hero.png",
+	heroD: "img/grendel1_walkdown.png",
+	heroU: "img/grendel1_walkup.png",
+	heroR: "img/grendel1_walkright.png",
+	heroL: "img/grendel1_walkleft.png",
 	coin: "img/coin.png",
 	door: "img/dngn_enter_labyrinth.png",
 	stoneBlock: "img/stone.png",
-	knight: "img/blobRight.png",
+	knight: "img/knight1_walkdown.png",
 	key: "img/brass.png",
 	poison: "img/brilliant_blue.png",
 	staff: "img/staff02.png"
@@ -116,7 +122,7 @@ function createStoneBlock() {
 	return new StoneBlock();
 }
 
-Hero.prototype = new Item("hero", itemImages.hero, 1, 1, gameData);
+Hero.prototype = new Item("hero", itemImages.heroD, 1, 1, gameData);
 Hero.prototype.constructor = Hero;
 function Hero() {
 	this.hurt = false;
