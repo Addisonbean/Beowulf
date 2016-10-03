@@ -33,6 +33,9 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 		allMaps.start.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 		allMaps.start.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
+
+		//example usage:
+		//allMaps.start.coverRegionWithTile(1, 1, 2, 3, createKnight, false);
 	}
 	return m;
 }

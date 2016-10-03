@@ -36,6 +36,20 @@ Map.prototype.init = function() {
 	this.initialized = true;
 };
 
+// used to quickly cover an area of a map with a given tile.
+// notice `tileFunc` should be a function that returns a tile, like createEnemy
+// or createSword. In other words, DON'T call the function like this: `createSword()`,
+// pass it without the paranthesis. There is an example in js/all_maps.js
+Map.prototype.coverRegionWithTile = function(x, y, width, height, tileFunc, bg=true) {
+	var tiles = bg ? this.backgroundTiles : this.tiles;
+	for (var yi = y; yi < y + height; yi++) {
+		for (var xi = x; xi < x + width; xi++) {
+			tiles[yi][xi] = tileFunc();
+			tiles[yi][xi].draw();
+		}
+	}
+};
+
 Map.prototype.draw = function() {
 	var yOffset = this.gameData.stats.height;
 	for (var y = 0; y < this.height; y++) {
