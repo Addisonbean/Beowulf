@@ -15,10 +15,9 @@
 - Item.movable isn't even being used
 - start using the Console class
 - remove gameData from the item params and add it to the default constructor
+- add a limit for how fast you can move?
 
 ### Sprites needed from Aarorn
-- Beowulf
-- Grendel
 - Wall
 - Guards
 - Potions

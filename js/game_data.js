@@ -33,23 +33,20 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	switch (keyCode) {
 		case D_LEFT:
 			newPos = { x: oldPos.x - 1, y: oldPos.y };
-			this.spriteDirection(item, "L");
 			break;
 		case D_UP:
 			newPos = { x: oldPos.x, y: oldPos.y - 1 };
-			this.spriteDirection(item, "U");
 			break;
 		case D_RIGHT:
 			newPos = { x: oldPos.x + 1, y: oldPos.y };
-			this.spriteDirection(item, "R");
 			break
 		case D_DOWN:
 			newPos = { x: oldPos.x, y: oldPos.y + 1 };
-			this.spriteDirection(item, "D");
 			break;
 		default:
 			return false;
 	}
+	this.setSpriteWithDirection(item, keyCode);
 	// Check if it moved off of the map
 	if (newPos.x < 0 || newPos.x + 1 > this.mapWidth || newPos.y < 0 || newPos.y + 1 > this.mapHeight) {
 		// Skip this next part if `item` is not `this.player`
@@ -120,12 +117,26 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	return true;
 };
 
-GameData.prototype.spriteDirection = function(item, dir) {
-	if (dir === "L" && itemImages[item.name.lowercaseFirstLetter() + "L"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "L"];}
-	else if (dir === "R" && itemImages[item.name.lowercaseFirstLetter() + "R"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "R"];}
-	else if (dir === "U" && itemImages[item.name.lowercaseFirstLetter() + "U"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "U"];}
-	else if (dir === "D" && itemImages[item.name.lowercaseFirstLetter() + "D"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "D"];}
-	else {item.sprite = itemImages[item.name.lowercaseFirstLetter()];}
+GameData.prototype.setSpriteWithDirection = function(item, dir) {
+	var imgName = item.name.lowercaseFirstLetter();
+	console.log(itemImages[imgName + "U"]);
+	switch (dir) {
+		case D_UP:
+			item.sprite = itemImages[imgName + "U"];
+			break;
+		case D_DOWN:
+			item.sprite = itemImages[imgName + "D"];
+			break;
+		case D_LEFT:
+			item.sprite = itemImages[imgName + "L"];
+			break;
+		case D_RIGHT:
+			item.sprite = itemImages[imgName + "R"];
+			break;
+		default:
+			item.sprite = itemImages[imgName];
+	}
+	if (!item.sprite) { item.sprite = itemImages[imgName] }
 }
 
 GameData.prototype.updateMap = function() {
