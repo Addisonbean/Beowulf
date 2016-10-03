@@ -33,19 +33,19 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	switch (keyCode) {
 		case D_LEFT:
 			newPos = { x: oldPos.x - 1, y: oldPos.y };
-			this.player.sprite = itemImages.heroL;
+			item.sprite = itemImages[item.name.toLowerCase() + "L"];
 			break;
 		case D_UP:
 			newPos = { x: oldPos.x, y: oldPos.y - 1 };
-			this.player.sprite = itemImages.heroU;
+			item.sprite = itemImages[item.name.toLowerCase() + "U"];
 			break;
 		case D_RIGHT:
 			newPos = { x: oldPos.x + 1, y: oldPos.y };
-			this.player.sprite = itemImages.heroR;
+			item.sprite = itemImages[item.name.toLowerCase() + "R"];
 			break
 		case D_DOWN:
 			newPos = { x: oldPos.x, y: oldPos.y + 1 };
-			this.player.sprite = itemImages.heroD;
+			item.sprite = itemImages[item.name.toLowerCase() + "D"];
 			break;
 		default:
 			return false;

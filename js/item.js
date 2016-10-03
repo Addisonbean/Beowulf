@@ -40,7 +40,10 @@ var itemImages = {
 	coin: new Image(),
 	door: new Image(),
 	stoneBlock: new Image(),
-	knight: new Image(),
+	knightD: new Image(),
+	knightU: new Image(),
+	knightR: new Image(),
+	knightL: new Image(),
 	key: new Image(),
 	poison: new Image(),
 	staff: new Image()
@@ -55,7 +58,10 @@ var urls = {
 	coin: "img/coin.png",
 	door: "img/dngn_enter_labyrinth.png",
 	stoneBlock: "img/stone.png",
-	knight: "img/knight1_walkdown.png",
+	knightD: "img/knight1_walkdown.png",
+	knightU: "img/knight1_walkup.png",
+	knightR: "img/knight1_walkright.png",
+	knightL: "img/knight1_walkleft.png",
 	key: "img/brass.png",
 	poison: "img/brilliant_blue.png",
 	staff: "img/staff02.png"
