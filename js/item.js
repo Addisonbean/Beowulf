@@ -98,7 +98,7 @@ function createPebble() {
 }
 
 function createGrass() {
-	return new Item("grass", itemImages.grass, 1, 1, gameData, false, false, true);
+	return new Item("grass", itemImages.grass, 1, 1, gameData);
 }
 
 function createHero() {
@@ -152,7 +152,7 @@ function StoneBlock() {}
 StoneBlock.prototype.collideWith = function(obj, direction) {
 	var val = this.gameData.moveItem(this, direction);
 	// why is this only called once???
-	console.log(val);
+	//console.log(val);
 	return val;
 };
 

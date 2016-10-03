@@ -41,12 +41,10 @@ Map.prototype.init = function() {
 // or createSword. In other words, DON'T call the function like this: `createSword()`,
 // pass it without the paranthesis. There is an example in js/all_maps.js
 Map.prototype.coverRegionWithTile = function(x, y, width, height, tileFunc, bg=true) {
-	var tiles = bg ? this.backgroundTiles : this.tiles;
 	for (var yi = y; yi < y + height; yi++) {
 		for (var xi = x; xi < x + width; xi++) {
-			this.addItemAtPoint(tileFunc(), { x: x, y: y });
-			//tiles[yi][xi] = tileFunc();
-			//tiles[yi][xi].draw();
+			console.log("uno");
+			this.addItemAtPoint(tileFunc(), { x: xi, y: yi }, bg);
 		}
 	}
 };

@@ -119,7 +119,6 @@ GameData.prototype.moveItem = function(item, keyCode) {
 
 GameData.prototype.setSpriteWithDirection = function(item, dir) {
 	var imgName = item.name.lowercaseFirstLetter();
-	console.log(itemImages[imgName + "U"]);
 	switch (dir) {
 		case D_UP:
 			item.sprite = itemImages[imgName + "U"];
