@@ -33,6 +33,7 @@ Item.prototype.draw = function() {
 
 var itemImages = {
 	pebble: new Image(),
+	grass: new Image(),
 	heroD: new Image(),
 	heroU: new Image(),
 	heroR: new Image(),
@@ -55,6 +56,7 @@ var itemImages = {
 
 var urls = {
 	pebble: "img/pedestal_full.png",
+	grass: "img/grass.png",
 	heroD: "img/grendel1_walkdown.png",
 	heroU: "img/grendel1_walkup.png",
 	heroR: "img/grendel1_walkright.png",
@@ -93,6 +95,10 @@ function loadImages(imgs, urls, callback) {
 
 function createPebble() {
 	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, true);
+}
+
+function createGrass() {
+	return new Item("grass", itemImages.grass, 1, 1, gameData, false, false, true);
 }
 
 function createHero() {

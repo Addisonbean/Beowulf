@@ -35,7 +35,7 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
 
 		//example usage:
-		//allMaps.start.coverRegionWithTile(1, 1, 2, 3, createPebble);
+		allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
 		//allMaps.start.coverRegionWithTile(1, 1, 2, 3, createKnight, false);
 	}
 	return m;
