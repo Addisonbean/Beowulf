@@ -24,6 +24,9 @@ Console.prototype.draw = function() {
 
 Console.prototype.display = function(msg) {
 	this.messages.unshift(msg);
+	if (this.messages.length > 3) {
+		this.messages.pop()
+	}
 	this.draw();
 };
 
