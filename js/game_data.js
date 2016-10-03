@@ -33,19 +33,19 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	switch (keyCode) {
 		case D_LEFT:
 			newPos = { x: oldPos.x - 1, y: oldPos.y };
-			item.sprite = itemImages[item.name.toLowerCase() + "L"];
+			this.spriteDirection(item, "L");
 			break;
 		case D_UP:
 			newPos = { x: oldPos.x, y: oldPos.y - 1 };
-			item.sprite = itemImages[item.name.toLowerCase() + "U"];
+			this.spriteDirection(item, "U");
 			break;
 		case D_RIGHT:
 			newPos = { x: oldPos.x + 1, y: oldPos.y };
-			item.sprite = itemImages[item.name.toLowerCase() + "R"];
+			this.spriteDirection(item, "R");
 			break
 		case D_DOWN:
 			newPos = { x: oldPos.x, y: oldPos.y + 1 };
-			item.sprite = itemImages[item.name.toLowerCase() + "D"];
+			this.spriteDirection(item, "D");
 			break;
 		default:
 			return false;
@@ -120,6 +120,14 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	return true;
 };
 
+GameData.prototype.spriteDirection = function(item, dir) {
+	if (dir === "L" && itemImages[item.name.lowercaseFirstLetter() + "L"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "L"];}
+	else if (dir === "R" && itemImages[item.name.lowercaseFirstLetter() + "R"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "R"];}
+	else if (dir === "U" && itemImages[item.name.lowercaseFirstLetter() + "U"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "U"];}
+	else if (dir === "D" && itemImages[item.name.lowercaseFirstLetter() + "D"]) {item.sprite = itemImages[item.name.lowercaseFirstLetter() + "D"];}
+	else {item.sprite = itemImages[item.name.lowercaseFirstLetter()];}
+}
+
 GameData.prototype.updateMap = function() {
 	this.map.update();
 };
@@ -149,3 +157,7 @@ if (isRetinaDisplay) {
 	gameData.ctx.scale(2, 2);
 }
 
+// Creds to Hutch Moore on Stack overflow
+String.prototype.lowercaseFirstLetter = function() {
+    return this.charAt(0).toLowerCase() + this.slice(1);
+}

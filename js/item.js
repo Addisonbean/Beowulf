@@ -44,6 +44,10 @@ var itemImages = {
 	knightU: new Image(),
 	knightR: new Image(),
 	knightL: new Image(),
+	beowulfD: new Image(),
+	beowulfU: new Image(),
+	beowulfR: new Image(),
+	beowulfL: new Image(),
 	key: new Image(),
 	poison: new Image(),
 	staff: new Image()
@@ -62,6 +66,10 @@ var urls = {
 	knightU: "img/knight1_walkup.png",
 	knightR: "img/knight1_walkright.png",
 	knightL: "img/knight1_walkleft.png",
+	beowulfD: "img/beowulf_down.png",
+	beowulfU: "img/beowulf_up.png",
+	beowulfR: "img/beowulf_right.png",
+	beowulfL: "img/beowulf_left.png",
 	key: "img/brass.png",
 	poison: "img/brilliant_blue.png",
 	staff: "img/staff02.png"
