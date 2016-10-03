@@ -1,11 +1,12 @@
 gameData.map = getStartMap();
-
+var canGiveInput = true;
 // Waits until the images have loaded to do anything
 loadImages(itemImages, urls, function() {
-
 	document.addEventListener("keydown", function(e) {
-		if ([D_LEFT, D_RIGHT, D_UP, D_DOWN].includes(e.keyCode)) {gameData.moveItem(gameData.player, e.keyCode);}
-		if (e.keyCode >= 48 && e.keyCode <= 57 || [65, 83, 68, 70].includes(e.keyCode)) {gameData.player.inventory.useItem(e.keyCode);}
+		if (canGiveInput === true) {
+			if ([D_LEFT, D_RIGHT, D_UP, D_DOWN].includes(e.keyCode)) {gameData.moveItem(gameData.player, e.keyCode);}
+			if (e.keyCode >= 48 && e.keyCode <= 57 || [65, 83, 68, 70].includes(e.keyCode)) {gameData.player.inventory.useItem(e.keyCode);}
+		}
 
 	});
 

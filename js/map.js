@@ -132,16 +132,18 @@ Map.prototype.removeItem = function(item) {
 // The player's movement won't always fall on on of these "frames" though,
 // so that's why I don't call them frames
 Map.prototype.update = function() {
-	for (var i = 0; i < this.enemies.length; i++) {
-		// There's a 10% chance for each enemy to try to move in a random direction
-		if (Math.random() < 0.1) {
-			var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
-			// If the enemy walks into the player, it will attack it
-			this.gameData.moveItem(this.enemies[i], dir);
-		// There's also a 90% * 17% = 15.3% chance that an enemy will attack the player if it's next to the player
-		// (plus the chance of it randomly walking into the player, thus, attacking it)
-		} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.17) {
-			this.enemies[i].attack(this.gameData.player);
+	if (canGiveInput === true) {
+		for (var i = 0; i < this.enemies.length; i++) {
+			// There's a 10% chance for each enemy to try to move in a random direction
+			if (Math.random() < 0.1) {
+				var dir = [D_LEFT, D_RIGHT, D_UP, D_DOWN][Math.floor(Math.random() * 4)];
+				// If the enemy walks into the player, it will attack it
+				this.gameData.moveItem(this.enemies[i], dir);
+			// There's also a 90% * 17% = 15.3% chance that an enemy will attack the player if it's next to the player
+			// (plus the chance of it randomly walking into the player, thus, attacking it)
+			} else if (this.findItemRelativeTo(this.enemies[i], this.gameData.player) && Math.random() < 0.17) {
+				this.enemies[i].attack(this.gameData.player);
+			}
 		}
 	}
 };
