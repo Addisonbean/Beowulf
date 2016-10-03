@@ -44,8 +44,9 @@ Map.prototype.coverRegionWithTile = function(x, y, width, height, tileFunc, bg=t
 	var tiles = bg ? this.backgroundTiles : this.tiles;
 	for (var yi = y; yi < y + height; yi++) {
 		for (var xi = x; xi < x + width; xi++) {
-			tiles[yi][xi] = tileFunc();
-			tiles[yi][xi].draw();
+			this.addItemAtPoint(tileFunc(), { x: x, y: y });
+			//tiles[yi][xi] = tileFunc();
+			//tiles[yi][xi].draw();
 		}
 	}
 };
