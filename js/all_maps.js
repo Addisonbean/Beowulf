@@ -6,6 +6,9 @@ var allMaps = {
 	cave: new Map(gameData, createPebble),
 	forest: new Map(gameData, createGrass),
 	grass: new Map(gameData, createGrass),
+	grass1: new Map(gameData, createGrass),
+	grass2: new Map(gameData, createGrass),
+	grass3: new Map(gameData, createGrass),
 	desert: new Map(gameData, createSand)
 };
 
@@ -35,9 +38,22 @@ allMaps.entrance.surrounding_maps["n"] = getCaveMap;
 // allMaps.start.surrounding_maps["w"] = getCaveMap;
 // allMaps.start.surrounding_maps["n"] = getForestMap;
 
+allMaps.cave.surrounding_maps["e"] = getGrassMap1;
 allMaps.cave.surrounding_maps["s"] = getEntranceMap;
 
+allMaps.grass.surrounding_maps["n"] = getGrassMap1;
+allMaps.grass.surrounding_maps["e"] = getGrassMap2;
 allMaps.grass.surrounding_maps["w"] = getEntranceMap;
+
+allMaps.grass1.surrounding_maps["e"] = getGrassMap3;
+allMaps.grass1.surrounding_maps["s"] = getGrassMap;
+allMaps.grass1.surrounding_maps["w"] = getCaveMap;
+
+allMaps.grass2.surrounding_maps["n"] = getGrassMap3;
+allMaps.grass2.surrounding_maps["w"] = getGrassMap;
+
+allMaps.grass3.surrounding_maps["s"] = getGrassMap2;
+allMaps.grass3.surrounding_maps["w"] = getGrassMap1;
 
 allMaps.desert.surrounding_maps["e"] = getEntranceMap;
 
@@ -127,6 +143,42 @@ function getGrassMap() {
 		m.addItemAtPoint(createWolf(), { x: 2, y: 8 });
 		m.addItemAtPoint(createWolf(), { x: 4, y: 8 });
 		m.addItemAtPoint(createWolf(), { x: 7, y: 5 });
+		
+	}
+	return m;
+}
+
+function getGrassMap1() {
+	var m = allMaps.grass1;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 2, y: 8 });
+		
+		
+	}
+	return m;
+}
+
+function getGrassMap2() {
+	var m = allMaps.grass2;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createWolf(), { x: 5, y: 9 });
+		
+		
+	}
+	return m;
+}
+
+function getGrassMap3() {
+	var m = allMaps.grass3;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
+		
 		
 	}
 	return m;
