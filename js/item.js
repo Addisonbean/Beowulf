@@ -56,6 +56,7 @@ var itemImages = {
 	beowulfL: new Image(),
 	key: new Image(),
 	healthPotion: new Image(),
+	xpPotion: new Image(),
 	staff: new Image()
 };
 
@@ -84,6 +85,7 @@ var urls = {
 	beowulfL: "img/beowulf_left.png",
 	key: "img/brass.png",
 	healthPotion: "img/healthpotion.png",
+	xpPotion: "img/xppotion.png",
 	staff: "img/staff02.png"
 };
 
@@ -172,6 +174,10 @@ function createHealthPotion() {
 	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {itemFunctions.healthPotion(5);} );
 }
 
+function createXpPotion() {
+	return new Item("xpPotion", itemImages.xpPotion, 1, 1, gameData, true, false, false, function() {itemFunctions.xpPotion(25);} );
+}
+
 Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);
 Key.prototype.constructor = Key;
 function Key(name) {
@@ -191,6 +197,10 @@ var itemFunctions = {
 		} else {
 			gameData.console.display("You don't freaking need a health potion.");
 		}
+	},
+	xpPotion: function(amount) {
+		gameData.player.giveXP(amount);
+		useItem("xpPotion", "XP Potion");
 	}
 }
 
