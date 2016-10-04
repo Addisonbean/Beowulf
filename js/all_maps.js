@@ -9,7 +9,9 @@ var allMaps = {
 	grass1: new Map(gameData, createGrass),
 	grass2: new Map(gameData, createGrass),
 	grass3: new Map(gameData, createGrass),
-	desert: new Map(gameData, createSand)
+	desert: new Map(gameData, createSand),
+	desert1: new Map(gameData, createSand),
+	desert2: new Map(gameData, createSand)
 };
 
 var doors = {
@@ -56,6 +58,12 @@ allMaps.grass3.surrounding_maps["s"] = getGrassMap2;
 allMaps.grass3.surrounding_maps["w"] = getGrassMap1;
 
 allMaps.desert.surrounding_maps["e"] = getEntranceMap;
+allMaps.desert.surrounding_maps["w"] = getDesertMap1;
+
+allMaps.desert1.surrounding_maps["n"] = getDesertMap2;
+allMaps.desert1.surrounding_maps["e"] = getDesertMap;
+
+allMaps.desert2.surrounding_maps["s"] = getDesertMap1;
 
 
 
@@ -153,6 +161,8 @@ function getGrassMap1() {
 	if (!m.initialized) {
 		m.init();
 
+		m.coverRegionWithTile(0, 0, 17, 1, createShrubbery, false);
+
 		m.addItemAtPoint(createCoin(), { x: 2, y: 8 });
 		
 		
@@ -177,6 +187,8 @@ function getGrassMap3() {
 	if (!m.initialized) {
 		m.init();
 
+		m.coverRegionWithTile(0, 0, 4, 1, createShrubbery, false);
+
 		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
 		
 		
@@ -192,6 +204,28 @@ function getDesertMap() {
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 
 		m.addItemAtPoint(createKnight(), { x: 3, y: 2 });
+		
+	}
+	return m;
+}
+
+function getDesertMap1() {
+	var m = allMaps.desert1;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		
+	}
+	return m;
+}
+
+function getDesertMap2() {
+	var m = allMaps.desert2;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createXpPotion(), { x: 4, y: 11 });
 		
 	}
 	return m;
