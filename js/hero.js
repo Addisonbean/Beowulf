@@ -7,6 +7,7 @@ function Hero() {
 	this.inventory = new Inventory(this.gameData);
 	this.timeOfLastAttack = 0;
 	this.attackSpeed = 500;
+	this.attackDamage = 2;
 	this.dead = false;
 	this.xp = 0;
 	this.maxXP = 100;
@@ -71,6 +72,7 @@ Hero.prototype.checkRankUp = function() {
 		this.maxXP = Math.pow(10*(this.rank-1),2) + 100;
 		this.maxHealth += 5;
 		this.health =  this.maxHealth;
+		this.attackDamage += 1;
 		this.rank += 1;
 		gameData.console.display("You are now rank " + this.rank.toString() + "!");
 	}
@@ -81,7 +83,7 @@ Hero.prototype.attack = function(other) {
 	// Only allow the player to attack ever `this.attackSpeed` miliseconds
 	if (t - this.timeOfLastAttack > this.attackSpeed) {
 		this.timeOfLastAttack = t;
-		other.takeDamage(1);
+		other.takeDamage(this.attackDamage);
 	}
 };
 
