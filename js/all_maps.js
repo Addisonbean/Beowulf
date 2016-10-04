@@ -1,8 +1,9 @@
 gameData.player = createHero();
 
 var allMaps = {
-	start: new Map(gameData),
-	cave: new Map(gameData)
+	start: new Map(gameData, createPebble),
+	cave: new Map(gameData, createPebble),
+	forest: new Map(gameData, createGrass)
 };
 
 var doors = {
@@ -16,7 +17,12 @@ doors.caveToStart.exit = doors.startToCave;
 doors.caveToStart.position = { x: 9, y: 8 };
 
 allMaps.start.surrounding_maps["w"] = getCaveMap;
+allMaps.start.surrounding_maps["n"] = getForestMap;
+
 allMaps.cave.surrounding_maps["e"] = getStartMap;
+
+allMaps.forest.surrounding_maps["s"] = getStartMap;
+
 
 // TODO: make a general "initMap" function w/ a callback for adding crap
 
@@ -35,7 +41,7 @@ function getStartMap() {
 		allMaps.start.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
 
 		//example usage:
-		allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
+		// allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
 		//allMaps.start.coverRegionWithTile(1, 1, 2, 3, createKnight, false);
 	}
 	return m;
@@ -53,6 +59,21 @@ function getCaveMap() {
 		allMaps.cave.addItemAtPoint(doors.caveToStart, doors.caveToStart.position, true);
 		allMaps.cave.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
 		allMaps.cave.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+	}
+	return m;
+}
+
+function getForestMap() {
+	var m = allMaps.forest;
+	if (!m.initialized) {
+		allMaps.forest.init();
+		allMaps.forest.coverRegionWithTile(0, 0, 17, 1, createShrubbery, false);
+		allMaps.forest.coverRegionWithTile(0, 1, 1, 15, createShrubbery, false);
+		allMaps.forest.coverRegionWithTile(16, 1, 1, 15, createShrubbery, false);
+
+		allMaps.forest.addItemAtPoint(createWolf(), { x: 5, y: 10 });
+		allMaps.forest.addItemAtPoint(createWolf(), { x: 10, y: 10 });
+		allMaps.forest.addItemAtPoint(createWolf(), { x: 3, y: 8 });
 	}
 	return m;
 }

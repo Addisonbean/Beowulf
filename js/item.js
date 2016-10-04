@@ -34,6 +34,7 @@ Item.prototype.draw = function() {
 var itemImages = {
 	pebble: new Image(),
 	grass: new Image(),
+	shrubbery: new Image(),
 	heroD: new Image(),
 	heroU: new Image(),
 	heroR: new Image(),
@@ -45,6 +46,10 @@ var itemImages = {
 	knightU: new Image(),
 	knightR: new Image(),
 	knightL: new Image(),
+	wolfD: new Image(),
+	wolfU: new Image(),
+	wolfR: new Image(),
+	wolfL: new Image(),
 	beowulfD: new Image(),
 	beowulfU: new Image(),
 	beowulfR: new Image(),
@@ -57,6 +62,7 @@ var itemImages = {
 var urls = {
 	pebble: "img/pedestal_full.png",
 	grass: "img/grass.png",
+	shrubbery: "img/bush.png",
 	heroD: "img/grendel1_walkdown.png",
 	heroU: "img/grendel1_walkup.png",
 	heroR: "img/grendel1_walkright.png",
@@ -68,6 +74,10 @@ var urls = {
 	knightU: "img/knight1_walkup.png",
 	knightR: "img/knight1_walkright.png",
 	knightL: "img/knight1_walkleft.png",
+	wolfD: "img/monster1_walkdown.png",
+	wolfU: "img/monster1_walkup.png",
+	wolfR: "img/monster1_walkright.png",
+	wolfL: "img/monster1_walkleft.png",
 	beowulfD: "img/beowulf_down.png",
 	beowulfU: "img/beowulf_up.png",
 	beowulfR: "img/beowulf_right.png",
@@ -93,57 +103,23 @@ function loadImages(imgs, urls, callback) {
 	}
 }
 
+// Map Elements
+
 function createPebble() {
 	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, true);
 }
 
 function createGrass() {
-	return new Item("grass", itemImages.grass, 1, 1, gameData);
+	return new Item("grass", itemImages.grass, 1, 1, gameData, false, false, true);
 }
 
-function createHero() {
-	return new Hero();
-}
-
-function createCoin() {
-	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
-}
-
-function createHealthPotion() {
-	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {healthPotion(5);} );
+function createShrubbery() {
+	return new Item("shrubbery", itemImages.shrubbery, 1, 1, gameData);
 }
 
 function createDoor(map, key=undefined) {
 	return new Door(map, key);
 }
-
-Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);
-Key.prototype.constructor = Key;
-function Key(name) {
-	this.name = name
-}
-
-function createKey(name) {
-	return new Key(name);
-}
-
-// Item functions
-
-function healthPotion(amount) {
-	if (gameData.player.health < gameData.player.maxHealth) {
-		gameData.player.giveHealth(amount);
-		useItem("healthPotion", "Health Potion");
-	} else {
-		gameData.console.display("You don't freaking need a health potion.");
-	}
-}
-
-function useItem(item, name) {
-	delete gameData.player.inventory.items[item];
-	gameData.player.inventory.draw();
-	gameData.console.display("You have used a " + name + ".");
-}
-
 
 StoneBlock.prototype = new Item("stoneBlock", itemImages.stoneBlock, 1, 1, gameData, false, true);
 StoneBlock.prototype.constructor = StoneBlock;
@@ -185,6 +161,52 @@ Door.prototype.gotoMap = function(map, point) {
 	this.gameData.map.addItemAtPoint(this.gameData.player, point);
 	this.gameData.map.draw();
 }
+
+// Items
+
+function createCoin() {
+	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
+}
+
+function createHealthPotion() {
+	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {itemFunctions.healthPotion(5);} );
+}
+
+Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);
+Key.prototype.constructor = Key;
+function Key(name) {
+	this.name = name
+}
+
+function createKey(name) {
+	return new Key(name);
+}
+
+// Item functions
+var itemFunctions = {
+	healthPotion: function(amount) {
+		if (gameData.player.health < gameData.player.maxHealth) {
+			gameData.player.giveHealth(amount);
+			useItem("healthPotion", "Health Potion");
+		} else {
+			gameData.console.display("You don't freaking need a health potion.");
+		}
+	}
+}
+
+function useItem(item, name) {
+	delete gameData.player.inventory.items[item];
+	gameData.player.inventory.draw();
+	gameData.console.display("You have used a " + name + ".");
+}
+
+// Other
+
+function createHero() {
+	return new Hero();
+}
+
+
 
 
 Weapon.prototype = new Item("weapon", itemImages.door, 1, 1, gameData, true); 

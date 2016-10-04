@@ -53,6 +53,10 @@ function createKnight() {
 	return new Enemy("Knight", itemImages.knightD, 10, 2, 10);
 }
 
+function createWolf() {
+	return new Enemy("Wolf", itemImages.wolfD, 5, 1, 5);
+}
+
 // TODO: change the image
 Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 1, 1, 0);
 Beowulf.prototype.constructor = Beowulf;

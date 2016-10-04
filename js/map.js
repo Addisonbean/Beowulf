@@ -1,10 +1,11 @@
-function Map(gameData) {
+function Map(gameData, bgImage) {
 	this.tileSize = 32;
 	this.height = 17;
 	this.width = 17;
 
 	this.backgroundTiles = [];
 	this.tiles = [];
+	this.bgImage = bgImage;
 
 	this.initialized = false;
 	this.gameData = gameData;
@@ -28,7 +29,7 @@ Map.prototype.init = function() {
 	for (var y = 0; y < this.height; y++) {
 		this.backgroundTiles.push([]);
 		for (var x = 0; x < this.width; x++) {
-			var p = createPebble();
+			var p = this.bgImage();
 			p.position = { x: x, y: y };
 			this.backgroundTiles[y][x] = p;
 		}
