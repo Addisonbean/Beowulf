@@ -17,13 +17,25 @@ Inventory.prototype.addItem = function(item) {
 	}
 	this.items[item.name].count += 1;
 	this.draw();
-};;
+};
+
+Inventory.prototype.updateIndexes = function(after) {
+	for (var itm in this.items) {
+		if (this.items[itm].index >= after) {
+			console.log(this.items[itm]);
+			this.items[itm].index -= 1;
+		}
+	}
+	this.draw();
+};
 
 Inventory.prototype.useItem = function(keycode) {
 	if (keycode >= 48 && keycode <= 57) {
 		for (var itm in this.items) {
 			if (this.items[itm].index === keycode - 48) {
-				this.items[itm].object.func();
+				var stat = this.items[itm].object.func();
+				if (stat) { this.updateIndexes(keycode - 48) }
+				return;
 			}
 
 		}
@@ -44,7 +56,7 @@ Inventory.prototype.useItem = function(keycode) {
 		}
 	}
 
-	
+
 }
 
 Inventory.prototype.draw = function() {

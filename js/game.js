@@ -1,5 +1,6 @@
-//gameData.map = getEntranceMap();
-gameData.map = getForestMap3();
+////gameData.map = getEntranceMap();
+//gameData.map = getForestMap3();
+gameData.map = getEntranceMap();
 var canGiveInput = true;
 // Waits until the images have loaded to do anything
 loadImages(itemImages, urls, function() {

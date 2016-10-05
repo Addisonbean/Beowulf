@@ -45,7 +45,6 @@ Map.prototype.init = function() {
 Map.prototype.coverRegionWithTile = function(x, y, width, height, tileFunc, bg=true) {
 	for (var yi = y; yi < y + height; yi++) {
 		for (var xi = x; xi < x + width; xi++) {
-			console.log("uno");
 			this.addItemAtPoint(tileFunc(), { x: xi, y: yi }, bg);
 		}
 	}
