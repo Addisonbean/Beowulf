@@ -38,6 +38,7 @@ var itemImages = {
 	ice: new Image(),
 	swamp: new Image(),
 	caveGround: new Image(),
+	herot: new Image(),
 	shrubbery: new Image(),
 	heroD: new Image(),
 	heroU: new Image(),
@@ -71,6 +72,7 @@ var urls = {
 	ice: "img/ice.png",
 	swamp: "img/swamp.png",
 	caveGround: "img/cave.png",
+	herot: "img/herot.png",
 	shrubbery: "img/bush.png",
 	heroD: "img/grendel1_walkdown.png",
 	heroU: "img/grendel1_walkup.png",
@@ -137,6 +139,10 @@ function createSwamp() {
 
 function createCaveGround() {
 	return new Item("caveGround", itemImages.caveGround, 1, 1, gameData, false, false, true);
+}
+
+function createHerot() {
+	return new Item("herot", itemImages.herot, 1, 1, gameData, false, false, true);
 }
 
 function createShrubbery() {

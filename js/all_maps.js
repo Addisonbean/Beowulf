@@ -25,7 +25,8 @@ var allMaps = {
 	ice3: new Map(gameData, createIce),
 	swamp: new Map(gameData, createSwamp),
 	swamp1: new Map(gameData, createSwamp),
-	swamp2: new Map(gameData, createSwamp)
+	swamp2: new Map(gameData, createSwamp),
+	herot: new Map(gameData, createHerot)
 };
 
 var doors = {
@@ -101,6 +102,7 @@ allMaps.forest2.surrounding_maps["n"] = getForestMap3;
 allMaps.forest2.surrounding_maps["e"] = getForestMap1;
 
 allMaps.forest3.surrounding_maps["s"] = getForestMap2;
+allMaps.forest3.surrounding_maps["e"] = getHerotMap;
 
 allMaps.ice.surrounding_maps["n"] = getIceMap1;
 allMaps.ice.surrounding_maps["e"] = getGrassMap4;
@@ -121,6 +123,9 @@ allMaps.swamp.surrounding_maps["w"] = getSwampMap1;
 allMaps.swamp1.surrounding_maps["e"] = getSwampMap;
 
 allMaps.swamp2.surrounding_maps["w"] = getSwampMap;
+
+allMaps.herot.surrounding_maps["w"] = getForestMap3;
+// allMaps.herot.surrounding_maps["e"] = getHerotMap1;
 
 
 
@@ -241,6 +246,17 @@ function getForestMap3() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 2, y: 10 });
+		
+	}
+	return m;
+}
+
+function getHerotMap() {
+	var m = allMaps.herot;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createKnight(), { x: 5, y: 9 });
 		
 	}
 	return m;
