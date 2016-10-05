@@ -45,7 +45,6 @@ Map.prototype.init = function() {
 Map.prototype.coverRegionWithTile = function(x, y, width, height, tileFunc, bg=true) {
 	for (var yi = y; yi < y + height; yi++) {
 		for (var xi = x; xi < x + width; xi++) {
-			console.log("uno");
 			this.addItemAtPoint(tileFunc(), { x: xi, y: yi }, bg);
 		}
 	}
@@ -62,7 +61,7 @@ Map.prototype.draw = function() {
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
-			if (!tile) { continue }
+			if (!tile || !tile.isItem) { continue }
 			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
 		}
 	}
@@ -78,8 +77,9 @@ Map.prototype.addItemAtPoint = function(item, point, bg=false) {
 	// If the item is larger than 1 square by 1 square, 
 	// then the upper left square will store the item (this happens on line 58)
 	// The rest of the squares it takes up will contain the point where the item is stored
-	for (var y = point.y + 1; y < point.y + item.height; y++) {
-		for (var x = point.x + 1; x < point.x + item.width; x++) {
+	for (var y = point.y; y < point.y + item.height; y++) {
+		for (var x = point.x; x < point.x + item.width; x++) {
+			if (x === point.x && y === point.y) { continue }
 			tiles[y][x] = { x: point.x, y: point.y };
 		}
 	}

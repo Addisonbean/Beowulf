@@ -16,6 +16,8 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.permeable = permeable;
 
 	this.func = func;
+
+	this.isItem = true;
 }
 
 // Return true if the object should pass through it,
@@ -231,11 +233,11 @@ function createCoin() {
 }
 
 function createHealthPotion() {
-	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {itemFunctions.healthPotion(5);} );
+	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.healthPotion(5);} );
 }
 
 function createXpPotion() {
-	return new Item("xpPotion", itemImages.xpPotion, 1, 1, gameData, true, false, false, function() {itemFunctions.xpPotion(25);} );
+	return new Item("xpPotion", itemImages.xpPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.xpPotion(25);} );
 }
 
 Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);
@@ -254,13 +256,16 @@ var itemFunctions = {
 		if (gameData.player.health < gameData.player.maxHealth) {
 			gameData.player.giveHealth(amount);
 			useItem("healthPotion", "Health Potion");
+			return true;
 		} else {
 			gameData.console.display("You don't freaking need a health potion.");
+			return false;
 		}
 	},
 	xpPotion: function(amount) {
 		gameData.player.giveXP(amount);
 		useItem("xpPotion", "XP Potion");
+		return true;
 	}
 }
 
