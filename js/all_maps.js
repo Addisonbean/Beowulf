@@ -48,7 +48,7 @@ doors.caveToStart.position = { x: 9, y: 8 };
 doors.doorFromEntranceToCave.exit = doors.doorFromCaveToEntrance;
 doors.doorFromEntranceToCave.position = { x: 8, y: 1 };
 doors.doorFromCaveToEntrance.exit = doors.doorFromEntranceToCave;
-doors.doorFromCaveToEntrance.position = { x: 8, y: 16 };
+doors.doorFromCaveToEntrance.position = { x: 8, y: 15 };
 
 
 allMaps.entrance.surrounding_maps["n"] = getCaveMap;
@@ -183,8 +183,9 @@ function getCaveMap() {
 	if (!m.initialized) {
 		m.init();
 
-		m.coverRegionWithTile(0, 16, 8, 1, createStoneBlock, false);
-		m.coverRegionWithTile(9, 16, 8, 1, createStoneBlock, false);
+		m.coverRegionWithTile(0, 15, 8, 1, createStoneBlock, false);
+		m.coverRegionWithTile(9, 15, 8, 1, createStoneBlock, false);
+		m.coverRegionWithTile(0, 16, 17, 1, createStoneBlock, false);
 
 		m.addItemAtPoint(createCoin(), { x: 11, y: 4 });
 		m.addItemAtPoint(createCoin(), { x: 12, y: 5 });
