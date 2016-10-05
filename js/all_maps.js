@@ -190,7 +190,7 @@ function getCaveMap() {
 		m.addItemAtPoint(createXpPotion(), { x: 15, y: 5 });
 		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.position, true);
 		m.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
-		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		m.addItemAtPoint(createKnight(createWolf), { x: 5, y: 10 });
 	}
 	return m;
 }
