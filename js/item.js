@@ -16,6 +16,8 @@ function Item(name, sprite, width, height, gameData, obtainable = false, movable
 	this.permeable = permeable;
 
 	this.func = func;
+
+	this.isItem = true;
 }
 
 // Return true if the object should pass through it,

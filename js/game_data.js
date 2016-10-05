@@ -71,7 +71,8 @@ GameData.prototype.moveItem = function(item, keyCode) {
 	}
 
 	// Is there already an item where `item` tried to move?
-	var itemFound = this.map.tiles[newPos.y][newPos.x];
+	//var itemFound = this.map.tiles[newPos.y][newPos.x];
+	var itemFound = this.map.getItemAtPoint({ x: newPos.x, y: newPos.y });
 	if (itemFound) {
 		// Did it collide with the player?
 		if (item === this.player) { 
@@ -92,6 +93,7 @@ GameData.prototype.moveItem = function(item, keyCode) {
 
 	// Pretty much the same as above
 	var bgItemFound = this.map.backgroundTiles[newPos.y][newPos.x];
+	//var itemFound = this.map.getItemAtPoint({ x: newPos.x, y: newPos.y });
 	if (bgItemFound) {
 		if (item === this.player && bgItemFound.obtainable) {
 			this.player.inventory.addItem(bgItemFound);
