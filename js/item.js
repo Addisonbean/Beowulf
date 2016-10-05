@@ -62,7 +62,8 @@ var itemImages = {
 	key: new Image(),
 	healthPotion: new Image(),
 	xpPotion: new Image(),
-	staff: new Image()
+	staff: new Image(),
+	water: new Image()
 };
 
 var urls = {
@@ -96,7 +97,8 @@ var urls = {
 	key: "img/brass.png",
 	healthPotion: "img/healthpotion.png",
 	xpPotion: "img/xppotion.png",
-	staff: "img/staff02.png"
+	staff: "img/staff02.png",
+	water: "img/water.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -170,7 +172,7 @@ function createStoneBlock() {
 
 Door.prototype = new Item("door", itemImages.door, 1, 1, gameData);
 Door.prototype.constructor = Door;
-function Door(newMap, key=undefined) {
+function Door(newMap, key=undefined, fake=false) {
 	this.newMap = newMap;
 	this.exit = undefined;
 	this.locked = key ? true : false;
@@ -180,10 +182,10 @@ function Door(newMap, key=undefined) {
 Door.prototype.collideWith = function(player, direction) {
 	if (player === this.gameData.player) {
 		if (this.locked && !player.hasItemNamed(this.key)) { return false }
-		this.locked = false
+		this.locked = false;
 		player.gotoMap(this.newMap, this.exit.position);
 	}
-	return false;
+	return fake;
 }
 
 Door.prototype.gotoMap = function(map, point) {
@@ -246,8 +248,30 @@ function createHero() {
 	return new Hero();
 }
 
+Boat.prototype = new Item("boat", itemImages.boat, 1, 1, gameData, true);
+Boat.prototype.constructor = Boat;
+function Boat() {}
+
+function createBoat() {
+	return new Boat();
+}
 
 
+Water.prototype = new Item("water", itemImages.water, 1, 1, gameData);
+Water.prototype.constructor = Water;
+function Water() {}
+
+Water.prototype.collideWith = function(other) {
+	console.log(other);
+	if (other === this.gameData.player) {
+		return !!this.player.inventory["boat"];
+	}
+	return false;
+};
+
+function createWater() {
+	return new Water();
+}
 
 Weapon.prototype = new Item("weapon", itemImages.door, 1, 1, gameData, true); 
 Weapon.prototype.constructor = Weapon;

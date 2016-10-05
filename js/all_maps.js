@@ -31,6 +31,8 @@ var allMaps = {
 	herot2: new Map(gameData, createHerot)
 };
 
+allMaps.cave.entranceMessage = "You enter the cave.";
+
 var doors = {
 	startToCave: createDoor(getCaveMap, "startKey"),
 	caveToStart: createDoor(getStartMap),
@@ -168,6 +170,7 @@ function getStartMap() {
 		m.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 		m.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 		m.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
+		m.coverRegionWithTile(0, 0, 2, 2, createWater, false);
 
 		//example usage:
 		// allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
@@ -190,7 +193,7 @@ function getCaveMap() {
 		m.addItemAtPoint(createXpPotion(), { x: 15, y: 5 });
 		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.position, true);
 		m.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
-		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		m.addItemAtPoint(createKnight(createWolf), { x: 5, y: 10 });
 	}
 	return m;
 }

@@ -1,9 +1,10 @@
 Enemy.prototype = new Item("enemy", itemImages.enemy, 1, 1, gameData);
 Enemy.prototype.constructor = Enemy;
-function Enemy(name, sprite, health, strength, xpGiven) {
+function Enemy(name, sprite, health, strength, xpGiven, dropItem=undefined) {
 	this.name = name;
 	this.health = health;
 	this.xpGiven = xpGiven;
+	this.dropItem = dropItem;
 	this.sprite = sprite;
 	this.strength = strength;
 	this.hurt = false;
@@ -23,6 +24,10 @@ Enemy.prototype.takeDamage = function(amount) {
 	if (this.health <= 0) {
 		this.gameData.map.removeItem(this);
 		this.gameData.player.giveXP(this.xpGiven);
+		if (this.dropItem) {
+			this.gameData.map.addItemAtPoint(this.dropItem(), this.position);
+			this.gameData.map.drawTileAtPosition(this.position);
+		}
 		return;
 	}
 	this.hurt = true;
@@ -49,12 +54,12 @@ function createEnemy() {
 	return new Enemy();
 }
 
-function createKnight() {
-	return new Enemy("Knight", itemImages.knightD, 10, 2, 10);
+function createKnight(dropItem=undefined) {
+	return new Enemy("Knight", itemImages.knightD, 10, 2, 10, dropItem);
 }
 
-function createWolf() {
-	return new Enemy("Wolf", itemImages.wolfD, 5, 1, 5);
+function createWolf(dropItem=undefined) {
+	return new Enemy("Wolf", itemImages.wolfD, 5, 1, 5, dropItem);
 }
 
 // TODO: change the image
