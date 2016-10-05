@@ -154,6 +154,8 @@ function getEntranceMap() {
 		m.coverRegionWithTile(0, 1, 8, 1, createStoneBlock, false);
 		m.coverRegionWithTile(9, 1, 8, 1, createStoneBlock, false);
 		m.addItemAtPoint(doors.doorFromEntranceToCave, doors.doorFromEntranceToCave.position, true);
+
+		m.addItemAtPoint(createTree(), { x: 10, y: 4 });
 		
 	}
 	return m;
@@ -421,6 +423,9 @@ function getCliffMap() {
 	var m = allMaps.cliff;
 	if (!m.initialized) {
 		m.init();
+
+		m.coverRegionWithTile(0, 0, 17, 3, createBlackness, false);
+		m.coverRegionWithTile(0, 3, 17, 1, createCliff, false);
 
 		m.addItemAtPoint(createXpPotion(), { x: 5, y: 10 });
 		
