@@ -37,9 +37,12 @@ var itemImages = {
 	sand: new Image(),
 	ice: new Image(),
 	swamp: new Image(),
+	cliff: new Image(),
+	blackness: new Image(),
 	caveGround: new Image(),
 	herot: new Image(),
 	shrubbery: new Image(),
+	tree: new Image(),
 	heroD: new Image(),
 	heroU: new Image(),
 	heroR: new Image(),
@@ -63,7 +66,8 @@ var itemImages = {
 	healthPotion: new Image(),
 	xpPotion: new Image(),
 	staff: new Image(),
-	water: new Image()
+	water: new Image(),
+	candle: new Image()
 };
 
 var urls = {
@@ -72,9 +76,12 @@ var urls = {
 	sand: "img/sand.png",
 	ice: "img/ice.png",
 	swamp: "img/swamp.png",
+	cliff: "img/cliffedge1 up.png",
+	blackness: "img/cliffedge2.png",
 	caveGround: "img/cave.png",
 	herot: "img/herot.png",
 	shrubbery: "img/bush.png",
+	tree: "img/tree.png",
 	heroD: "img/grendel1_walkdown.png",
 	heroU: "img/grendel1_walkup.png",
 	heroR: "img/grendel1_walkright.png",
@@ -98,7 +105,8 @@ var urls = {
 	healthPotion: "img/healthpotion.png",
 	xpPotion: "img/xppotion.png",
 	staff: "img/staff02.png",
-	water: "img/water.png"
+	water: "img/water.png",
+	candle: "img/candle.png"
 };
 
 // This loads all the images then calls `callback` so
@@ -147,8 +155,24 @@ function createHerot() {
 	return new Item("herot", itemImages.herot, 1, 1, gameData, false, false, true);
 }
 
+function createCliff() {
+	return new Item("cliff", itemImages.cliff, 1, 1, gameData, false, false, false);
+}
+
+function createBlackness() {
+	return new Item("blackness", itemImages.blackness, 1, 1, gameData, false, false, false);
+}
+
 function createShrubbery() {
 	return new Item("shrubbery", itemImages.shrubbery, 1, 1, gameData);
+}
+
+function createTree() {
+	return new Item("tree", itemImages.tree, 2, 2, gameData);
+}
+
+function createCandle() {
+	return new Item("candle", itemImages.candle, 1, 1, gameData);
 }
 
 function createDoor(map, key=undefined, fake=false) {
