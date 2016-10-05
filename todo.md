@@ -16,6 +16,7 @@
 - start using the Console class
 - remove gameData from the item params and add it to the default constructor
 - add a limit for how fast you can move?
+- inventory hotkeys use all potions in slot rather than just 1, needs to be fixed
 
 ### Sprites needed from Aarorn
 - Wall

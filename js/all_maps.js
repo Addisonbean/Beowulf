@@ -4,14 +4,18 @@ var allMaps = {
 	start: new Map(gameData, createPebble),
 	entrance: new Map(gameData, createPebble),
 	cave: new Map(gameData, createPebble),
+	cave1: new Map(gameData, createPebble),
+	cave2: new Map(gameData, createPebble),
 	forest: new Map(gameData, createGrass),
 	grass: new Map(gameData, createGrass),
 	grass1: new Map(gameData, createGrass),
 	grass2: new Map(gameData, createGrass),
 	grass3: new Map(gameData, createGrass),
+	grass4: new Map(gameData, createGrass),
 	desert: new Map(gameData, createSand),
 	desert1: new Map(gameData, createSand),
-	desert2: new Map(gameData, createSand)
+	desert2: new Map(gameData, createSand),
+	cliff: new Map(gameData, createPebble),
 };
 
 var doors = {
@@ -40,8 +44,13 @@ allMaps.entrance.surrounding_maps["n"] = getCaveMap;
 // allMaps.start.surrounding_maps["w"] = getCaveMap;
 // allMaps.start.surrounding_maps["n"] = getForestMap;
 
-allMaps.cave.surrounding_maps["e"] = getGrassMap1;
+allMaps.cave.surrounding_maps["n"] = getCaveMap1;
 allMaps.cave.surrounding_maps["s"] = getEntranceMap;
+
+allMaps.cave1.surrounding_maps["s"] = getCaveMap;
+allMaps.cave1.surrounding_maps["w"] = getCaveMap2;
+
+allMaps.cave2.surrounding_maps["e"] = getCaveMap1;
 
 allMaps.grass.surrounding_maps["n"] = getGrassMap1;
 allMaps.grass.surrounding_maps["e"] = getGrassMap2;
@@ -54,8 +63,12 @@ allMaps.grass1.surrounding_maps["w"] = getCaveMap;
 allMaps.grass2.surrounding_maps["n"] = getGrassMap3;
 allMaps.grass2.surrounding_maps["w"] = getGrassMap;
 
+allMaps.grass3.surrounding_maps["n"] = getGrassMap4;
 allMaps.grass3.surrounding_maps["s"] = getGrassMap2;
 allMaps.grass3.surrounding_maps["w"] = getGrassMap1;
+
+allMaps.grass4.surrounding_maps["s"] = getGrassMap3;
+// allMaps.grass4.surrounding_maps["w"] = getIceMap;
 
 allMaps.desert.surrounding_maps["e"] = getEntranceMap;
 allMaps.desert.surrounding_maps["w"] = getDesertMap1;
@@ -64,8 +77,9 @@ allMaps.desert1.surrounding_maps["n"] = getDesertMap2;
 allMaps.desert1.surrounding_maps["e"] = getDesertMap;
 
 allMaps.desert2.surrounding_maps["s"] = getDesertMap1;
+allMaps.desert2.surrounding_maps["n"] = getCliffMap;
 
-
+allMaps.cliff.surrounding_maps["s"] = getDesertMap2;
 
 allMaps.forest.surrounding_maps["s"] = getStartMap;
 
@@ -124,6 +138,26 @@ function getCaveMap() {
 		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.position, true);
 		m.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+	}
+	return m;
+}
+
+function getCaveMap1() {
+	var m = allMaps.cave1;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 10, y: 3});		
+	}
+	return m;
+}
+
+function getCaveMap2() {
+	var m = allMaps.cave2;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 5, y: 3});		
 	}
 	return m;
 }
@@ -196,6 +230,22 @@ function getGrassMap3() {
 	return m;
 }
 
+function getGrassMap4() {
+	var m = allMaps.grass4;
+	if (!m.initialized) {
+		m.init();
+
+		// NEED TO ADD RIVER
+
+		// m.coverRegionWithTile(0, 0, 4, 1, createShrubbery, false);
+
+		m.addItemAtPoint(createCoin(), { x: 4, y: 6 });
+		
+		
+	}
+	return m;
+}
+
 function getDesertMap() {
 	var m = allMaps.desert;
 	if (!m.initialized) {
@@ -226,6 +276,17 @@ function getDesertMap2() {
 		m.init();
 
 		m.addItemAtPoint(createXpPotion(), { x: 4, y: 11 });
+		
+	}
+	return m;
+}
+
+function getCliffMap() {
+	var m = allMaps.cliff;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createXpPotion(), { x: 5, y: 10 });
 		
 	}
 	return m;
