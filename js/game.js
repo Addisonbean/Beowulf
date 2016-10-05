@@ -1,4 +1,5 @@
-gameData.map = getEntranceMap();
+//gameData.map = getEntranceMap();
+gameData.map = getStartMap();
 var canGiveInput = true;
 // Waits until the images have loaded to do anything
 loadImages(itemImages, urls, function() {

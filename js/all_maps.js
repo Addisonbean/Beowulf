@@ -170,6 +170,7 @@ function getStartMap() {
 		m.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 		m.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 		m.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
+		m.coverRegionWithTile(0, 0, 2, 2, createWater, false);
 
 		//example usage:
 		// allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
@@ -257,7 +258,9 @@ function getForestMap3() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 2, y: 10 });
-		
+		m.coverRegionWithTile( 16, 0, 1, 8, createStoneBlock, false);
+		m.coverRegionWithTile( 16, 9, 1, 8, createStoneBlock, false);
+		m.addItemAtPoint(createDoor(), { x: 16, y: 8 }, true);
 	}
 	return m;
 }
