@@ -3,9 +3,9 @@ gameData.player = createHero();
 var allMaps = {
 	start: new Map(gameData, createPebble),
 	entrance: new Map(gameData, createPebble),
-	cave: new Map(gameData, createPebble),
-	cave1: new Map(gameData, createPebble),
-	cave2: new Map(gameData, createPebble),
+	cave: new Map(gameData, createCaveGround),
+	cave1: new Map(gameData, createCaveGround),
+	cave2: new Map(gameData, createCaveGround),
 	forest: new Map(gameData, createGrass),
 	forest1: new Map(gameData, createGrass),
 	forest2: new Map(gameData, createGrass),
@@ -19,10 +19,13 @@ var allMaps = {
 	desert1: new Map(gameData, createSand),
 	desert2: new Map(gameData, createSand),
 	cliff: new Map(gameData, createPebble),
-	ice: new Map(gameData, createSand),
-	ice1: new Map(gameData, createSand),
-	ice2: new Map(gameData, createSand),
-	ice3: new Map(gameData, createSand)
+	ice: new Map(gameData, createIce),
+	ice1: new Map(gameData, createIce),
+	ice2: new Map(gameData, createIce),
+	ice3: new Map(gameData, createIce),
+	swamp: new Map(gameData, createSwamp),
+	swamp1: new Map(gameData, createSwamp),
+	swamp2: new Map(gameData, createSwamp)
 };
 
 var doors = {
@@ -43,10 +46,10 @@ doors.doorFromCaveToEntrance.exit = doors.doorFromEntranceToCave;
 doors.doorFromCaveToEntrance.position = { x: 8, y: 16 };
 
 
-allMaps.entrance.surrounding_maps["w"] = getDesertMap;
-allMaps.entrance.surrounding_maps["e"] = getGrassMap;
 allMaps.entrance.surrounding_maps["n"] = getCaveMap;
-
+allMaps.entrance.surrounding_maps["e"] = getGrassMap;
+allMaps.entrance.surrounding_maps["s"] = getSwampMap;
+allMaps.entrance.surrounding_maps["w"] = getDesertMap;
 
 // allMaps.start.surrounding_maps["w"] = getCaveMap;
 // allMaps.start.surrounding_maps["n"] = getForestMap;
@@ -110,6 +113,14 @@ allMaps.ice2.surrounding_maps["n"] = getIceMap3;
 allMaps.ice2.surrounding_maps["w"] = getIceMap1;
 
 allMaps.ice3.surrounding_maps["s"] = getIceMap2;
+
+allMaps.swamp.surrounding_maps["n"] = getEntranceMap;
+allMaps.swamp.surrounding_maps["e"] = getSwampMap2;
+allMaps.swamp.surrounding_maps["w"] = getSwampMap1;
+
+allMaps.swamp1.surrounding_maps["e"] = getSwampMap;
+
+allMaps.swamp2.surrounding_maps["w"] = getSwampMap;
 
 
 
@@ -394,3 +405,35 @@ function getIceMap3() {
 	return m;
 }
 
+function getSwampMap() {
+	var m = allMaps.swamp;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createShrubbery(), { x: 3, y: 13 });
+		
+	}
+	return m;
+}
+
+function getSwampMap1() {
+	var m = allMaps.swamp1;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 8, y: 13 });
+		
+	}
+	return m;
+}
+
+function getSwampMap2() {
+	var m = allMaps.swamp2;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
+		
+	}
+	return m;
+}

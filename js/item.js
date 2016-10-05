@@ -35,6 +35,9 @@ var itemImages = {
 	pebble: new Image(),
 	grass: new Image(),
 	sand: new Image(),
+	ice: new Image(),
+	swamp: new Image(),
+	caveGround: new Image(),
 	shrubbery: new Image(),
 	heroD: new Image(),
 	heroU: new Image(),
@@ -65,6 +68,9 @@ var urls = {
 	pebble: "img/pedestal_full.png",
 	grass: "img/grass.png",
 	sand: "img/sand.png",
+	ice: "img/ice.png",
+	swamp: "img/swamp.png",
+	caveGround: "img/cave.png",
 	shrubbery: "img/bush.png",
 	heroD: "img/grendel1_walkdown.png",
 	heroU: "img/grendel1_walkup.png",
@@ -119,6 +125,18 @@ function createGrass() {
 
 function createSand() {
 	return new Item("sand", itemImages.sand, 1, 1, gameData, false, false, true);
+}
+
+function createIce() {
+	return new Item("ice", itemImages.ice, 1, 1, gameData, false, false, true);
+}
+
+function createSwamp() {
+	return new Item("swamp", itemImages.swamp, 1, 1, gameData, false, false, true);
+}
+
+function createCaveGround() {
+	return new Item("caveGround", itemImages.caveGround, 1, 1, gameData, false, false, true);
 }
 
 function createShrubbery() {
