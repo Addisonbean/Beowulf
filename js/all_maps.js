@@ -29,6 +29,8 @@ var allMaps = {
 	herot: new Map(gameData, createHerot)
 };
 
+allMaps.cave.entranceMessage = "You enter the cave.";
+
 var doors = {
 	startToCave: createDoor(getCaveMap, "startKey"),
 	caveToStart: createDoor(getStartMap),

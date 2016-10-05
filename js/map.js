@@ -14,6 +14,7 @@ function Map(gameData, bgImage) {
 
 	// Possible keys: "n", "e", "s", "w"
 	this.surrounding_maps = {};
+	this.entranceMessage = undefined;
 }
 
 // Initializes all background tiles, and sets other tiles to undefined

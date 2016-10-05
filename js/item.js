@@ -246,8 +246,25 @@ function createHero() {
 	return new Hero();
 }
 
+Boat.prototype = new Item("boat", itemImages.boat, 1, 1, gameData, true);
+Boat.prototype.constructor = Boat;
+function Boat() {}
+
+function createBoat() {
+	return new Boat();
+}
 
 
+Water.prototype = new Item("water", itemImages.water, 1, 1, gameData, true);
+Water.prototype.constructor = Water;
+function Water() {}
+
+Water.prototype.collideWith = function(other) {
+	if (other === this.gameData.player) {
+		return !!this.player.inventory[this.name]
+	}
+	return false;
+};
 
 Weapon.prototype = new Item("weapon", itemImages.door, 1, 1, gameData, true); 
 Weapon.prototype.constructor = Weapon;

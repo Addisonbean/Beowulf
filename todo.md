@@ -7,7 +7,6 @@
 - make the inventory useful
 - add more items
 - keyword arguments for Item?
-- fix map initialization (make a visit/goto method, don't init right away) is it even broken? I don't think so...
 - use elements from the Beowulf story
 - use a collision test kinda thing instead of a collideWith method
 - create a subclass for Hero and Enemy
@@ -15,7 +14,6 @@
 - Item.movable isn't even being used
 - start using the Console class
 - remove gameData from the item params and add it to the default constructor
-- add a limit for how fast you can move?
 - inventory hotkeys use all potions in slot rather than just 1, needs to be fixed
 
 ### Sprites needed from Aarorn
