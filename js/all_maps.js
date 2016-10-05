@@ -170,6 +170,7 @@ function getStartMap() {
 		m.addItemAtPoint(createKnight(), { x: 8, y: 6 });
 		m.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 		m.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
+		m.coverRegionWithTile(0, 0, 2, 2, createWater, false);
 
 		//example usage:
 		// allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
