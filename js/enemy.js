@@ -63,7 +63,7 @@ function createWolf(dropItem=undefined) {
 }
 
 function createEagle(dropItem=undefined) {
-	return new Enemy("Eagle", itemImages.eagle, 25, 4, 5, dropItem);
+	return new Enemy("Eagle", itemImages.eagle, 25, 4, 300, dropItem);
 }
 
 // TODO: change the image

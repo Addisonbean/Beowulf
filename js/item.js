@@ -297,7 +297,7 @@ function Water() {}
 Water.prototype.collideWith = function(other) {
 	console.log(other);
 	if (other === this.gameData.player) {
-		return !!this.player.inventory["boat"];
+		return !!this.gameData.player.inventory["boat"];
 	}
 	return false;
 };

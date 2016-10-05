@@ -416,6 +416,8 @@ function getDesertMap2() {
 	if (!m.initialized) {
 		m.init();
 
+		m.coverRegionWithTile(15, 0, 2, 17, createWater, false);
+
 		m.addItemAtPoint(createXpPotion(), { x: 4, y: 11 });
 		
 	}
