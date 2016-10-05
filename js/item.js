@@ -151,8 +151,8 @@ function createShrubbery() {
 	return new Item("shrubbery", itemImages.shrubbery, 1, 1, gameData);
 }
 
-function createDoor(map, key=undefined) {
-	return new Door(map, key);
+function createDoor(map, key=undefined, fake=false) {
+	return new Door(map, key, fake);
 }
 
 StoneBlock.prototype = new Item("stoneBlock", itemImages.stoneBlock, 1, 1, gameData, false, true);
@@ -177,15 +177,17 @@ function Door(newMap, key=undefined, fake=false) {
 	this.exit = undefined;
 	this.locked = key ? true : false;
 	this.key = key;
+	this.fake = fake;
 }
 
 Door.prototype.collideWith = function(player, direction) {
-	if (player === this.gameData.player) {
+	console.log(this.fake);
+	if (player === this.gameData.player && !this.fake) {
 		if (this.locked && !player.hasItemNamed(this.key)) { return false }
 		this.locked = false;
 		player.gotoMap(this.newMap, this.exit.position);
 	}
-	return fake;
+	return this.fake;
 }
 
 Door.prototype.gotoMap = function(map, point) {

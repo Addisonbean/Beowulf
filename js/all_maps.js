@@ -264,7 +264,7 @@ function getForestMap3() {
 		m.addItemAtPoint(createKnight(), { x: 2, y: 10 });
 		m.coverRegionWithTile( 16, 0, 1, 8, createStoneBlock, false);
 		m.coverRegionWithTile( 16, 9, 1, 8, createStoneBlock, false);
-		m.addItemAtPoint(createDoor(), { x: 16, y: 8 }, true);
+		m.addItemAtPoint(createDoor(undefined, undefined, true), { x: 16, y: 8 }, true);
 	}
 	return m;
 }
