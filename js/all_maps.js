@@ -28,7 +28,8 @@ var allMaps = {
 	swamp2: new Map(gameData, createSwamp),
 	herot: new Map(gameData, createHerot),
 	herot1: new Map(gameData, createHerot),
-	herot2: new Map(gameData, createHerot)
+	herot2: new Map(gameData, createHerot),
+	beowulf: new Map(gameData, createHerot)
 };
 
 allMaps.cave.entranceMessage = "You enter the cave.";
@@ -131,10 +132,13 @@ allMaps.swamp2.surrounding_maps["w"] = getSwampMap;
 allMaps.herot.surrounding_maps["e"] = getHerotMap1;
 allMaps.herot.surrounding_maps["w"] = getForestMap3;
 
+allMaps.herot1.surrounding_maps["n"] = getBeowulfMap;
 allMaps.herot1.surrounding_maps["e"] = getHerotMap2;
 allMaps.herot1.surrounding_maps["w"] = getHerotMap;
 
 allMaps.herot2.surrounding_maps["w"] = getHerotMap1;
+
+allMaps.beowulf.surrounding_maps["s"] = getHerotMap1;
 
 
 
@@ -293,6 +297,17 @@ function getHerotMap2() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 10, y: 9 });
+		
+	}
+	return m;
+}
+
+function getBeowulfMap() {
+	var m = allMaps.beowulf;
+	if (!m.initialized) {
+		m.init();
+
+		m.addItemAtPoint(createBeowulf(), { x: 10, y: 9 });
 		
 	}
 	return m;
