@@ -67,7 +67,8 @@ var itemImages = {
 	xpPotion: new Image(),
 	staff: new Image(),
 	water: new Image(),
-	candle: new Image()
+	candle: new Image(),
+	eagle: new Image()
 };
 
 var urls = {
@@ -106,7 +107,8 @@ var urls = {
 	xpPotion: "img/xppotion.png",
 	staff: "img/staff02.png",
 	water: "img/water.png",
-	candle: "img/candle.png"
+	candle: "img/candle.png",
+	eagle: "img/eaglebosstmp.png"
 };
 
 // This loads all the images then calls `callback` so

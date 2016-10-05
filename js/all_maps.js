@@ -389,8 +389,9 @@ function getDesertMap() {
 	if (!m.initialized) {
 		m.init();
 
-		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		m.coverRegionWithTile(0, 0, 17, 2, createWater, false);
 
+		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 		m.addItemAtPoint(createKnight(), { x: 3, y: 2 });
 		
 	}
@@ -401,6 +402,8 @@ function getDesertMap1() {
 	var m = allMaps.desert1;
 	if (!m.initialized) {
 		m.init();
+
+		m.coverRegionWithTile(15, 0, 2, 2, createWater, false);
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 		
@@ -428,6 +431,8 @@ function getCliffMap() {
 		m.coverRegionWithTile(0, 3, 17, 1, createCliff, false);
 
 		m.addItemAtPoint(createXpPotion(), { x: 5, y: 10 });
+
+		m.addItemAtPoint(createEagle(createCoin), {x: 10, y: 10});
 		
 	}
 	return m;
