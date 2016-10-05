@@ -390,10 +390,18 @@ function getDesertMap() {
 		m.init();
 
 		m.coverRegionWithTile(0, 0, 17, 2, createWater, false);
+		
+		m.addItemAtPoint(createHealthPotion(), { x: 15, y: 15 });
+		m.addItemAtPoint(createHealthPotion(), { x: 1, y: 15 });
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 		m.addItemAtPoint(createKnight(), { x: 3, y: 2 });
-		
+		m.addItemAtPoint(createKnight(), { x: 12, y: 7 });
+		m.addItemAtPoint(createKnight(), { x: 7, y: 7 });
+
+		m.addItemAtPoint(createCactus(), { x: 4, y: 7 });
+		m.addItemAtPoint(createCactus(), { x: 8, y: 12 });
+		m.addItemAtPoint(createCactus(), { x: 10, y: 11 });
 	}
 	return m;
 }
@@ -404,6 +412,10 @@ function getDesertMap1() {
 		m.init();
 
 		m.coverRegionWithTile(15, 0, 2, 2, createWater, false);
+
+		m.addItemAtPoint(createCactus(), { x: 10, y: 9 });
+		m.addItemAtPoint(createBones(), { x: 4, y: 12 });
+		m.addItemAtPoint(createCactus(), { x: 5, y: 4 });
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 		

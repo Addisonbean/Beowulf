@@ -34,6 +34,8 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	bones: new Image(),
+	cactus: new Image(),
 	pebble: new Image(),
 	grass: new Image(),
 	sand: new Image(),
@@ -74,6 +76,8 @@ var itemImages = {
 };
 
 var urls = {
+	bones: "img/bones.png",
+	cactus: "img/cactus.png",
 	pebble: "img/pedestal_full.png",
 	grass: "img/grass.png",
 	sand: "img/sand.png",
@@ -141,6 +145,14 @@ function createGrass() {
 
 function createSand() {
 	return new Item("sand", itemImages.sand, 1, 1, gameData, false, false, true);
+}
+
+function createCactus() {
+	return new Item("cactus", itemImages.cactus, 1, 1, gameData);
+}
+
+function createBones() {
+	return new Item("bones", itemImages.bones, 1, 1, gameData);
 }
 
 function createIce() {
