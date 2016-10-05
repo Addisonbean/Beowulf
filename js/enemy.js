@@ -63,21 +63,10 @@ function createWolf(dropItem=undefined) {
 }
 
 // TODO: change the image
-Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 1, 1, 0);
+Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 2000, 2, 20000000);
 Beowulf.prototype.constructor = Beowulf;
 function Beowulf() {
 }
-
-
-Beowulf.prototype.takeDamage = function(amount) {
-	this.hurt = true;
-	this.gameData.map.drawTileAtPosition(this.position);
-	var that = this;
-	setTimeout(function() {
-		that.hurt = false;
-		that.gameData.map.drawTileAtPosition(that.position);
-	}, 200);
-};
 
 Beowulf.prototype.attack = function(other) {
 	if (other === this.gameData.player) {
