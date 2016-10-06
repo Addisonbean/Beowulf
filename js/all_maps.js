@@ -420,6 +420,7 @@ function getDesertMap1() {
 		m.addItemAtPoint(createCactus(), { x: 5, y: 4 });
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		m.addItemAtPoint(createScorpian(), { x: 7, y: 3 });
 		
 	}
 	return m;

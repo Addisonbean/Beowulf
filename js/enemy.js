@@ -59,7 +59,11 @@ function createKnight(dropItem=undefined) {
 }
 
 function createWolf(dropItem=undefined) {
-	return new Enemy("Wolf", itemImages.wolfD, 5, 1, 5, dropItem);
+	return new Enemy("Wolf", itemImages.wolfD, 10, 3, 15, dropItem);
+}
+
+function createScorpian(dropItem=undefined) {
+	return new Enemy("Scorpian", itemImages.scorpianD, 7, 1, 5, dropItem);
 }
 
 function createEagle(dropItem=undefined) {
