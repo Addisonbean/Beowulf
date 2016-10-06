@@ -242,6 +242,22 @@ function getForestMap() {
 		m.addItemAtPoint(createWolf(), { x: 5, y: 10 });
 		m.addItemAtPoint(createWolf(), { x: 10, y: 10 });
 		m.addItemAtPoint(createWolf(), { x: 3, y: 8 });
+		m.addItemAtPoint(createTree(),{ x:0, y: 15}, false);
+		m.addItemAtPoint(createTree(),{ x: 2, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 4, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 6, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 8, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 10, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 12, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 14, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x:0, y: 0}, false);
+		m.addItemAtPoint(createTree(),{ x: 2, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 4, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 6, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 8, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 10, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 12, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 14, y:0 }, false);
 	}
 	return m;
 }
@@ -252,6 +268,23 @@ function getForestMap1() {
 		m.init();
 
 		m.addItemAtPoint(createWolf(), { x: 4, y: 8 });
+		m.addItemAtPoint(createTree(),{ x:0, y: 15}, false);
+		m.addItemAtPoint(createTree(),{ x: 2, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 4, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 6, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 8, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 10, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 12, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 14, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x:0, y: 0}, false);
+		m.addItemAtPoint(createTree(),{ x: 2, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 4, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 6, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 8, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 10, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 12, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 14, y:0 }, false);
+
 	}
 	return m;
 }
@@ -262,7 +295,23 @@ function getForestMap2() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
-		
+		m.addItemAtPoint(createTree(),{ x: 0, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:2 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:4 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:6 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:8 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:10 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:12 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:14 }, false);
+		//m.addItemAtPoint(createTree(),{ x: 0, y:16 }, false);
+		m.addItemAtPoint(createTree(),{ x: 2, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 4, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 6, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 8, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 10, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 12, y:15 }, false);
+		m.addItemAtPoint(createTree(),{ x: 14, y:15 }, false);
+
 	}
 	return m;
 }
@@ -276,6 +325,20 @@ function getForestMap3() {
 		m.coverRegionWithTile( 16, 0, 1, 8, createStoneBlock, false);
 		m.coverRegionWithTile( 16, 9, 1, 8, createStoneBlock, false);
 		m.addItemAtPoint(createDoor(undefined, undefined, true), { x: 16, y: 8 }, true);
+		m.addItemAtPoint(createShrubbery(),{ x: 5, y:10 }, false);
+		m.addItemAtPoint(createShrubbery(),{ x: 10, y:3 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:0 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:2 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:4 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:6 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:8 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:10 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:12 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:14 }, false);
+		//m.addItemAtPoint(createTree(),{ x: 0, y:16 }, false);
+		
+	
+
 	}
 	return m;
 }

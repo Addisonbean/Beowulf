@@ -80,6 +80,7 @@ Map.prototype.addItemAtPoint = function(item, point, bg=false) {
 	for (var y = point.y; y < point.y + item.height; y++) {
 		for (var x = point.x; x < point.x + item.width; x++) {
 			if (x === point.x && y === point.y) { continue }
+			if (x + 1 >= this.width || y + 1 >= this.height) { continue }
 			tiles[y][x] = { x: point.x, y: point.y };
 		}
 	}
