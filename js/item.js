@@ -34,6 +34,10 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	batD: new Image(),
+	batU: new Image(),
+	batL: new Image(),
+	batR: new Image(),
 	iceWell: new Image(),
 	iceTree: new Image(),
 	stoneGrass: new Image(),
@@ -86,6 +90,10 @@ var itemImages = {
 };
 
 var urls = {
+	batD: "img/bat_down.png",
+	batU: "img/bat_up.png",
+	batL: "img/bat_left.png",
+	batR: "img/bat_right.png",
 	iceWell: "img/icewell.png",
 	iceTree: "img/icetree.png",
 	stoneGrass: "img/stonegrass.png",
