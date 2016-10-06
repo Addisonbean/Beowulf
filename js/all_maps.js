@@ -227,7 +227,9 @@ function getCaveMap2() {
 	if (!m.initialized) {
 		m.init();
 
-		m.addItemAtPoint(createCoin(), { x: 5, y: 3});		
+		m.addItemAtPoint(createCoin(), { x: 5, y: 3});
+
+		m.addItemAtPoint(createTroll(), { x: 10, y: 10});
 	}
 	return m;
 }
@@ -425,6 +427,7 @@ function getDesertMap1() {
 		m.addItemAtPoint(createCactus(), { x: 5, y: 4 });
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
+		m.addItemAtPoint(createScorpian(), { x: 7, y: 3 });
 		
 	}
 	return m;
@@ -514,6 +517,8 @@ function getIceMap3() {
 		m.init();
 
 		m.addItemAtPoint(createShrubbery(), { x: 2, y: 13 });
+
+		m.addItemAtPoint(createIceBoss(), { x: 10, y: 10 });		
 		
 	}
 	return m;

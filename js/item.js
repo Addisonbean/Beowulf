@@ -73,7 +73,13 @@ var itemImages = {
 	staff: new Image(),
 	water: new Image(),
 	candle: new Image(),
-	eagle: new Image()
+	eagle: new Image(),
+	troll: new Image(),
+	iceBoss: new Image(),
+	scorpianD: new Image(),
+	scorpianU: new Image(),
+	scorpianR: new Image(),
+	scorpianL: new Image()
 };
 
 var urls = {
@@ -116,7 +122,13 @@ var urls = {
 	staff: "img/staff02.png",
 	water: "img/water.png",
 	candle: "img/candle.png",
-	eagle: "img/eaglebosstmp.png"
+	eagle: "img/eaglebosstmp.png",
+	troll: "img/troll.png",
+	iceBoss: "img/iceboss1.png",
+	scorpianD: "img/sandmonster1_down.png",
+	scorpianU: "img/sandmonster1_up.png",
+	scorpianR: "img/sandmonster1_right.png",
+	scorpianL: "img/sandmonster1_left.png"
 };
 
 // This loads all the images then calls `callback` so

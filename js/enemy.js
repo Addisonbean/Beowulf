@@ -59,11 +59,23 @@ function createKnight(dropItem=undefined) {
 }
 
 function createWolf(dropItem=undefined) {
-	return new Enemy("Wolf", itemImages.wolfD, 5, 1, 5, dropItem);
+	return new Enemy("Wolf", itemImages.wolfD, 10, 3, 15, dropItem);
+}
+
+function createScorpian(dropItem=undefined) {
+	return new Enemy("Scorpian", itemImages.scorpianD, 7, 1, 5, dropItem);
 }
 
 function createEagle(dropItem=undefined) {
 	return new Enemy("Eagle", itemImages.eagle, 25, 4, 300, dropItem);
+}
+
+function createTroll(dropItem=undefined) {
+	return new Enemy("Troll", itemImages.troll, 25, 4, 300, dropItem);
+}
+
+function createIceBoss(dropItem=undefined) {
+	return new Enemy("IceBoss", itemImages.iceBoss, 25, 4, 300, dropItem);
 }
 
 // TODO: change the image
