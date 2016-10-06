@@ -30,7 +30,13 @@ Item.prototype.draw = function() {
 	var tileSize = this.gameData.tileSize;
 	var pos = this.position;
 	var yOffset = this.gameData.stats.height;
-	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize, yOffset + pos.y * tileSize);
+
+	var extraY = this.gameData.map.height * tileSize - tileSize * (this.position.y + this.height);
+	extraY = extraY < 0 ? extraY : 0;
+	var extraX = this.gameData.map.width * tileSize - tileSize * (this.position.x + this.width);
+	extraX = extraX < 0 ? extraX : 0;
+
+	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize + extraX, yOffset + pos.y * tileSize + extraY);
 };
 
 var itemImages = {

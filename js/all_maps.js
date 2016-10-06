@@ -317,7 +317,7 @@ function getForestMap2() {
 		m.addItemAtPoint(createTree(),{ x: 0, y:10 }, false);
 		m.addItemAtPoint(createTree(),{ x: 0, y:12 }, false);
 		m.addItemAtPoint(createTree(),{ x: 0, y:14 }, false);
-		//m.addItemAtPoint(createTree(),{ x: 0, y:16 }, false);
+		m.addItemAtPoint(createTree(),{ x: 0, y:16 }, false);
 		m.addItemAtPoint(createTree(),{ x: 2, y:15 }, false);
 		m.addItemAtPoint(createTree(),{ x: 4, y:15 }, false);
 		m.addItemAtPoint(createTree(),{ x: 6, y:15 }, false);

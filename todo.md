@@ -15,9 +15,6 @@
 - start using the Console class
 - remove gameData from the item params and add it to the default constructor
 - inventory hotkeys use all potions in slot rather than just 1, needs to be fixed
-- when exiting the castle on a different tile than the door tile, the wall tile is removed on the map
-	- was this fixed?
-- trees in the forest bleeding into dialogue box
 
 ### Sprites needed from Aarorn
 - Wall
