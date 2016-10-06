@@ -55,12 +55,12 @@ function createEnemy() {
 	return new Enemy();
 }
 
-function createKnight(dropItem=undefined) {
-	return new Enemy("Knight", itemImages.knightD, 10, 2, 10, dropItem);
+function createKnight(dropItem=undefined, chance=0.05) {
+	return new Enemy("Knight", itemImages.knightD, 10, 2, 10, dropItem, chance);
 }
 
 function createWolf(dropItem=undefined, chance=0.2) {
-	return new Enemy("Wolf", itemImages.wolfD, 10, 3, 15, dropItem, chance);
+	return new Enemy("Wolf", itemImages.wolfD, 20, 3, 17, dropItem, chance);
 }
 
 function createScorpian(dropItem=undefined) {
@@ -79,7 +79,7 @@ function createIceBoss(dropItem=undefined) {
 	return new Enemy("IceBoss", itemImages.iceBoss, 25, 4, 300, dropItem);
 }
 
-Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 2000, 2, 20000000);
+Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 20000, 2, 20000000);
 Beowulf.prototype.constructor = Beowulf;
 function Beowulf() {
 }
@@ -94,7 +94,7 @@ function createBeowulf() {
 	return new Beowulf();
 }
 
-function createBat() {
-	return new Enemy("bat", itemImages.batD, 8, 3, 10);
+function createBat(dropItem=createXpPotion.bind(undefined, 5), chance=0.1) {
+	return new Enemy("bat", itemImages.batD, 8, 3, 7, dropItem, chance);
 }
 

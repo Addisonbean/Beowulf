@@ -309,12 +309,12 @@ function createCoin() {
 	return new Item("coin", itemImages.coin, 1, 1, gameData, true);
 }
 
-function createHealthPotion() {
-	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.healthPotion(5);} );
+function createHealthPotion(amount=5) {
+	return new Item("healthPotion", itemImages.healthPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.healthPotion(amount);} );
 }
 
-function createXpPotion() {
-	return new Item("xpPotion", itemImages.xpPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.xpPotion(25);} );
+function createXpPotion(amount=25) {
+	return new Item("xpPotion", itemImages.xpPotion, 1, 1, gameData, true, false, false, function() {return itemFunctions.xpPotion(amount);} );
 }
 
 Key.prototype = new Item("key", itemImages.key, 1, 1, gameData, true);

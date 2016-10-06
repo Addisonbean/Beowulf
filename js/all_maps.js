@@ -208,6 +208,11 @@ function getCaveMap() {
 		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.fakePosition, true);
 		m.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
 		m.addItemAtPoint(createKnight(createWolf), { x: 5, y: 10 });
+
+		m.addItemAtPoint(createBat(), { x: 7, y: 5 });
+		m.addItemAtPoint(createBat(), { x: 9, y: 5 });
+		m.addItemAtPoint(createBat(), { x: 14, y: 13 });
+		m.addItemAtPoint(createBat(), { x: 4, y: 8 });
 	}
 	return m;
 }
@@ -218,6 +223,14 @@ function getCaveMap1() {
 		m.init();
 
 		m.addItemAtPoint(createCoin(), { x: 10, y: 3});		
+
+		m.addItemAtPoint(createBat(), { x: 7, y: 5 });
+		m.addItemAtPoint(createBat(), { x: 10, y: 6 });
+		m.addItemAtPoint(createBat(), { x: 12, y: 8 });
+		m.addItemAtPoint(createBat(), { x: 3, y: 4 });
+		m.addItemAtPoint(createBat(), { x: 2, y: 8 });
+		m.addItemAtPoint(createBat(), { x: 4, y: 12 });
+		m.addItemAtPoint(createBat(), { x: 11, y: 2 });
 	}
 	return m;
 }
