@@ -1,5 +1,4 @@
 gameData.map = getEntranceMap();
-//gameData.map = getIceMap3();
 
 var canGiveInput = true;
 // Waits until the images have loaded to do anything
