@@ -69,10 +69,10 @@ Hero.prototype.checkRankUp = function() {
 	// Do this while we are able to rank up
 	while (this.xp >= this.maxXP) {
 		this.xp -= this.maxXP;
-		this.maxXP = Math.pow(10*(this.rank-1),2) + 100;
+		this.maxXP = 10*Math.pow(this.rank-1, 2) + 100;
 		this.maxHealth += 5;
-		this.health =  this.maxHealth;
-		this.attackDamage += 1;
+		this.health = this.maxHealth;
+		this.attackDamage += 2;
 		this.rank += 1;
 		gameData.console.display("You are now rank " + this.rank.toString() + "!");
 	}

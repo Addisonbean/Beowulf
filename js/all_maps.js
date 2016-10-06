@@ -329,10 +329,14 @@ function getGrassMap() {
 	if (!m.initialized) {
 		m.init();
 
-		m.addItemAtPoint(createWolf(), { x: 2, y: 8 });
-		m.addItemAtPoint(createWolf(), { x: 4, y: 8 });
-		m.addItemAtPoint(createWolf(), { x: 7, y: 5 });
-		
+		m.addItemAtPoint(createWolf(createHealthPotion), { x: 2, y: 8 });
+		m.addItemAtPoint(createWolf(createHealthPotion), { x: 4, y: 8 });
+		m.addItemAtPoint(createWolf(createHealthPotion), { x: 7, y: 5 });
+
+		m.addItemAtPoint(createStoneGrass(), { x: 8, y: 8 });
+		m.addItemAtPoint(createStoneGrass(), { x: 9, y: 7 });
+		m.addItemAtPoint(createStoneGrass(), { x: 10, y: 5 });
+		m.addItemAtPoint(createStoneGrass(), { x: 11, y: 3 });
 	}
 	return m;
 }
@@ -452,7 +456,12 @@ function getDesertMap2() {
 		m.addItemAtPoint(doors.desertToCliff, { x: 8, y: 0});
 
 		m.addItemAtPoint(createXpPotion(), { x: 4, y: 11 });
-		
+
+		m.addItemAtPoint(createScorpian(), { x: 4, y: 9 });
+		m.addItemAtPoint(createScorpian(), { x: 7, y: 3 });
+		m.addItemAtPoint(createScorpian(), { x: 10, y: 2 });
+		m.addItemAtPoint(createScorpian(), { x: 10, y: 10 });
+		m.addItemAtPoint(createKnight(), { x: 7, y: 13 });
 	}
 	return m;
 }
@@ -484,6 +493,9 @@ function getIceMap() {
 		m.init();
 
 		m.addItemAtPoint(createHealthPotion(), { x: 2, y: 9 });
+
+		m.addItemAtPoint(createIceTree(), { x: 4, y: 4 });
+		m.addItemAtPoint(createIceTree(), { x: 10, y: 10 });
 		
 	}
 	return m;

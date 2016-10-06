@@ -1,6 +1,6 @@
 Enemy.prototype = new Item("enemy", itemImages.enemy, 1, 1, gameData);
 Enemy.prototype.constructor = Enemy;
-function Enemy(name, sprite, health, strength, xpGiven, dropItem=undefined) {
+function Enemy(name, sprite, health, strength, xpGiven, dropItem=undefined, chance=1) {
 	this.name = name;
 	this.health = health;
 	this.xpGiven = xpGiven;
@@ -9,6 +9,7 @@ function Enemy(name, sprite, health, strength, xpGiven, dropItem=undefined) {
 	this.strength = strength;
 	this.hurt = false;
 	this.itemType = Enemy;
+	this.chance = chance;
 }
 
 Enemy.prototype.attack = function(other) {
@@ -24,7 +25,7 @@ Enemy.prototype.takeDamage = function(amount) {
 	if (this.health <= 0) {
 		this.gameData.map.removeItem(this);
 		this.gameData.player.giveXP(this.xpGiven);
-		if (this.dropItem) {
+		if (this.dropItem && Math.random() <= this.chance) {
 			this.gameData.map.addItemAtPoint(this.dropItem(), this.position);
 			this.gameData.map.drawTileAtPosition(this.position);
 		}
@@ -58,8 +59,8 @@ function createKnight(dropItem=undefined) {
 	return new Enemy("Knight", itemImages.knightD, 10, 2, 10, dropItem);
 }
 
-function createWolf(dropItem=undefined) {
-	return new Enemy("Wolf", itemImages.wolfD, 10, 3, 15, dropItem);
+function createWolf(dropItem=undefined, chance=0.2) {
+	return new Enemy("Wolf", itemImages.wolfD, 10, 3, 15, dropItem, chance);
 }
 
 function createScorpian(dropItem=undefined) {
@@ -78,7 +79,6 @@ function createIceBoss(dropItem=undefined) {
 	return new Enemy("IceBoss", itemImages.iceBoss, 25, 4, 300, dropItem);
 }
 
-// TODO: change the image
 Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 2000, 2, 20000000);
 Beowulf.prototype.constructor = Beowulf;
 function Beowulf() {

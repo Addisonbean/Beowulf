@@ -34,6 +34,8 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	iceTree: new Image(),
+	stoneGrass: new Image(),
 	caveDoor: new Image(),
 	bones: new Image(),
 	cactus: new Image(),
@@ -83,6 +85,8 @@ var itemImages = {
 };
 
 var urls = {
+	iceTree: "img/icetree.png",
+	stoneGrass: "img/stonegrass.png",
 	caveDoor: "img/cavedoor.png",
 	bones: "img/bones.png",
 	cactus: "img/cactus.png",
@@ -148,6 +152,14 @@ function loadImages(imgs, urls, callback) {
 }
 
 // Map Elements
+
+function createIceTree() {
+	return new Item("ice tree", itemImages.iceTree, 2, 2, gameData);
+}
+
+function createStoneGrass() {
+	return new Item("stone grass", itemImages.stoneGrass, 1, 1, gameData);
+}
 
 function createPebble(permeable=true) {
 	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, permeable);
