@@ -34,6 +34,7 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	caveDoor: new Image(),
 	bones: new Image(),
 	cactus: new Image(),
 	pebble: new Image(),
@@ -76,6 +77,7 @@ var itemImages = {
 };
 
 var urls = {
+	caveDoor: "img/cavedoor.png",
 	bones: "img/bones.png",
 	cactus: "img/cactus.png",
 	pebble: "img/pedestal_full.png",
@@ -135,8 +137,8 @@ function loadImages(imgs, urls, callback) {
 
 // Map Elements
 
-function createPebble() {
-	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, true);
+function createPebble(permeable=true) {
+	return new Item("pebble", itemImages.pebble, 1, 1, gameData, false, false, permeable);
 }
 
 function createGrass() {
@@ -191,10 +193,6 @@ function createCandle() {
 	return new Item("candle", itemImages.candle, 1, 1, gameData);
 }
 
-function createDoor(map, key=undefined, fake=false) {
-	return new Door(map, key, fake);
-}
-
 StoneBlock.prototype = new Item("stoneBlock", itemImages.stoneBlock, 1, 1, gameData, false, true);
 StoneBlock.prototype.constructor = StoneBlock;
 function StoneBlock() {}
@@ -221,11 +219,10 @@ function Door(newMap, key=undefined, fake=false) {
 }
 
 Door.prototype.collideWith = function(player, direction) {
-	console.log(this.fake);
 	if (player === this.gameData.player && !this.fake) {
 		if (this.locked && !player.hasItemNamed(this.key)) { return false }
 		this.locked = false;
-		player.gotoMap(this.newMap, this.exit.position);
+		player.gotoMap(this.newMap, this.exit.fakePosition);
 	}
 	return this.fake;
 }
@@ -236,6 +233,18 @@ Door.prototype.gotoMap = function(map, point) {
 	this.gameData.map = map();
 	this.gameData.map.addItemAtPoint(this.gameData.player, point);
 	this.gameData.map.draw();
+}
+
+function createDoor(map, key=undefined, fake=false) {
+	return new Door(map, key, fake);
+}
+
+function createCaveDoor(map, key=undefined, fake=false) {
+	var door = new Door(map, key, fake);
+	door.sprite = itemImages.caveDoor;
+	door.height = 2;
+	return door;
+	//return new Item("cave door", itemImages.caveDoor, 1, 2, gameData);
 }
 
 // Items

@@ -38,18 +38,25 @@ var doors = {
 	startToCave: createDoor(getCaveMap, "startKey"),
 	caveToStart: createDoor(getStartMap),
 	doorFromEntranceToCave: createDoor(getCaveMap),
-	doorFromCaveToEntrance: createDoor(getEntranceMap)
+	doorFromCaveToEntrance: createDoor(getEntranceMap),
+	desertToCliff: createCaveDoor(getCliffMap),
+	cliffToDesert: createCaveDoor(getDesertMap2)
 };
 
 doors.startToCave.exit = doors.caveToStart;
-doors.startToCave.position = { x: 12, y: 5 };
+doors.startToCave.fakePosition = { x: 12, y: 5 };
 doors.caveToStart.exit = doors.startToCave;
-doors.caveToStart.position = { x: 9, y: 8 };
+doors.caveToStart.fakePosition = { x: 9, y: 8 };
+
+doors.desertToCliff.exit = doors.cliffToDesert;
+doors.desertToCliff.fakePosition = { x: 8, y: 2 };
+doors.cliffToDesert.exit = doors.desertToCliff;
+doors.cliffToDesert.fakePosition = { x: 8, y: 14 };
 
 doors.doorFromEntranceToCave.exit = doors.doorFromCaveToEntrance;
-doors.doorFromEntranceToCave.position = { x: 8, y: 1 };
+doors.doorFromEntranceToCave.fakePosition = { x: 8, y: 1 };
 doors.doorFromCaveToEntrance.exit = doors.doorFromEntranceToCave;
-doors.doorFromCaveToEntrance.position = { x: 8, y: 15 };
+doors.doorFromCaveToEntrance.fakePosition = { x: 8, y: 15 };
 
 
 allMaps.entrance.surrounding_maps["n"] = getCaveMap;
@@ -153,7 +160,7 @@ function getEntranceMap() {
 		m.coverRegionWithTile(0, 0, 17, 1, createStoneBlock, false);
 		m.coverRegionWithTile(0, 1, 8, 1, createStoneBlock, false);
 		m.coverRegionWithTile(9, 1, 8, 1, createStoneBlock, false);
-		m.addItemAtPoint(doors.doorFromEntranceToCave, doors.doorFromEntranceToCave.position, true);
+		m.addItemAtPoint(doors.doorFromEntranceToCave, doors.doorFromEntranceToCave.fakePosition, true);
 
 		m.addItemAtPoint(createTree(), { x: 10, y: 4 });
 		
@@ -168,7 +175,7 @@ function getStartMap() {
 	if (!m.initialized) {
 		m.init();
 		m.addItemAtPoint(createCoin(), { x: 10, y: 4 });
-		m.addItemAtPoint(doors.startToCave, doors.startToCave.position, true);
+		m.addItemAtPoint(doors.startToCave, doors.startToCave.fakePosition, true);
 		m.addItemAtPoint(createStoneBlock(), { x: 4, y: 4 });
 		m.addItemAtPoint(createKnight(), { x: 5, y: 10 });
 		m.addItemAtPoint(createKnight(), { x: 3, y: 10 });
@@ -198,7 +205,7 @@ function getCaveMap() {
 		m.addItemAtPoint(createCoin(), { x: 12, y: 5 });
 		m.addItemAtPoint(createHealthPotion(), { x: 14, y: 5 });
 		m.addItemAtPoint(createXpPotion(), { x: 15, y: 5 });
-		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.position, true);
+		m.addItemAtPoint(doors.doorFromCaveToEntrance, doors.doorFromCaveToEntrance.fakePosition, true);
 		m.addItemAtPoint(createWeapon("woodenStaff", 3, itemImages.staff),{ x: 3, y: 2 });
 		m.addItemAtPoint(createKnight(createWolf), { x: 5, y: 10 });
 	}
@@ -430,6 +437,17 @@ function getDesertMap2() {
 
 		m.coverRegionWithTile(15, 0, 2, 17, createWater, false);
 
+		m.coverRegionWithTile(0, 0, 8, 1, createPebble.bind(undefined, false), false);
+		m.coverRegionWithTile(9, 0, 6, 1, createPebble.bind(undefined, false), false);
+
+		m.coverRegionWithTile(8, 0, 1, 2, createPebble);
+
+		m.coverRegionWithTile(0, 1, 8, 1, createPebble.bind(undefined, false), false);
+		m.coverRegionWithTile(9, 1, 6, 1, createPebble.bind(undefined, false), false);
+
+		//m.addItemAtPoint(createCaveDoor(), { x: 8, y: 0 });
+		m.addItemAtPoint(doors.desertToCliff, { x: 8, y: 0});
+
 		m.addItemAtPoint(createXpPotion(), { x: 4, y: 11 });
 		
 	}
@@ -443,6 +461,11 @@ function getCliffMap() {
 
 		m.coverRegionWithTile(0, 0, 17, 3, createBlackness, false);
 		m.coverRegionWithTile(0, 3, 17, 1, createCliff, false);
+
+		m.coverRegionWithTile(0, 16, 8, 1, createPebble.bind(undefined, false), false);
+		m.coverRegionWithTile(9, 16, 8, 1, createPebble.bind(undefined, false), false);
+
+		m.addItemAtPoint(doors.cliffToDesert, { x: 8, y: 15 });
 
 		m.addItemAtPoint(createXpPotion(), { x: 5, y: 10 });
 

@@ -1,5 +1,5 @@
-// gameData.map = getEntranceMap();
-gameData.map = getCliffMap();
+//gameData.map = getEntranceMap();
+gameData.map = getDesertMap2();
 var canGiveInput = true;
 // Waits until the images have loaded to do anything
 loadImages(itemImages, urls, function() {
