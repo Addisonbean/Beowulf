@@ -386,12 +386,16 @@ function getGrassMap4() {
 	if (!m.initialized) {
 		m.init();
 
-		// NEED TO ADD RIVER
-
-		// m.coverRegionWithTile(0, 0, 4, 1, createShrubbery, false);
+		m.coverRegionWithTile(0, 16, 4, 1, createShrubbery, false);
+		m.coverRegionWithTile(1, 0, 2, 16, createWater, false);
+		m.coverRegionWithTile(3, 0, 1, 12, createShrubbery, false);
+		m.coverRegionWithTile(3, 0, 14, 1, createShrubbery, false);
+		m.coverRegionWithTile(16, 1, 1, 16, createShrubbery, false);
 
 		m.addItemAtPoint(createCoin(), { x: 4, y: 6 });
-		
+		m.addItemAtPoint(createGrassDecor1(), { x: 13, y: 4});
+		m.addItemAtPoint(createGrassDecor2(), { x: 4, y: 3});
+		m.addItemAtPoint(createGrassDecor3(), { x: 12, y: 4});
 		
 	}
 	return m;
