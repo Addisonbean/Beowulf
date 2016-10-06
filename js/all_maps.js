@@ -287,6 +287,10 @@ function getHerotMap() {
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 9 });
 		
+		m.coverRegionWithTile( 0, 0, 1, 8, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 9, 1, 8, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 0, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
 	}
 	return m;
 }
@@ -298,6 +302,10 @@ function getHerotMap1() {
 
 		m.addItemAtPoint(createKnight(), { x: 1, y: 9 });
 		
+
+		m.coverRegionWithTile( 0, 0, 7, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 10, 0, 8, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
 	}
 	return m;
 }
@@ -308,7 +316,11 @@ function getHerotMap2() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 10, y: 9 });
-		
+		m.addItemAtPoint(createXpPotion(), { x: 13, y: 9 });
+
+		m.coverRegionWithTile( 0, 0, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 16, 0, 1, 17,createStoneBlock, false);
 	}
 	return m;
 }

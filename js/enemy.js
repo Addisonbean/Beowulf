@@ -94,3 +94,7 @@ function createBeowulf() {
 	return new Beowulf();
 }
 
+function createBat() {
+	return new Enemy("bat", itemImages.batD, 8, 3, 10);
+}
+
