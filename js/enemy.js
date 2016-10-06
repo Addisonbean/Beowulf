@@ -66,6 +66,14 @@ function createEagle(dropItem=undefined) {
 	return new Enemy("Eagle", itemImages.eagle, 25, 4, 300, dropItem);
 }
 
+function createTroll(dropItem=undefined) {
+	return new Enemy("Troll", itemImages.troll, 25, 4, 300, dropItem);
+}
+
+function createIceBoss(dropItem=undefined) {
+	return new Enemy("IceBoss", itemImages.iceBoss, 25, 4, 300, dropItem);
+}
+
 // TODO: change the image
 Beowulf.prototype = new Enemy("Beowulf", itemImages.beowulfD, 2000, 2, 20000000);
 Beowulf.prototype.constructor = Beowulf;
