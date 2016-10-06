@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 //gameData.map = getEntranceMap();
 //gameData.map = getIceMap3();
 gameData.map = getForestMap3();
+=======
+gameData.map = getEntranceMap();
+>>>>>>> d3ec53673aaac77ac08c116543cba5b71d34952a
 
 var canGiveInput = true;
 // Waits until the images have loaded to do anything

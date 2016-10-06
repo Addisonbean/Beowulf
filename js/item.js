@@ -34,6 +34,10 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	batD: new Image(),
+	batU: new Image(),
+	batL: new Image(),
+	batR: new Image(),
 	iceWell: new Image(),
 	iceTree: new Image(),
 	stoneGrass: new Image(),
@@ -42,6 +46,9 @@ var itemImages = {
 	cactus: new Image(),
 	pebble: new Image(),
 	grass: new Image(),
+	grassDecor1: new Image(),
+	grassDecor2: new Image(),
+	grassDecor3: new Image(),
 	sand: new Image(),
 	ice: new Image(),
 	swamp: new Image(),
@@ -86,6 +93,10 @@ var itemImages = {
 };
 
 var urls = {
+	batD: "img/bat_down.png",
+	batU: "img/bat_up.png",
+	batL: "img/bat_left.png",
+	batR: "img/bat_right.png",
 	iceWell: "img/icewell.png",
 	iceTree: "img/icetree.png",
 	stoneGrass: "img/stonegrass.png",
@@ -94,6 +105,9 @@ var urls = {
 	cactus: "img/cactus.png",
 	pebble: "img/pedestal_full.png",
 	grass: "img/grass.png",
+	grassDecor1: "img/grassdecor1.png",
+	grassDecor2: "img/grassdecor2.png",
+	grassDecor3: "img/grassdecor3.png",
 	sand: "img/sand.png",
 	ice: "img/ice.png",
 	swamp: "img/swamp.png",
@@ -173,6 +187,18 @@ function createPebble(permeable=true) {
 
 function createGrass() {
 	return new Item("grass", itemImages.grass, 1, 1, gameData, false, false, true);
+}
+
+function createGrassDecor1() {
+	return new Item("grassDecor1", itemImages.grassDecor1, 1, 1, gameData);
+}
+
+function createGrassDecor2() {
+	return new Item("grassDecor2", itemImages.grassDecor2, 1, 1, gameData);
+}
+
+function createGrassDecor3() {
+	return new Item("grassDecor3", itemImages.grassDecor3, 1, 1, gameData);
 }
 
 function createSand() {

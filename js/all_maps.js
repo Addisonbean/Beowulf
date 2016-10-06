@@ -350,6 +350,10 @@ function getHerotMap() {
 
 		m.addItemAtPoint(createKnight(), { x: 5, y: 9 });
 		
+		m.coverRegionWithTile( 0, 0, 1, 8, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 9, 1, 8, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 0, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
 	}
 	return m;
 }
@@ -361,6 +365,10 @@ function getHerotMap1() {
 
 		m.addItemAtPoint(createKnight(), { x: 1, y: 9 });
 		
+
+		m.coverRegionWithTile( 0, 0, 7, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 10, 0, 8, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
 	}
 	return m;
 }
@@ -371,7 +379,11 @@ function getHerotMap2() {
 		m.init();
 
 		m.addItemAtPoint(createKnight(), { x: 10, y: 9 });
-		
+		m.addItemAtPoint(createXpPotion(), { x: 13, y: 9 });
+
+		m.coverRegionWithTile( 0, 0, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 0, 16, 17, 1, createStoneBlock, false);
+		m.coverRegionWithTile( 16, 0, 1, 17,createStoneBlock, false);
 	}
 	return m;
 }
@@ -449,12 +461,16 @@ function getGrassMap4() {
 	if (!m.initialized) {
 		m.init();
 
-		// NEED TO ADD RIVER
-
-		// m.coverRegionWithTile(0, 0, 4, 1, createShrubbery, false);
+		m.coverRegionWithTile(0, 16, 4, 1, createShrubbery, false);
+		m.coverRegionWithTile(1, 0, 2, 16, createWater, false);
+		m.coverRegionWithTile(3, 0, 1, 12, createShrubbery, false);
+		m.coverRegionWithTile(3, 0, 14, 1, createShrubbery, false);
+		m.coverRegionWithTile(16, 1, 1, 16, createShrubbery, false);
 
 		m.addItemAtPoint(createCoin(), { x: 4, y: 6 });
-		
+		m.addItemAtPoint(createGrassDecor1(), { x: 13, y: 4});
+		m.addItemAtPoint(createGrassDecor2(), { x: 4, y: 3});
+		m.addItemAtPoint(createGrassDecor3(), { x: 12, y: 4});
 		
 	}
 	return m;
