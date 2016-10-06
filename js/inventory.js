@@ -97,7 +97,7 @@ Inventory.prototype.draw = function() {
 		var item = this.items[key];
 		this.gameData.ctx.drawImage(item.object.sprite,
 			(x * this.width  / this.columns + (x + 1) * this.width  / this.columns - 32) / 2 + this.minX,
-			yOffset + (y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2);
+			yOffset + (y * this.height / this.rows    + (y + 1) * this.height / this.rows    - 32) / 2, this.gameData.tileSize, this.gameData.tileSize);
 		if (item.count > 1) {
 			this.gameData.ctx.font = "10pt helvetica";
 			this.gameData.ctx.fillStyle = "black";

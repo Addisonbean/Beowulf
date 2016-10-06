@@ -55,14 +55,16 @@ Map.prototype.draw = function() {
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.backgroundTiles[y][x];
-			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
+			//this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
+			tile.draw();
 		}
 	}
 	for (var y = 0; y < this.height; y++) {
 		for (var x = 0; x < this.width; x++) {
 			var tile = this.tiles[y][x];
 			if (!tile || !tile.isItem) { continue }
-			this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
+			//this.gameData.ctx.drawImage(tile.sprite, x * this.tileSize, yOffset + y * this.tileSize);
+			tile.draw();
 		}
 	}
 };

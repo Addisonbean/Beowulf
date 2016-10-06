@@ -36,7 +36,7 @@ Item.prototype.draw = function() {
 	var extraX = this.gameData.map.width * tileSize - tileSize * (this.position.x + this.width);
 	extraX = extraX < 0 ? extraX : 0;
 
-	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize + extraX, yOffset + pos.y * tileSize + extraY);
+	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize + extraX, yOffset + pos.y * tileSize + extraY, this.width * tileSize, this.height * tileSize);
 };
 
 var itemImages = {
@@ -99,63 +99,70 @@ var itemImages = {
 };
 
 var urls = {
-	batD: "img/bat_down.png",
-	batU: "img/bat_up.png",
-	batL: "img/bat_left.png",
-	batR: "img/bat_right.png",
-	iceWell: "img/icewell.png",
-	iceTree: "img/icetree.png",
-	stoneGrass: "img/stonegrass.png",
-	caveDoor: "img/cavedoor.png",
-	bones: "img/bones.png",
-	cactus: "img/cactus.png",
-	pebble: "img/pedestal_full.png",
-	grass: "img/grass.png",
-	grassDecor1: "img/grassdecor1.png",
-	grassDecor2: "img/grassdecor2.png",
-	grassDecor3: "img/grassdecor3.png",
-	sand: "img/sand.png",
-	ice: "img/ice.png",
-	swamp: "img/swamp.png",
-	cliff: "img/cliffedge1 up.png",
-	blackness: "img/cliffedge2.png",
-	caveGround: "img/cave.png",
-	herot: "img/herot.png",
-	shrubbery: "img/bush.png",
-	tree: "img/tree.png",
-	heroD: "img/grendel1_walkdown.png",
-	heroU: "img/grendel1_walkup.png",
-	heroR: "img/grendel1_walkright.png",
-	heroL: "img/grendel1_walkleft.png",
-	coin: "img/coin.png",
-	door: "img/dngn_enter_labyrinth.png",
-	stoneBlock: "img/stone.png",
-	knightD: "img/knight1_walkdown.png",
-	knightU: "img/knight1_walkup.png",
-	knightR: "img/knight1_walkright.png",
-	knightL: "img/knight1_walkleft.png",
-	wolfD: "img/monster1_walkdown.png",
-	wolfU: "img/monster1_walkup.png",
-	wolfR: "img/monster1_walkright.png",
-	wolfL: "img/monster1_walkleft.png",
-	beowulfD: "img/beowulf_down.png",
-	beowulfU: "img/beowulf_up.png",
-	beowulfR: "img/beowulf_right.png",
-	beowulfL: "img/beowulf_left.png",
-	key: "img/brass.png",
-	healthPotion: "img/healthpotion.png",
-	xpPotion: "img/xppotion.png",
-	staff: "img/staff02.png",
-	water: "img/water.png",
-	candle: "img/candle.png",
-	eagle: "img/eaglebosstmp.png",
-	troll: "img/troll.png",
-	iceBoss: "img/iceboss1.png",
-	scorpianD: "img/sandmonster1_down.png",
-	scorpianU: "img/sandmonster1_up.png",
-	scorpianR: "img/sandmonster1_right.png",
-	scorpianL: "img/sandmonster1_left.png"
+	batD: "bat_down.png",
+	batU: "bat_up.png",
+	batL: "bat_left.png",
+	batR: "bat_right.png",
+	iceWell: "icewell.png",
+	iceTree: "icetree.png",
+	stoneGrass: "stonegrass.png",
+	caveDoor: "cavedoor.png",
+	bones: "bones.png",
+	cactus: "cactus.png",
+	pebble: "pedestal_full.png",
+	grass: "grass.png",
+	grassDecor1: "grassdecor1.png",
+	grassDecor2: "grassdecor2.png",
+	grassDecor3: "grassdecor3.png",
+	sand: "sand.png",
+	ice: "ice.png",
+	swamp: "swamp.png",
+	cliff: "cliffedge1 up.png",
+	blackness: "cliffedge2.png",
+	caveGround: "cave.png",
+	herot: "herot.png",
+	shrubbery: "bush.png",
+	tree: "tree.png",
+	heroD: "grendel1_walkdown.png",
+	heroU: "grendel1_walkup.png",
+	heroR: "grendel1_walkright.png",
+	heroL: "grendel1_walkleft.png",
+	coin: "coin.png",
+	door: "dngn_enter_labyrinth.png",
+	stoneBlock: "stone.png",
+	knightD: "knight1_walkdown.png",
+	knightU: "knight1_walkup.png",
+	knightR: "knight1_walkright.png",
+	knightL: "knight1_walkleft.png",
+	wolfD: "monster1_walkdown.png",
+	wolfU: "monster1_walkup.png",
+	wolfR: "monster1_walkright.png",
+	wolfL: "monster1_walkleft.png",
+	beowulfD: "beowulf_down.png",
+	beowulfU: "beowulf_up.png",
+	beowulfR: "beowulf_right.png",
+	beowulfL: "beowulf_left.png",
+	key: "brass.png",
+	healthPotion: "healthpotion.png",
+	xpPotion: "xppotion.png",
+	staff: "staff02.png",
+	water: "water.png",
+	candle: "candle.png",
+	eagle: "eaglebosstmp.png",
+	troll: "troll.png",
+	iceBoss: "iceboss1.png",
+	scorpianD: "sandmonster1_down.png",
+	scorpianU: "sandmonster1_up.png",
+	scorpianR: "sandmonster1_right.png",
+	scorpianL: "sandmonster1_left.png"
 };
+
+if (isRetinaDisplay()) {
+	for (var img in urls) {
+		if (!urls.hasOwnProperty(img)) continue;
+		urls[img] = "@2x_" + urls[img];
+	}
+}
 
 // This loads all the images then calls `callback` so
 // we don't have to worry about making sure an image
@@ -169,7 +176,7 @@ function loadImages(imgs, urls, callback) {
 				callback();
 			}
 		};
-		imgs[key].src = urls[key];
+		imgs[key].src = "img/" + urls[key];
 	}
 }
 

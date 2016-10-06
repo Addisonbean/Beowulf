@@ -161,7 +161,7 @@ gameData.ctx = gameData.canvas.getContext("2d");
 // so it is the right size
 
 // Credit: https://coderwall.com/p/vmkk6a/how-to-make-the-canvas-not-look-like-crap-on-retina
-if (isRetinaDisplay) {
+if (isRetinaDisplay()) {
 	gameData.canvas.width *= 2;
 	gameData.canvas.height *= 2;
 	gameData.canvas.style.width = "694px";
