@@ -19,6 +19,11 @@ Inventory.prototype.addItem = function(item) {
 	this.draw();
 };
 
+Inventory.prototype.removeItemNamed = function(itemName) {
+	var count = --this.items[itemName].count;
+	if (count <= 0) { delete this.items[itemName] }
+}
+
 Inventory.prototype.updateIndexes = function(after) {
 	for (var itm in this.items) {
 		if (this.items[itm].index >= after) {

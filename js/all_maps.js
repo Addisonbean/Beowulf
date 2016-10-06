@@ -163,6 +163,7 @@ function getEntranceMap() {
 		m.addItemAtPoint(doors.doorFromEntranceToCave, doors.doorFromEntranceToCave.fakePosition, true);
 
 		m.addItemAtPoint(createTree(), { x: 10, y: 4 });
+		m.addItemAtPoint(createTree(), { x: 4, y: 8 });
 		
 	}
 	return m;

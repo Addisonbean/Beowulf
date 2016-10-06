@@ -347,7 +347,8 @@ var itemFunctions = {
 }
 
 function useItem(item, name) {
-	delete gameData.player.inventory.items[item];
+	//delete gameData.player.inventory.items[item];
+	gameData.player.inventory.removeItemNamed(item);
 	gameData.player.inventory.draw();
 	gameData.console.display("You have used a " + name + ".");
 }

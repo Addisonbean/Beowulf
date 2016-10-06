@@ -60,7 +60,7 @@ Hero.prototype.giveHealth = function(amount) {
 
 Hero.prototype.giveXP = function(amount) {
 	this.xp += amount;
-	gameData.console.display("You have gained " + amount.toString() + " XP.");
+	//gameData.console.display("You have gained " + amount.toString() + " XP.");
 	this.checkRankUp();
 	this.gameData.stats.draw()
 }
@@ -80,7 +80,7 @@ Hero.prototype.checkRankUp = function() {
 
 Hero.prototype.attack = function(other) {
 	var t = Date.now();
-	// Only allow the player to attack ever `this.attackSpeed` miliseconds
+	// Only allow the player to attack every `this.attackSpeed` miliseconds
 	if (t - this.timeOfLastAttack > this.attackSpeed) {
 		this.timeOfLastAttack = t;
 		other.takeDamage(this.attackDamage);
