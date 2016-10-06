@@ -26,7 +26,7 @@ Inventory.prototype.removeItemNamed = function(itemName) {
 
 Inventory.prototype.updateIndexes = function(after) {
 	for (var itm in this.items) {
-		if (this.items[itm].index >= after) {
+		if (this.items[itm].index > after) {
 			console.log(this.items[itm]);
 			this.items[itm].index -= 1;
 		}
@@ -39,7 +39,7 @@ Inventory.prototype.useItem = function(keycode) {
 		for (var itm in this.items) {
 			if (this.items[itm].index === keycode - 48) {
 				var stat = this.items[itm].object.func();
-				if (stat) { this.updateIndexes(keycode - 48) }
+				if (stat && !this.items[itm]) { this.updateIndexes(keycode - 48) }
 				return;
 			}
 

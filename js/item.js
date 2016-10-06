@@ -40,6 +40,7 @@ Item.prototype.draw = function() {
 };
 
 var itemImages = {
+	boat: new Image(),
 	batD: new Image(),
 	batU: new Image(),
 	batL: new Image(),
@@ -99,6 +100,7 @@ var itemImages = {
 };
 
 var urls = {
+	boat: "boat.png",
 	batD: "bat_down.png",
 	batU: "bat_up.png",
 	batL: "bat_left.png",
@@ -386,9 +388,10 @@ Water.prototype.constructor = Water;
 function Water() {}
 
 Water.prototype.collideWith = function(other) {
-	console.log(other);
+	//console.log(other);
 	if (other === this.gameData.player) {
-		return !!this.gameData.player.inventory["boat"];
+		console.log(this.gameData.player.inventory.items["boat"]);
+		return !!this.gameData.player.inventory.items["boat"];
 	}
 	return false;
 };

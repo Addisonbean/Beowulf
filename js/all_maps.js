@@ -476,7 +476,7 @@ function getGrassMap4() {
 		m.init();
 
 		m.coverRegionWithTile(0, 16, 4, 1, createShrubbery, false);
-		m.coverRegionWithTile(1, 0, 2, 16, createWater, false);
+		m.coverRegionWithTile(1, 0, 2, 16, createWater);
 		m.coverRegionWithTile(3, 0, 1, 12, createShrubbery, false);
 		m.coverRegionWithTile(3, 0, 14, 1, createShrubbery, false);
 		m.coverRegionWithTile(16, 1, 1, 16, createShrubbery, false);
@@ -486,6 +486,7 @@ function getGrassMap4() {
 		m.addItemAtPoint(createGrassDecor2(), { x: 4, y: 3});
 		m.addItemAtPoint(createGrassDecor3(), { x: 12, y: 4});
 		
+		m.addItemAtPoint(createBoat(), { x: 5, y: 6 });
 	}
 	return m;
 }
