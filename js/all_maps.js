@@ -530,6 +530,8 @@ function getIceMap3() {
 
 		m.addItemAtPoint(createShrubbery(), { x: 2, y: 13 });
 
+		m.addItemAtPoint(createIceWell(), { x: 5, y: 4 });
+
 		m.addItemAtPoint(createIceBoss(), { x: 10, y: 10 });		
 		
 	}
