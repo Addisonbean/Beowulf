@@ -164,6 +164,18 @@ function getEntranceMap() {
 
 		m.addItemAtPoint(createTree(), { x: 10, y: 4 });
 		m.addItemAtPoint(createTree(), { x: 4, y: 8 });
+
+		m.coverRegionWithTile(0, 14, 8, 1, createWater);
+		m.coverRegionWithTile(9, 14, 17, 1, createWater);
+		m.coverRegionWithTile(0, 15, 1, 2, createWater);
+		m.coverRegionWithTile(16, 15, 1, 2, createWater);
+
+		m.coverRegionWithTile(1, 15, 15, 2, createSwamp);
+		m.coverRegionWithTile(8, 14, 1, 1, createSwamp);
+
+		
+
+
 		
 	}
 	return m;
@@ -185,6 +197,8 @@ function getStartMap() {
 		m.addItemAtPoint(createKey("startKey"), { x: 8, y: 4 });
 		m.addItemAtPoint(createBeowulf(), { x: 5, y: 1});
 		m.coverRegionWithTile(0, 0, 2, 2, createWater, false);
+		m.coverRegionWithTile(0, 16, 8, 1, createWater);
+		m.coverRegionWithTile(10, 16, 17, 1, createWater);
 
 		//example usage:
 		// allMaps.start.coverRegionWithTile(1, 1, 2, 3, createGrass);
@@ -637,8 +651,14 @@ function getSwampMap() {
 	if (!m.initialized) {
 		m.init();
 
+		m.coverRegionWithTile(0, 15, 17, 2, createWater);
+		m.coverRegionWithTile(0, 0, 1, 1, createWater);
+		m.coverRegionWithTile(16, 0, 1, 1, createWater);
+
+
 		m.addItemAtPoint(createShrubbery(), { x: 3, y: 13 });
-		
+
+		//m.addItemAtPoint(createSwampMonster(), { x: 4, y: 6 });
 	}
 	return m;
 }
@@ -647,6 +667,10 @@ function getSwampMap1() {
 	var m = allMaps.swamp1;
 	if (!m.initialized) {
 		m.init();
+
+		m.coverRegionWithTile(0, 15, 17, 2, createWater);
+		m.coverRegionWithTile(0, 0, 3, 17, createWater);
+		m.coverRegionWithTile(0, 0, 17, 1, createWater);
 
 		m.addItemAtPoint(createCoin(), { x: 8, y: 13 });
 		
@@ -659,7 +683,12 @@ function getSwampMap2() {
 	if (!m.initialized) {
 		m.init();
 
+		m.coverRegionWithTile(14, 0, 3, 17, createWater);
+		m.coverRegionWithTile(0, 15, 17, 2, createWater);
+		m.coverRegionWithTile(0, 0, 17, 1, createWater);
+		
 		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
+
 		
 	}
 	return m;
