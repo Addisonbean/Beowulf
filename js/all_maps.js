@@ -657,6 +657,9 @@ function getSwampMap() {
 
 
 		m.addItemAtPoint(createShrubbery(), { x: 3, y: 13 });
+		m.addItemAtPoint(createBat(), { x: 4, y: 10});
+		m.addItemAtPoint(createBat(), { x: 8, y: 9});
+		m.addItemAtPoint(createBat(), { x: 14, y: 3});
 		
 	}
 	return m;
@@ -672,6 +675,9 @@ function getSwampMap1() {
 		m.coverRegionWithTile(0, 0, 17, 1, createWater);
 
 		m.addItemAtPoint(createCoin(), { x: 8, y: 13 });
+		m.addItemAtPoint(createBat(), { x: 5, y: 9});
+		m.addItemAtPoint(createBat(), { x: 10, y: 6});
+		m.addItemAtPoint(createBat(), { x: 12, y: 10});
 		
 	}
 	return m;
@@ -687,6 +693,9 @@ function getSwampMap2() {
 		m.coverRegionWithTile(0, 0, 17, 1, createWater);
 		
 		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
+		m.addItemAtPoint(createBat(), { x: 5, y: 9});
+		m.addItemAtPoint(createBat(), { x: 10, y: 6});
+		m.addItemAtPoint(createBat(), { x: 12, y: 10});
 
 		
 	}
