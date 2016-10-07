@@ -657,10 +657,8 @@ function getSwampMap() {
 
 
 		m.addItemAtPoint(createShrubbery(), { x: 3, y: 13 });
-		m.addItemAtPoint(createBat(), { x: 4, y: 10});
-		m.addItemAtPoint(createBat(), { x: 8, y: 9});
-		m.addItemAtPoint(createBat(), { x: 14, y: 3});
-		
+
+		//m.addItemAtPoint(createSwampMonster(), { x: 4, y: 6 });
 	}
 	return m;
 }

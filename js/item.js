@@ -36,10 +36,15 @@ Item.prototype.draw = function() {
 	var extraX = this.gameData.map.width * tileSize - tileSize * (this.position.x + this.width);
 	extraX = extraX < 0 ? extraX : 0;
 
+	console.log(this.sprite);
 	this.gameData.ctx.drawImage(this.sprite, pos.x * tileSize + extraX, yOffset + pos.y * tileSize + extraY, this.width * tileSize, this.height * tileSize);
 };
 
 var itemImages = {
+	swampMonsterD: new Image(),
+	swampMonsterU: new Image(),
+	swampMonsterL: new Image(),
+	swampMonsterR: new Image(),
 	boat: new Image(),
 	batD: new Image(),
 	batU: new Image(),
@@ -100,6 +105,10 @@ var itemImages = {
 };
 
 var urls = {
+	swampMonsterD: "swampmonster2_down.png",
+	swampMonsterU: "swampmonster2_up.png",
+	swampMonsterL: "swampmonster2_left.png",
+	swampMonsterR: "swampmonster2_right.png",
 	boat: "boat.png",
 	batD: "bat_down.png",
 	batU: "bat_up.png",
