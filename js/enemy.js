@@ -98,3 +98,7 @@ function createBat(dropItem=createXpPotion.bind(undefined, 5), chance=0.1) {
 	return new Enemy("bat", itemImages.batD, 8, 3, 7, dropItem, chance);
 }
 
+function createSwampMonster(dropItem=undefined, chance=0.2) {
+	return new Enemy("swamp monster", itemImages.swampMonsterD, 8, 2, 10, dropItem, chance);
+}
+
