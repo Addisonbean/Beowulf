@@ -655,6 +655,9 @@ function getSwampMap() {
 		m.coverRegionWithTile(0, 0, 1, 1, createWater);
 		m.coverRegionWithTile(16, 0, 1, 1, createWater);
 
+		m.addItemAtPoint(createBat(), { x: 5, y: 9});
+		m.addItemAtPoint(createBat(), { x: 10, y: 6});
+		m.addItemAtPoint(createBat(), { x: 12, y: 10});
 
 		m.addItemAtPoint(createShrubbery(), { x: 3, y: 13 });
 
