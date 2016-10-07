@@ -440,6 +440,10 @@ function getGrassMap() {
 		m.addItemAtPoint(createStoneGrass(), { x: 9, y: 7 });
 		m.addItemAtPoint(createStoneGrass(), { x: 10, y: 5 });
 		m.addItemAtPoint(createStoneGrass(), { x: 11, y: 3 });
+
+		m.coverRegionWithTile(0, 15, 17, 2, createWater);
+		m.addItemAtPoint(createWater(), { x: 0, y: 14 });
+		m.coverRegionWithTile(0, 0, 1, 2, createShrubbery, false);
 	}
 	return m;
 }
@@ -450,8 +454,12 @@ function getGrassMap1() {
 		m.init();
 
 		m.coverRegionWithTile(0, 0, 17, 1, createShrubbery, false);
+		m.coverRegionWithTile(0, 0, 1, 17, createShrubbery, false);
 
 		m.addItemAtPoint(createCoin(), { x: 2, y: 8 });
+		m.addItemAtPoint(createGrassDecor2(), { x: 9, y: 11});
+		m.addItemAtPoint(createGrassDecor3(), { x: 6, y: 9});
+		m.addItemAtPoint(createGrassDecor3(), { x: 11, y: 6});
 		
 		
 	}
@@ -464,7 +472,9 @@ function getGrassMap2() {
 		m.init();
 
 		m.addItemAtPoint(createWolf(), { x: 5, y: 9 });
-		
+
+		m.coverRegionWithTile(0, 15, 17, 2, createWater);
+		m.coverRegionWithTile(16, 0, 1, 15, createShrubbery, false);
 		
 	}
 	return m;
@@ -476,8 +486,10 @@ function getGrassMap3() {
 		m.init();
 
 		m.coverRegionWithTile(0, 0, 4, 1, createShrubbery, false);
+		m.coverRegionWithTile(16, 0, 1, 17, createShrubbery, false);
 
 		m.addItemAtPoint(createCoin(), { x: 5, y: 2 });
+		m.addItemAtPoint(createGrassDecor2(), { x: 7, y: 9});
 		
 		
 	}
