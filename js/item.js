@@ -118,7 +118,7 @@ var urls = {
 	grassDecor3: "grassdecor3.png",
 	sand: "sand.png",
 	ice: "ice.png",
-	swamp: "swamp.png",
+	swamp: "swamp2.png",
 	cliff: "cliffedge1 up.png",
 	blackness: "cliffedge2.png",
 	caveGround: "cave.png",
